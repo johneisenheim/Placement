@@ -19,34 +19,29 @@ import it.unisa.tp.model.interfaces.Account;
  * @author carlosborges
  */
 public class AuthenticateUser {
-    
-    private ConcreteAccount anAccount = null;
-    
-    public AuthenticateUser(Account anAccount){
-        this.anAccount = (ConcreteAccount)anAccount;
+
+    public AuthenticateUser() {
     }
-    
-    public boolean authenticate() throws SQLException{
-        int rsResult=0;
-        try {
-            Class.forName ( "com.mysql.jdbc.Driver" );
-            Connection aConnection = DriverManager.getConnection ("jdbc:mysql://localhost:3306/mydb","root","root");
-            Statement aStatement = aConnection.createStatement ();
-            String query = "select * from Account where userName='"+this.anAccount.getUnserName()+"' and password='"+this.anAccount.getPassword()+"'";
-            ResultSet rs = aStatement.executeQuery(query);
-            while(rs.next()){
-                rsResult++;
-            }
-            
-            if(rsResult == 0)
-                return false;
-            return true;
-            
-        } catch (ClassNotFoundException ex) {
-            return false;
+
+    public ConcreteAccount authenticate(String userName, String password) throws SQLException, ClassNotFoundException {
+        int rsResult = 0;
+        ConcreteAccount loggedAccount = new ConcreteAccount();
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection aConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+        Statement aStatement = aConnection.createStatement();
+        String query = "select * from Account where userName='" + userName + "' and password='" + password + "'";
+        ResultSet rs = aStatement.executeQuery(query);
+        while (rs.next()) {
+            rsResult++;
+            loggedAccount.setPrimaryKey(rs.getInt(1));
+            loggedAccount.setUnserName(rs.getString(2));
+            loggedAccount.setTypeOfAccount(rs.getString(4));
+        }
+        if (rsResult == 0) {
+            return null;
+        } else {
+            return loggedAccount;
         }
     }
-    
-    
-    
+
 }

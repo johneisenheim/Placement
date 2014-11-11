@@ -18,14 +18,8 @@ public class MainTest {
     
      public static void main(String[] args) {
         ConcreteAccount anAccount = new ConcreteAccount();
-        anAccount.setUnserName("pippo");
-        anAccount.setPassword("paperino");
-        AuthenticateUser anUser = new AuthenticateUser(anAccount);
-        try {
-            boolean result = anUser.authenticate();
-            System.out.println("Il risultato è" +result);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        anAccount.setUnserName("username");
+        anAccount.setPassword("password");
+
     }
 }
