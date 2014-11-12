@@ -9,17 +9,16 @@
 	<meta name="author" content="" />
 	
 	<title>DISTRA MIT</title>
-    
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
-	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.css">
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" href="assets/css/xenon-core.css">
 	<link rel="stylesheet" href="assets/css/xenon-forms.css">
 	<link rel="stylesheet" href="assets/css/xenon-components.css">
 	<link rel="stylesheet" href="assets/css/xenon-skins.css">
 	<link rel="stylesheet" href="assets/css/custom.css">
-
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 
@@ -32,6 +31,7 @@
 	
 </head>
 <body class="page-body">
+	
 	<nav class="navbar horizontal-menu navbar-fixed-top"><!-- set fixed position by adding class "navbar-fixed-top" -->
 		
 		<div class="navbar-inner">
@@ -175,7 +175,7 @@
 						</li>
 					</ul>-->
 				</li>
-				<li>
+				<li class="opened active">
 					<a href="gestioneTesi.html">
 						<i class="linecons-graduation-cap"></i>
 						<span class="title">Gestione Tesi</span>
@@ -294,7 +294,7 @@
 				<li>
 					<a href="dottorato.html">
 						<i class="linecons-lightbulb"></i>
-						<span class="title">Dottorando</span>
+						<span class="title">Dottorato</span>
 					</a>
 					<!--<ul>
 						<li>
@@ -646,7 +646,7 @@
 			
 			<!-- notifications and other links -->
 			<ul class="nav nav-userinfo navbar-right">
-                <li class="opened active">
+                <li>
 				    <a href="login.html">
 				        <i class="fa-user"></i>
 						<span class="title">Login</span>
@@ -657,64 +657,9 @@
 		</div>
 		
 	</nav>
-    <!--BODY-->
-    
-    <div class="page-container">
-        <div class="main-content">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8">
-				<div class="panel panel-default">
-				
-					<div class="panel-heading">
-						<h3 class="panel-title">Accedi a MITPlatform</h3>
-					</div>
-					
-					<div class="panel-body">
-						<form>
-							<div id="form-group-username" class="form-group">
-								<label>Username:</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa-user"></i></span>
-									<input type="text" id="username" class="form-control" placeholder="Inserisci lo username" />
-								</div>
-								<span id="validate_username" style="color:#cc3f44"></span>
-							</div>
-							
-							<div class="form-group">
-								<label>Password:</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa-key"></i></span>
-									<input type="password" id="password" class="form-control" placeholder="Inserisci la password" />
-								</div>
-								<span id="validate_password" style="color:#cc3f44"></span>
-							</div>
-							
-							<div class="form-group">
-								<label>
-									<input type="checkbox" class="cbr cbr-done">
-									Ricordami la prossima volta
-								</label>
-							</div>
-							
-							<div class="col-sm-12">
-								<div id="messageControl">
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<button type="button" id="signin" class="btn btn-info">Sign in</button>
-								<button type="reset"  id="reset"  class="btn btn-white">Reset</button>
-							</div>
-						</form>
-						
-					</div>
-				</div>
-				</div>
-            <div class="col-sm-2"></div>
-        </div>
-    </div>
 
-	
+<!--BODY-->
+
 	<!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/TweenMax.min.js"></script>
@@ -724,73 +669,8 @@
 	<script src="assets/js/xenon-toggles.js"></script>
 
 
-	<!-- Imported scripts on this page -->
-	<script src="assets/js/jquery-validate/jquery.validate.min.js"></script>
-
-
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
-	
-	<script>
-		function reset(){
-			$("#password").attr("style","border-color:#e4e4e4;");
-			$("#validate_password").html("");
-			$("#username").attr("style","border-color:#e4e4e4;");
-			$("#validate_username").html("");
-			$("#username").val("");
-			$("#password").val("");
-		}
-		
-		function emptyControl(id){
-			if($("#"+id).val() == "")
-				return false;
-			return true;
-		}
-		
-		function checkEmptyFields(){
-			var tmp1 = emptyControl("username");
-			var tmp2 = emptyControl("password");
-			if(!tmp1) {
-				$("#validate_username").html("Campo username vuoto");
-				$("#username").attr("style","border-color:#cc3f44;");
-			}
-			if(!tmp2) {
-				$("#validate_password").html("Campo password vuoto");
-				$("#password").attr("style","border-color:#cc3f44;");
-			}
-			
-			return tmp1&tmp2;
-		}
-		
-		jQuery(document).ready(function($){
-		
-			$("#reset").click(function(){
-				reset();
-			});
-			
-			$("#username").keyup(function(){
-				$("#username").attr("style","border-color:#e4e4e4;");
-				$("#validate_username").html("");
-			});
-			
-			$("#password").keyup(function(){
-				$("#password").attr("style","border-color:#e4e4e4;");
-				$("#validate_password").html("");
-			});
-			
-			$("#signin").click(function(){
-				$("signin").text("Attendi...");
-				if(checkEmptyFields()){
-					$.get("http://localhost:8080/GPCms/searchSupplier",{type:"none"}).done(function(e){
-					
-					}).fail(function(){
-					
-					});
-				}
-				$("signin").text("Sign in");
-			});
-		});
-	</script>
 
 </body>
 </html>
