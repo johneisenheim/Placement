@@ -103,7 +103,9 @@ public class ConcreteClaimTraining implements ClaimTraining{
         this.FKOrganization = FKOrganization;
     }
     
-    
-    
+     public String toString(){
+        return ("idClaimTraining: \n"+idClaimTraining+"Description: \n"+description+"FKClaimStatus: \n"+FKClaimStatus+"FKProfessor: \n"
+                +FKProfessor+"FKOrganization: \n"+FKOrganization);
+    }
     
 }
