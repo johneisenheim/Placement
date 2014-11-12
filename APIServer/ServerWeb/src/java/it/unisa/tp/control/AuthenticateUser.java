@@ -27,7 +27,7 @@ public class AuthenticateUser {
         int rsResult = 0;
         ConcreteAccount loggedAccount = new ConcreteAccount();
         Class.forName("com.mysql.jdbc.Driver");
-        Connection aConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+        Connection aConnection = DriverManager.getConnection("jdbc:mysql://localhost:3307/mydb", "root", "");
         Statement aStatement = aConnection.createStatement();
         String query = "select * from Account where userName='" + userName + "' and password='" + password + "'";
         ResultSet rs = aStatement.executeQuery(query);
