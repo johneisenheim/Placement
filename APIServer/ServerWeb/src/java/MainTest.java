@@ -1,6 +1,8 @@
 
 import it.unisa.tp.control.AuthenticateUser;
+import it.unisa.tp.control.DBConnection;
 import it.unisa.tp.model.concrete.ConcreteAccount;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,9 +19,14 @@ import java.util.logging.Logger;
 public class MainTest {
     
      public static void main(String[] args) {
-        ConcreteAccount anAccount = new ConcreteAccount();
-        anAccount.setUnserName("username");
-        anAccount.setPassword("password");
-
+         try {
+             DBConnection.connect();
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
+             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 }
