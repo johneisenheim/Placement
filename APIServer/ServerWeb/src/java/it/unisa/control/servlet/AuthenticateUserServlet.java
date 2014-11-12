@@ -44,14 +44,15 @@ public class AuthenticateUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin","*");
         //String userName = request.getParameter("pippo");
         //String password = request.getParameter("paperino");
-        String userName = "pippo";
-        String password = "paperino";
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         ConcreteAccount anAccount;
         AuthenticateUser handleUser = new AuthenticateUser();
         try {
-            anAccount=handleUser.authenticate(userName,password);
+            anAccount=handleUser.authenticate(username,password);
             if (anAccount!= null) {
                 toReturn = "l'utente è loggato";
                 message.put("status", 1);
