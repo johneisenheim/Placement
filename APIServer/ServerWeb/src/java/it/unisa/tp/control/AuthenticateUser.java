@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import it.unisa.tp.model.concrete.ConcreteAccount;
+import java.io.IOException;
 
 
 /**
@@ -22,11 +23,10 @@ public class AuthenticateUser {
     public AuthenticateUser() {
     }
 
-    public ConcreteAccount authenticate(String userName, String password) throws SQLException, ClassNotFoundException {
+    public ConcreteAccount authenticate(String userName, String password) throws SQLException, ClassNotFoundException, IOException {
         int rsResult = 0;
         ConcreteAccount loggedAccount = new ConcreteAccount();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection aConnection = DriverManager.getConnection("jdbc:mysql://localhost:3307/mydb", "root", "");
+        Connection aConnection = DBConnection.connect();
         Statement aStatement = aConnection.createStatement();
         String query = "select * from Account where userName='" + userName + "' and password='" + password + "'";
         ResultSet rs = aStatement.executeQuery(query);
