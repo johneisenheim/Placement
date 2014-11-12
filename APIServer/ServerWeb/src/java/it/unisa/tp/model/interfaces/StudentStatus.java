@@ -3,7 +3,7 @@ package it.unisa.tp.model.interfaces;
 
 public interface StudentStatus {
 
-	int getPrimaryKey();
-	int setPrimaryKey();
-	String toString();
+	public Student getPrimaryKey();
+	public void setPrimaryKey(Student primaryKey);
+	public String toString();
 }
