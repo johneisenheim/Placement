@@ -4,6 +4,6 @@ package it.unisa.tp.model.interfaces;
 public interface Organization {
 
 	int getPrimaryKey();
-	int setPrimaryKey();
+	void setPrimaryKey(int primaryKey);
 	String toString();
 }

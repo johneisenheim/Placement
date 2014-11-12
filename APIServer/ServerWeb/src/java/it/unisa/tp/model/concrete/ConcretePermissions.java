@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.tp.model.interfaces;
+
+package it.unisa.tp.model.concrete;
+
+import it.unisa.tp.model.interfaces.Permissions;
 
 /**
  *
- * @author carlosborges
+ * @author albamansillacoca
  */
-class Permission {
+public class ConcretePermissions implements Permissions{
     
 }
