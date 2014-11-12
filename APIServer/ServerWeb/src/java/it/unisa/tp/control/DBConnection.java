@@ -21,7 +21,8 @@ import java.util.Properties;
 public class DBConnection {
 
     public static Connection connect() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
-        final InputStream cfg = new FileInputStream("~/TPConfig/config.cfg");
+        String userPath = System.getProperty("user.home");
+        final InputStream cfg = new FileInputStream(userPath+"/TPConfig/config.cfg");
         Properties configFile = new java.util.Properties();
         configFile.load(cfg);
         Class.forName("com.mysql.jdbc.Driver");
