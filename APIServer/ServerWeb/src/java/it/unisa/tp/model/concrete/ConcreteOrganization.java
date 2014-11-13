@@ -49,12 +49,12 @@ public class ConcreteOrganization implements Organization{
 
     @Override
     public int getPrimaryKey() {
-       return this.getIdOrganization();
+       return this.idOrganization;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        this.setIdOrganization(primaryKey);
+        this.idOrganization=primaryKey;
     }
 
     /**
