@@ -6,6 +6,9 @@
 
 package it.unisa.tp.model.concrete;
 
+import it.unisa.tp.model.interfaces.Account;
+import it.unisa.tp.model.interfaces.Department;
+import it.unisa.tp.model.interfaces.FisicPerson;
 import it.unisa.tp.model.interfaces.Staff;
 
 /**
@@ -17,6 +20,10 @@ public class ConcreteStaff implements Staff{
     private int idStaff;
     private String officePhoneNum;
     private String officeMail;
+    private Department FKDepartment;
+    private Account FKAccount;
+    private FisicPerson FKFisicPerson;
+    
     
     public ConcreteStaff(int idStaff, String officePhoneNum, String officeMail){
         this.idStaff=idStaff;
@@ -80,9 +87,53 @@ public class ConcreteStaff implements Staff{
         this.officeMail = officeMail;
     }
     
-    public String toString(){
-        return ("IDStaff: \n"+idStaff
-                +"OfficePhoneNumber: \n"+officePhoneNum+"OfficeEmail: \n"+officeMail);
+    /**
+     * @return the FKDepartment
+     */
+    public Department getFKDepartment() {
+        return FKDepartment;
     }
+
+    /**
+     * @param FKDepartment the FKDepartment to set
+     */
+    public void setFKDepartment(Department FKDepartment) {
+        this.FKDepartment = FKDepartment;
+    }
+
+    /**
+     * @return the FKAccount
+     */
+    public Account getFKAccount() {
+        return FKAccount;
+    }
+
+    /**
+     * @param FKAccount the FKAccount to set
+     */
+    public void setFKAccount(Account FKAccount) {
+        this.FKAccount = FKAccount;
+    }
+
+    /**
+     * @return the FKFisicPerson
+     */
+    public FisicPerson getFKFisicPerson() {
+        return FKFisicPerson;
+    }
+
+    /**
+     * @param FKFisicPerson the FKFisicPerson to set
+     */
+    public void setFKFisicPerson(FisicPerson FKFisicPerson) {
+        this.FKFisicPerson = FKFisicPerson;
+    }
+    
+    
+    public String toString(){
+        return ("IDStaff: \n"+idStaff+"OfficePhoneNumber: \n"+officePhoneNum+"OfficeEmail: \n"+officeMail+
+                "FisicPerson: \n"+FKFisicPerson+"FKAccount: \n"+FKAccount+"FKDepartment: \n"+FKDepartment);
+    }
+
     
 }
