@@ -129,7 +129,6 @@ public class ConcreteStaff implements Staff{
         this.FKFisicPerson = FKFisicPerson;
     }
     
-    
     public String toString(){
         return ("IDStaff: \n"+idStaff+"OfficePhoneNumber: \n"+officePhoneNum+"OfficeEmail: \n"+officeMail+
                 "FisicPerson: \n"+FKFisicPerson+"FKAccount: \n"+FKAccount+"FKDepartment: \n"+FKDepartment);
