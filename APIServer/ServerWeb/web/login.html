@@ -784,7 +784,7 @@
 				if(checkEmptyFields()){
 					$.get("http://localhost:8080/ServerWeb/AuthenticateUserServlet",{username:$("#username").val(),password:$("#password").val()}).done(function(e){
 						var obj = jQuery.parseJSON(e);
-						alert( obj.message);
+						alert("ciao "+obj.message);
 						//alert(parsed.message);
 						alert(JSON.stringify(e));
 					}).fail(function(e){
