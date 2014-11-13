@@ -7,3 +7,6 @@ public interface Permissions {
 	void setPrimaryKey(int primaryKey);
 	String toString();
 }
+
+
+//faltan profesor student staff department e fisicPerson
