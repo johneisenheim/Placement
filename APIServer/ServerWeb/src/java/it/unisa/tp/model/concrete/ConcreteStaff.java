@@ -40,12 +40,12 @@ public class ConcreteStaff implements Staff{
 
     @Override
     public int getPrimaryKey() {
-        return getIdStaff();
+        return idStaff;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        this.setIdStaff(primaryKey);
+        this.idStaff=primaryKey;
     }
 
     /**
