@@ -28,12 +28,12 @@ public class ConcreteStudentStatus implements StudentStatus{
 
     @Override
     public Student getPrimaryKey() {
-       return this.getIDstudentStatus();
+       return this.IDstudentStatus;
     }
     
     @Override
     public void setPrimaryKey(Student primaryKey) { 
-        this.setIDstudentStatus(primaryKey);
+        this.IDstudentStatus=primaryKey;
     }
 
     /**
