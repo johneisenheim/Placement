@@ -278,7 +278,7 @@
 							$("#messageControl").empty();
 							localStorage.setItem("username",parsed.userName);
 							localStorage.setItem("type",parsed.userType);
-							alert(localstorage.getItem("username")+" - "+localstorage.getItem("type"));
+							alert(localStorage.getItem("username")+" - "+localStorage.getItem("type"));
 						}
 					}).fail(function(e){
 						$("#messageControl").attr("class","alert alert-warning");
