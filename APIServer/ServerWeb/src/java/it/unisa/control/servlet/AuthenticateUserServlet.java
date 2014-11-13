@@ -51,13 +51,11 @@ public class AuthenticateUserServlet extends HttpServlet {
             anAccount=handleUser.authenticate(username,password);
             if (anAccount!= null) {
                 message.put("status", 1);
-                message.put("message", "User authenticated!");
                 message.put("userType", anAccount.getTypeOfAccount());
                 message.put("userName", anAccount.getUnserName());
                 response.getWriter().write(message.toString());
             } if(anAccount==null) {
                 message.put("status", 0);
-                message.put("message", "Error authenticated!");
                 response.getWriter().write(message.toString());
             }
         } catch (JSONException ex) {
