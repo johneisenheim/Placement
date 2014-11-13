@@ -27,6 +27,8 @@
 				window.location.replace("pageError.html");
 			}
 			
+			$("spaceForUsername").html(localStorage.getItem("username")+'<i class="fa-angle-down"></i>');
+			
 			$("#logout").click(function(){
 				localStorage.removeItem("username");
 				localStorage.removeItem("typology");
@@ -86,19 +88,19 @@
 					</a>
 				</li>
 				<li>
-					<a href="gestioneTesi.html">
+					<a href="#">
 						<i class="linecons-graduation-cap"></i>
 						<span class="title">Gestione Tesi</span>
 					</a>
 				</li>
 				<li>
-					<a href="gestioneTirocinio.html">
+					<a href="#l">
 						<i class="linecons-megaphone"></i>
 						<span class="title">Gestione Tirocinio</span>
 					</a>
 				</li>
 				<li>
-					<a href="dottorato.html">
+					<a href="#">
 						<i class="linecons-lightbulb"></i>
 						<span class="title">Dottorato</span>
 					</a>
@@ -124,12 +126,28 @@
 			</ul>
 			<!-- notifications and other links -->
 			<ul class="nav nav-userinfo navbar-right">
-                <li>
-				    <a href="#" id="logout">
-				        <i class="fa-user"></i>
-						<span class="title">Logout</span>
+                <li class="dropdown user-profile">
+					<a href="#" data-toggle="dropdown">
+						<img src="assets/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+						<span id="spaceForUsername">
+						</span>
 					</a>
-                </li>
+					
+					<ul class="dropdown-menu user-profile-menu list-unstyled">
+						<li>
+							<a href="#">
+								<i class="fa-edit"></i>
+								Profilo
+							</a>
+						</li>
+						<li class="last">
+							<a href="#" id="logout">
+								<i class="fa-lock"></i>
+								Logout
+							</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 	
 		</div>
