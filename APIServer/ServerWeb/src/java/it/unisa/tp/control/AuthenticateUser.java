@@ -64,7 +64,7 @@ public class AuthenticateUser {
             aPermission.setDescription(rs.getString(2));
             aPermission.setClassPermission(rs.getString(3));
         }
-        return aPermission;
+        return aPermission; 
     }
 
 }

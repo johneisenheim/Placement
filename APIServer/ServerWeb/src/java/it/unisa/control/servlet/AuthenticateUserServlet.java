@@ -60,7 +60,7 @@ public class AuthenticateUserServlet extends HttpServlet {
                     message.put("userType", anAccount.getTypeOfAccount());
                     message.put("userName", anAccount.getUnserName());
                     message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
-                    response.getWriter().write(message.toString());
+                    response.getWriter().write(message.toString()); 
                 }
                 if (anAccount == null) {
                     message.put("status", 0);
