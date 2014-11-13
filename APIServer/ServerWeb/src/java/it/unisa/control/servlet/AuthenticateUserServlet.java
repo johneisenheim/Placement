@@ -41,6 +41,22 @@ public class AuthenticateUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+        response.setContentType("text/html;charset=UTF-8");
+//<<<<<<< HEAD
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin","*");
+//=======
+        //String userName = request.getParameter("pippo");
+        //String password = request.getParameter("paperino");
+//>>>>>>> FETCH_HEAD
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        ConcreteAccount anAccount;
+        AuthenticateUser handleUser = new AuthenticateUser();
+>>>>>>> FETCH_HEAD
         try {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
