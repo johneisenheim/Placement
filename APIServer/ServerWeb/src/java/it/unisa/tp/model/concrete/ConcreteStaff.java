@@ -25,10 +25,13 @@ public class ConcreteStaff implements Staff{
     private FisicPerson FKFisicPerson;
     
     
-    public ConcreteStaff(int idStaff, String officePhoneNum, String officeMail){
+    public ConcreteStaff(int idStaff, String officePhoneNum, String officeMail, Department FKDepartment, Account FKAccount, FisicPerson FKFisicPerson){
         this.idStaff=idStaff;
         this.officeMail=officeMail;
         this.officePhoneNum=officePhoneNum;
+        this.FKDepartment=FKDepartment;
+        this.FKAccount=FKAccount;
+        this.FKFisicPerson=FKFisicPerson;
     }
     
     public ConcreteStaff(){
