@@ -291,7 +291,7 @@
 							localStorage.setItem("permission",parsed.classPermission);
 							alert(localStorage.getItem("username")+" - "+localStorage.getItem("typology"));
 							if(localStorage.getItem("typology")=="Student"){
-								 $(window.location).attr('href', 'offertaFormativaStudente.html');
+								 window.location.href='offertaFormativaStudente.html';
 							}
 						}
 					}).fail(function(e){
