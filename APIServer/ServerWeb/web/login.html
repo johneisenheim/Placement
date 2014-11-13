@@ -740,7 +740,8 @@
 			$("#validate_username").html("");
 			$("#username").val("");
 			$("#password").val("");
-			$("messageControl").addClass("alert alert-danger");
+			$("#messageControl").removeAttr("class");
+			$("#messageControl").empty();
 		}
 		
 		function emptyControl(id){
@@ -785,7 +786,13 @@
 				if(checkEmptyFields()){
 					$.get("http://localhost:8080/ServerWeb/AuthenticateUserServlet",{username:$("#username").val(),password:$("#password").val()}).done(function(e){
 						var parsed = jQuery.parseJSON(e);
-						alert("ciao "+parsed.message);
+						if(parsed.status==1){
+							$("#messageControl").attr("class","alert alert-success");
+							$("#messageControl").html("<strong>Sti cazzi</strong>");
+						}else{
+							$("#messageControl").attr("class","alert alert-danger");
+							$("#messageControl").html("<strong>Vaffa</strong>");
+						}
 					}).fail(function(e){
 						alert(21);
 					});
