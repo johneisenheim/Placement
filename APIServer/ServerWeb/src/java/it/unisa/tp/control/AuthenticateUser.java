@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import it.unisa.tp.model.concrete.ConcreteAccount;
+import it.unisa.tp.model.concrete.ConcretePermissions;
 import it.unisa.tp.model.interfaces.Account;
 import java.io.IOException;
 
@@ -21,13 +22,15 @@ import java.io.IOException;
  */
 public class AuthenticateUser {
 
-    public AuthenticateUser() {
+    private Connection aConnection;
+    
+    public AuthenticateUser() throws ClassNotFoundException, SQLException, IOException {
+        aConnection = DBConnection.connect();
     }
 
-    public ConcreteAccount authenticate(String userName, String password) throws SQLException, ClassNotFoundException, IOException {
+    public ConcreteAccount authenticate(String userName, String password) throws SQLException  {
         int rsResult = 0;
         ConcreteAccount loggedAccount = new ConcreteAccount();
-        Connection aConnection = DBConnection.connect();
         Statement aStatement = aConnection.createStatement();
         String query = "select * from Account where userName='" + userName + "' and password='" + password + "'";
         ResultSet rs = aStatement.executeQuery(query);
@@ -36,12 +39,32 @@ public class AuthenticateUser {
             loggedAccount.setPrimaryKey(rs.getInt(1));
             loggedAccount.setUnserName(rs.getString(2));
             loggedAccount.setTypeOfAccount(rs.getString(4));
+            loggedAccount.setFKPermission(this.getAccountPermission(rs.getInt(5)));
         }
         if (rsResult == 0) {
             return null;
         } else {
             return loggedAccount;
         }
+    }
+    
+    /**
+     * This method is used to load from DB the permission associated to the idAccount  
+     * @param permissionId
+     * @return
+     * @throws SQLException 
+     */
+    private ConcretePermissions getAccountPermission(int permissionId) throws SQLException{
+        ConcretePermissions aPermission = new ConcretePermissions();
+        Statement aStatement = aConnection.createStatement();
+        String query = "SELECT * from Permissions WHERE idPermissions="+permissionId;
+        ResultSet rs = aStatement.executeQuery(query);
+        while(rs.next()){
+            aPermission.setPrimaryKey(rs.getInt(1));
+            aPermission.setDescription(rs.getString(2));
+            aPermission.setClassPermission(rs.getString(3));
+        }
+        return aPermission;
     }
 
 }

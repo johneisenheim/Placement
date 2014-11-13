@@ -7,6 +7,7 @@ package it.unisa.control.servlet;
 
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.model.concrete.ConcreteAccount;
+import it.unisa.tp.model.concrete.ConcretePermissions;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -40,37 +41,43 @@ public class AuthenticateUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-<<<<<<< HEAD
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin","*");
-=======
-        //String userName = request.getParameter("pippo");
-        //String password = request.getParameter("paperino");
->>>>>>> FETCH_HEAD
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        ConcreteAccount anAccount;
-        AuthenticateUser handleUser = new AuthenticateUser();
         try {
-            anAccount=handleUser.authenticate(username,password);
-            if (anAccount!= null) {
-                message.put("status", 1);
-                message.put("userType", anAccount.getTypeOfAccount());
-                message.put("userName", anAccount.getUnserName());
-                response.getWriter().write(message.toString());
-            } if(anAccount==null) {
-                message.put("status", 0);
-                response.getWriter().write(message.toString());
-            }
-        } catch (JSONException ex) {
-            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html;charset=UTF-8");
+            response.setHeader("Access-Control-Allow-Origin", "*");
+            //String userName = "pippo";
+            //String password = "paperino";
 
+            String userName = request.getParameter("username");
+            String password = request.getParameter("password");
+            ConcreteAccount anAccount;
+            AuthenticateUser handleUser = new AuthenticateUser();
+            try {
+                anAccount = handleUser.authenticate(userName, password);
+                if (anAccount != null) {
+                    message.put("status", 1);
+                    message.put("userType", anAccount.getTypeOfAccount());
+                    message.put("userName", anAccount.getUnserName());
+                    message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
+                    response.getWriter().write(message.toString());
+                }
+                if (anAccount == null) {
+                    message.put("status", 0);
+                    response.getWriter().write(message.toString());
+                }
+            } catch (JSONException ex) {
+                Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }    }
+        } catch (SQLException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
