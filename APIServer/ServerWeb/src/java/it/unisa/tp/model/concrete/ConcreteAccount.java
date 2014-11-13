@@ -78,14 +78,6 @@ public class ConcreteAccount implements Account{
     public void setFKPermission(Permissions FKPermission) {
         this.FKPermission = FKPermission;
     }
-
-    /*
-    private int idAccount;
-    private String unserName;
-    private String password;
-    private String typeOfAccount;
-    private Permissions FKPermission;
-    */
     
     public String toString(){
         return ("IDAccount: \n"+idAccount+"UserName: \n"+unserName+"Password: \n"+password+
