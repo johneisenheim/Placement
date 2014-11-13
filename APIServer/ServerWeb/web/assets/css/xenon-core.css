@@ -1691,10 +1691,10 @@ body {
     line-height: 1.2;
   }
   .navbar.horizontal-menu .navbar-inner .navbar-nav a:hover {
-    color: #ffffff;
+    color: #51c2e6;
   }
   .navbar.horizontal-menu .navbar-inner .navbar-nav li.active > a {
-    color: #ffffff;
+    color: #51c2e6;
   }
   .navbar.horizontal-menu .navbar-inner .navbar-nav li.has-sub > a:before {
     position: relative;
@@ -1891,7 +1891,7 @@ body {
   .navbar.horizontal-menu .navbar-inner > .nav.navbar-mobile a:hover,
   .navbar.horizontal-menu .navbar-inner > .nav.navbar-mobile a:active,
   .navbar.horizontal-menu .navbar-inner > .nav.navbar-mobile a:focus {
-    color: #ffffff;
+    color: #51c2e6;
   }
   .navbar.horizontal-menu .navbar-inner > .nav.navbar-mobile a .badge {
     position: absolute;
