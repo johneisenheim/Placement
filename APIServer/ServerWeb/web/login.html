@@ -290,8 +290,9 @@
 							localStorage.setItem("typology",parsed.userType);
 							localStorage.setItem("permission",parsed.classPermission);
 							alert(localStorage.getItem("username")+" - "+localStorage.getItem("typology"));
-							if(localStorage.getItem("typology")=="Student"){
-								 window.location.href='offertaFormativaStudente.html';
+							if(localStorage.getItem("typology")=="student"){
+								var url = 'offertaFormativaStudente.html';
+                                window.location.href=url;
 							}
 						}
 					}).fail(function(e){
