@@ -57,7 +57,7 @@ public class AuthenticateUserServlet extends HttpServlet {
                 response.getWriter().write(message.toString());
             } if(anAccount==null) {
                 message.put("status", 0);
-                message.put("message", "Error!");
+                message.put("message", "Error authenticated!");
                 response.getWriter().write(message.toString());
             }
         } catch (JSONException ex) {
