@@ -40,11 +40,7 @@ public class AuthenticateUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String toReturn = null;
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin","*");
         //String userName = request.getParameter("pippo");
         //String password = request.getParameter("paperino");
         String username = request.getParameter("username");
@@ -54,14 +50,12 @@ public class AuthenticateUserServlet extends HttpServlet {
         try {
             anAccount=handleUser.authenticate(username,password);
             if (anAccount!= null) {
-                toReturn = "l'utente è loggato";
                 message.put("status", 1);
                 message.put("message", "User authenticated!");
                 message.put("userType", anAccount.getTypeOfAccount());
                 message.put("userName", anAccount.getUnserName());
                 response.getWriter().write(message.toString());
             } if(anAccount==null) {
-                toReturn = "l'utente  non è loggato";
                 message.put("status", 0);
                 message.put("message", "Error!");
                 response.getWriter().write(message.toString());
@@ -72,23 +66,7 @@ public class AuthenticateUserServlet extends HttpServlet {
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet prova</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>il valore di ritorno è: " + toReturn + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
-    }
+        }    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

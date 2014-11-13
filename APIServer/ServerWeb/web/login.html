@@ -9,7 +9,9 @@
 	<meta name="author" content="" />
 	
 	<title>DISTRA MIT</title>
-    
+    <!-- imported jquery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
@@ -727,7 +729,6 @@
 	<!-- Imported scripts on this page -->
 	<script src="assets/js/jquery-validate/jquery.validate.min.js"></script>
 
-
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
 	
@@ -782,10 +783,12 @@
 				$("signin").text("Attendi...");
 				if(checkEmptyFields()){
 					$.get("http://localhost:8080/ServerWeb/AuthenticateUserServlet",{username:$("#username").val(),password:$("#password").val()}).done(function(e){
-						var parsed = jQuery.parseJSON(e); 
-						alert(parsed.message);
-					}).fail(function(){
-					
+						var obj = jQuery.parseJSON(e);
+						alert( obj.message);
+						//alert(parsed.message);
+						alert(JSON.stringify(e));
+					}).fail(function(e){
+						alert(21);
 					});
 				}
 				$("signin").text("Sign in");
