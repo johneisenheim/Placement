@@ -30,12 +30,12 @@ public class ConcretePermissions implements Permissions{
 
     @Override
     public int getPrimaryKey() {
-       return this.getIdPermissions();
+       return this.idPermissions;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        this.setIdPermissions(primaryKey);
+        this.idPermissions=primaryKey;
     }
 
     /**
