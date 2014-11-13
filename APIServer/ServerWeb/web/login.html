@@ -740,6 +740,7 @@
 			$("#validate_username").html("");
 			$("#username").val("");
 			$("#password").val("");
+			$("messageControl").addClass("alert alert-danger");
 		}
 		
 		function emptyControl(id){
@@ -783,10 +784,8 @@
 				$("signin").text("Attendi...");
 				if(checkEmptyFields()){
 					$.get("http://localhost:8080/ServerWeb/AuthenticateUserServlet",{username:$("#username").val(),password:$("#password").val()}).done(function(e){
-						var obj = jQuery.parseJSON(e);
-						alert("ciao "+obj.message);
-						//alert(parsed.message);
-						alert(JSON.stringify(e));
+						var parsed = jQuery.parseJSON(e);
+						alert("ciao "+parsed.message);
 					}).fail(function(e){
 						alert(21);
 					});
