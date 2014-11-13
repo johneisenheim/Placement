@@ -51,12 +51,12 @@ public class ConcreteStudent implements Student{
 
     @Override
     public String getPrimaryKey() {
-        return getSerialNumber();
+        return SerialNumber;
     }
 
     @Override
     public void setPrimaryKey(String primaryKey) {
-        this.setSerialNumber(primaryKey);
+        this.SerialNumber=primaryKey;
     }
 
     /**
