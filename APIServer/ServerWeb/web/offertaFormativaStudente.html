@@ -34,8 +34,8 @@
 			});
 			
 			if(confirm("Prova con i permessi")){
-				$("#funzionalitaPermission_"+0).empty();
-				
+				var permission = localStorage.getItem("permission");
+				$("#funzionalitaPermission_"+0).empty();				
 			}
 			
 			if(localStorage.getItem("username")==null){

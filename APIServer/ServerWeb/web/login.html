@@ -289,16 +289,15 @@
 							localStorage.setItem("username",parsed.userName);
 							localStorage.setItem("typology",parsed.userType);
 							localStorage.setItem("permission",parsed.classPermission);
-							alert(localStorage.getItem("permission"));
 							if($("#rememberMeForLogin").is(':checked')){
 								localStorage.setItem("rememberMeForLogin","si");
 							}else{
 								localStorage.setItem("rememberMeForLogin","no");
 							}
-							/*if(localStorage.getItem("typology")=="student"){
+							if(localStorage.getItem("typology")=="student"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href= url;
-							}*/
+							}
 						}
 					}).fail(function(e){
 						$("#messageControl").attr("class","alert alert-warning");
