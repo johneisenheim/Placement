@@ -295,10 +295,10 @@
 								localStorage.setItem("rememberMeForLogin","no");
 							}
 							if(localStorage.getItem("typology")=="student"){
+								alert("ciao");
 								var url = 'offertaFormativaStudente.html';
                                 //window.location.href= url;
-								alert("ciao");
-								window.location.assign("http://www.google.it/");
+								window.open(url,"_blank");
 							}
 						}
 					}).fail(function(e){
