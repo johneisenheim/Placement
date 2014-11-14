@@ -55,7 +55,7 @@ public class AuthenticateUserServlet extends HttpServlet {
             anAccount = handleUser.authenticate(userName, password);
             if (anAccount != null) {
                 message.put("status", 1);
-                message.put("userType", anAccount.getTypeOfAccount());
+                message.put("userType", anAccount.getTypeOfAccount()); 
                 message.put("userName", anAccount.getUserName());
                 message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
                 response.getWriter().write(message.toString());
@@ -66,7 +66,7 @@ public class AuthenticateUserServlet extends HttpServlet {
             }
         } catch (JSONException ex) {
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (SQLException ex) { 
             
         }
     }
