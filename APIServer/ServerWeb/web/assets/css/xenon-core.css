@@ -788,8 +788,8 @@ body {
 .sidebar-menu {
   display: table-cell;
   position: relative;
-  width: 260px;
-  background: #3f60a3;
+  width: 240px;
+  background: #446cb3;
   z-index: 1;
 }
 .sidebar-menu .logo-env {
@@ -836,7 +836,7 @@ body {
   text-decoration: none;
   display: block;
   padding: 13px 5px;
-  border-bottom: 1px solid #4768ae;
+  border-bottom: 1px solid #a5c2ff;
 }
 .sidebar-menu .main-menu a > i {
   display: inline-block;

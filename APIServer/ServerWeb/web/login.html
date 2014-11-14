@@ -193,7 +193,7 @@
 							</div>
 							
 							<div class="form-group">
-								<button type="button" id="signin" class="btn btn-info">Sign in</button>
+								<button type="button" id="signin" class="btn btn-blue">Sign in</button>
 								<button type="reset"  id="reset"  class="btn btn-white">Reset</button>
 							</div>
 						</form>
@@ -303,7 +303,6 @@
 							localStorage.setItem("dottorato",myArray[3]);
 							localStorage.setItem("superAmministratore",myArray[4]);
 							
-							alert(localStorage.getItem("offertaFormativa")+"-"+localStorage.getItem("gestioneTesi")+"-"+localStorage.getItem("gestioneTirocinio")+"-"+localStorage.getItem("dottorato")+"-"+localStorage.getItem("superAmministratore"));
 							if(localStorage.getItem("typology")=="student"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href= url;
