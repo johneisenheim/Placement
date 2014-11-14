@@ -38,34 +38,25 @@ public class AuthenticateUserServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-/*<<<<<<< HEAD
-=======*/
+
         response.setContentType("text/html;charset=UTF-8");
-//<<<<<<< HEAD
         PrintWriter out = response.getWriter();
-        response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin","*");
-//=======
-        //String userName = request.getParameter("pippo");
-        //String password = request.getParameter("paperino");
-//>>>>>>> FETCH_HEAD
-        String username = request.getParameter("username");
+        String userName = request.getParameter("username");
         String password = request.getParameter("password");
         ConcreteAccount anAccount;
         AuthenticateUser handleUser = new AuthenticateUser();
-        response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        String userName = request.getParameter("username");
         try {
             anAccount = handleUser.authenticate(userName, password);
             if (anAccount != null) {
                 message.put("status", 1);
                 message.put("userType", anAccount.getTypeOfAccount());
-                message.put("userName", anAccount.getUnserName());
+                message.put("userName", anAccount.getUserName());
                 message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
                 response.getWriter().write(message.toString());
             }

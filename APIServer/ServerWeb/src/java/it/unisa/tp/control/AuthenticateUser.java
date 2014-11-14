@@ -37,7 +37,7 @@ public class AuthenticateUser {
         while (rs.next()) {
             rsResult++;
             loggedAccount.setPrimaryKey(rs.getInt(1));
-            loggedAccount.setUnserName(rs.getString(2));
+            loggedAccount.setUserName(rs.getString(2));
             loggedAccount.setTypeOfAccount(rs.getString(4));
             loggedAccount.setFKPermission(this.getAccountPermission(rs.getInt(5)));
         }
