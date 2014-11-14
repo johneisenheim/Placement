@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package it.unisa.tp.model.concrete;
 
 import it.unisa.tp.model.interfaces.Permissions;
@@ -12,16 +11,45 @@ import it.unisa.tp.model.interfaces.Permissions;
  *
  * @author albamansillacoca
  */
-public class ConcretePermissions implements Permissions{
+public class ConcretePermissions implements Permissions {
 
-    @Override
-    public int getPrimaryKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private int idPermissions;
+    private String description;
+    private String classPermission; // this variable refers to the "class" variable in the Permissions interface
+
+    public ConcretePermissions() {
     }
 
-    @Override
-    public int setPrimaryKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getClassPermission() {
+        return classPermission;
+    }
+
+    public void setClassPermission(String classPermission) {
+        this.classPermission = classPermission;
+    }
+
+    public ConcretePermissions(int idPermissions, String description, String classPermission) {
+        this.idPermissions = idPermissions;
+        this.description = description;
+        this.classPermission = classPermission;
+    }
+
+    public int getPrimaryKey() {
+        return idPermissions;
+    }
+
+    public void setPrimaryKey(int idPermissions) {
+        this.idPermissions = idPermissions;
     }
     
+    
+
 }

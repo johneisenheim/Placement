@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package it.unisa.control.servlet;
-
+ 
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.model.concrete.ConcreteAccount;
+import it.unisa.tp.model.concrete.ConcretePermissions;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -37,36 +38,38 @@ public class AuthenticateUserServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+
         response.setContentType("text/html;charset=UTF-8");
-        //String userName = request.getParameter("pippo");
-        //String password = request.getParameter("paperino");
-        String username = request.getParameter("username");
+        PrintWriter out = response.getWriter();
+        response.setHeader("Access-Control-Allow-Origin","*");
+        String userName = request.getParameter("username");
         String password = request.getParameter("password");
         ConcreteAccount anAccount;
         AuthenticateUser handleUser = new AuthenticateUser();
         try {
-            anAccount=handleUser.authenticate(username,password);
-            if (anAccount!= null) {
+            anAccount = handleUser.authenticate(userName, password);
+            if (anAccount != null) {
                 message.put("status", 1);
-                message.put("message", "User authenticated!");
                 message.put("userType", anAccount.getTypeOfAccount());
-                message.put("userName", anAccount.getUnserName());
+                message.put("userName", anAccount.getUserName());
+                message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
                 response.getWriter().write(message.toString());
-            } if(anAccount==null) {
+            }
+            if (anAccount == null) {
                 message.put("status", 0);
-                message.put("message", "Error authenticated!");
                 response.getWriter().write(message.toString());
             }
         } catch (JSONException ex) {
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }    }
+            
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -80,7 +83,13 @@ public class AuthenticateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -94,7 +103,13 @@ public class AuthenticateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
