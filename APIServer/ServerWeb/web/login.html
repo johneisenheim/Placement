@@ -182,7 +182,7 @@
 							
 							<div class="form-group">
 								<label>
-									<input type="checkbox" class="cbr cbr-done">
+									<input type="checkbox" class="cbr cbr-done" id="rememberMeForLogin">
 									Ricordami la prossima volta
 								</label>
 							</div>
@@ -289,6 +289,11 @@
 							localStorage.setItem("username",parsed.userName);
 							localStorage.setItem("typology",parsed.userType);
 							localStorage.setItem("permission",parsed.classPermission);
+							if($("#rememberMeForLogin").is(':checked')){
+								localStorage.setItem("rememberMeForLogin","si");
+							}else{
+								localStorage.setItem("rememberMeForLogin","no");
+							}
 							if(localStorage.getItem("typology")=="student"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href=url;

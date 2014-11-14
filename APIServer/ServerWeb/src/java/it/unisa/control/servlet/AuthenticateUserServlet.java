@@ -40,9 +40,9 @@ public class AuthenticateUserServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-<<<<<<< HEAD
-=======
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+/*<<<<<<< HEAD
+=======*/
         response.setContentType("text/html;charset=UTF-8");
 //<<<<<<< HEAD
         PrintWriter out = response.getWriter();
@@ -56,42 +56,27 @@ public class AuthenticateUserServlet extends HttpServlet {
         String password = request.getParameter("password");
         ConcreteAccount anAccount;
         AuthenticateUser handleUser = new AuthenticateUser();
->>>>>>> FETCH_HEAD
+        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        String userName = request.getParameter("username");
         try {
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            response.setContentType("text/html;charset=UTF-8");
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            //String userName = "pippo";
-            //String password = "paperino";
-
-            String userName = request.getParameter("username");
-            String password = request.getParameter("password");
-            ConcreteAccount anAccount;
-            AuthenticateUser handleUser = new AuthenticateUser();
-            try {
-                anAccount = handleUser.authenticate(userName, password);
-                if (anAccount != null) {
-                    message.put("status", 1);
-                    message.put("userType", anAccount.getTypeOfAccount());
-                    message.put("userName", anAccount.getUnserName());
-                    message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
-                    response.getWriter().write(message.toString()); 
-                }
-                if (anAccount == null) {
-                    message.put("status", 0);
-                    response.getWriter().write(message.toString());
-                }
-            } catch (JSONException ex) {
-                Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-
+            anAccount = handleUser.authenticate(userName, password);
+            if (anAccount != null) {
+                message.put("status", 1);
+                message.put("userType", anAccount.getTypeOfAccount());
+                message.put("userName", anAccount.getUnserName());
+                message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
+                response.getWriter().write(message.toString());
             }
-        } catch (ClassNotFoundException ex) {
+            if (anAccount == null) {
+                message.put("status", 0);
+                response.getWriter().write(message.toString());
+            }
+        } catch (JSONException ex) {
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-
+            
         }
     }
 
@@ -107,7 +92,13 @@ public class AuthenticateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -121,7 +112,13 @@ public class AuthenticateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
