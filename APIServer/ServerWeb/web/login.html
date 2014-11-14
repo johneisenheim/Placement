@@ -304,10 +304,10 @@
 							localStorage.setItem("superAmministratore",myArray[4]);
 							
 							alert(localStorage.getItem("offertaFormativa")+"-"+localStorage.getItem("gestioneTesi")+"-"+localStorage.getItem("gestioneTirocinio")+"-"+localStorage.getItem("dottorato")+"-"+localStorage.getItem("superAmministratore"));
-							/*if(localStorage.getItem("typology")=="student"){
+							if(localStorage.getItem("typology")=="student"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href= url;
-							}*/
+							}
 						}
 					}).fail(function(e){
 						$("#messageControl").attr("class","alert alert-warning");
