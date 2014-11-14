@@ -294,10 +294,20 @@
 							}else{
 								localStorage.setItem("rememberMeForLogin","no");
 							}
-							if(localStorage.getItem("typology")=="student"){
+							
+							var permission = localStorage.getItem("permission");
+							var myArray = permission.split("-");
+							localStorage.setItem("offertaFormativa",myArray[0]);
+							localStorage.setItem("gestioneTesi",myArray[1]);
+							localStorage.setItem("gestioneTirocinio",myArray[2]);
+							localStorage.setItem("dottorato",myArray[3]);
+							localStorage.setItem("superAmministratore",myArray[4]);
+							
+							alert(localStorage.getItem("offertaFormativa")+"-"+localStorage.getItem("gestioneTesi")+"-"+localStorage.getItem("gestioneTirocinio")+"-"+localStorage.getItem("dottorato")+"-"+localStorage.getItem("superAmministratore"));
+							/*if(localStorage.getItem("typology")=="student"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href= url;
-							}
+							}*/
 						}
 					}).fail(function(e){
 						$("#messageControl").attr("class","alert alert-warning");
