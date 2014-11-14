@@ -182,7 +182,7 @@
 							
 							<div class="form-group">
 								<label>
-									<input type="checkbox" class="cbr cbr-done" id="rememberMeForLogin">
+									<input type="checkbox" class="cbr cbr-done" id="rememberMeForLogin" checked>
 									Ricordami la prossima volta
 								</label>
 							</div>
@@ -296,7 +296,7 @@
 							}
 							if(localStorage.getItem("typology")=="student"){
 								var url = 'offertaFormativaStudente.html';
-                                window.location.replace(url,"_blank");
+                                window.open(url,"_blank");
 							}
 						}
 					}).fail(function(e){
