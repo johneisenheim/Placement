@@ -24,7 +24,7 @@
 	<script>
 		jQuery(document).ready(function($){
 			if(localStorage.getItem("username")!=null){
-				if(localStorage.getItem("typology")=="Professor"){
+				if(localStorage.getItem("typology")=="professor"){
 					alert("Professor");
 				}
 				if(localStorage.getItem("typology")=="student"){
@@ -296,7 +296,9 @@
 							}
 							if(localStorage.getItem("typology")=="student"){
 								var url = 'offertaFormativaStudente.html';
-                                window.open(url,"_blank");
+                                //window.location.href= url;
+								alert("ciao");
+								window.location.assign("http://www.google.it/")
 							}
 						}
 					}).fail(function(e){
