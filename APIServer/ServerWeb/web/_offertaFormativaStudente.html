@@ -21,6 +21,48 @@
 	<link rel="stylesheet" href="assets/css/custom.css">
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
+	
+	<script>
+		jQuery(document).ready(function($){
+			$(window).on('beforeunload',function(e) {
+				if(localStorage.getItem("rememberMeForLogin")=="no"){
+					localStorage.removeItem("username");
+					localStorage.removeItem("typology");
+					localStorage.removeItem("classPermission");
+						
+					localStorage.removeItem("offertaFormativa");
+					localStorage.removeItem("gestioneTesi");
+					localStorage.removeItem("gestioneTirocinio");
+					localStorage.removeItem("dottorato");
+					localStorage.removeItem("superAmministratore");
+					window.location.href="index.html";
+				}
+			});
+			
+			$("#funzionalita1Permission_"+localStorage.getItem("offertaFormativa")).empty();	
+			$("#funzionalita2Permission_"+localStorage.getItem("offertaFormativa")).empty();	
+			
+			if(localStorage.getItem("username")==null){
+				window.location.replace("pageError.html");
+			}
+			
+			$("#spaceForUsername").html(localStorage.getItem("username")+' <i class="fa-angle-down"></i>');
+			
+			$("#logout").click(function(){
+				localStorage.removeItem("username");
+				localStorage.removeItem("typology");
+				localStorage.removeItem("classPermission");
+				window.location.href="index.html";
+				
+				localStorage.removeItem("offertaFormativa");
+				localStorage.removeItem("gestioneTesi");
+				localStorage.removeItem("gestioneTirocinio");
+				localStorage.removeItem("dottorato");
+				localStorage.removeItem("superAmministratore");
+				
+			});
+		});
+	</script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -61,7 +103,7 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li id="funzionalita_0"><!-- funzionalita con i permessi-->
+					<li id="funzionalita1Permission_0"><!-- funzionalita con i permessi-->
 						<a href="#">
 							<i class="linecons-cog"></i>
 							<span class="title">Funzionalit&agrave; 1</span>
@@ -73,7 +115,7 @@
 							<span class="title">Funzionalit&agrave; 2</span>
 						</a>
 					</li>
-					<li id="funzionalita_0">
+					<li id="funzionalita2Permission_0">
 						<a href="mailbox-main.html">
 							<i class="linecons-mail"></i>
 							<span class="title">funzionalit&agrave; 3</span>
@@ -203,7 +245,7 @@
 								</a>
 							</li>
 							<li class="last">
-								<a href="extra-lockscreen.html">
+								<a href="#" id="logout">
 									<i class="fa-lock"></i>
 									Logout
 								</a>
