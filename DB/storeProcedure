@@ -9,3 +9,31 @@ BEGIN
 UPDATE Students SET KF_StudentStatus = 2 WHERE serialNumber = studentSerialNumber;
 
 END
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `requestStartTraining`(IN  studentSerialNumber VARCHAR(45), IN FK_IDstundetInformation int)
+BEGIN
+declare pathCV int;
+declare pathAT int;
+
+declare selectCur CURSOR FOR SELECT CurriculumVitaePATH, AccademicTranscriptPATH FROM StudentInformation  = FK_IDstundetInformation;
+DECLARE EXIT HANDLER FOR SQLSTATE '42000'
+    SELECT 'The student dont still have all information to claim a training.';
+open selectCur;
+fetch selectCur into pathCV, pathAT;
+
+if (pathCV != null AND pathAT != null)
+	THEN
+	UPDATE Students SET KF_StudentStatus = 2 WHERE serialNumber = studentSerialNumber;
+	insert into StudentAttendence values (studentSerialNumber, current_date);
+else 
+ call raise_error;
+END IF;
+
+END
