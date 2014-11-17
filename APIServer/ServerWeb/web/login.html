@@ -285,6 +285,7 @@
 							$("#messageControl").attr("class","alert alert-danger");
 							$("#messageControl").html("<strong>Spiacente, </strong>le tue credenziali non presenti nel database.");
 						}else{
+							
 							$("#messageControl").empty();
 							localStorage.setItem("username",parsed.userName);
 							localStorage.setItem("typology",parsed.userType);
@@ -296,7 +297,7 @@
 							localStorage.setItem("gestioneTirocinio",myArray[2]);
 							localStorage.setItem("dottorato",myArray[3]);
 							localStorage.setItem("superAmministratore",myArray[4]);
-							
+							alert("bbb "+myArray);
 							if($("#rememberMeForLogin").is(':checked')){
 								localStorage.setItem("rememberMeForLogin","si");
 							}else{
