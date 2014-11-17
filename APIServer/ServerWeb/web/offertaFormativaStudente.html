@@ -23,12 +23,12 @@
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
 		jQuery(document).ready(function($){
-		
+			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
 				if(localStorage.getItem("rememberMeForLogin")=="no"){
 					localStorage.removeItem("username");
 					localStorage.removeItem("typology");
-					localStorage.removeItem("classPermission");
+					localStorage.removeItem("primaryKey");
 						
 					localStorage.removeItem("offertaFormativa");
 					localStorage.removeItem("gestioneTesi");
@@ -39,7 +39,10 @@
 				}
 			});
 			
-			
+			//quì ci vanno gli ID delle funzionalità che verranno messe all interno del menù laterale...basta copiare una riga e incollarla,
+			//facendo attenzione a cambiare l'ID
+			//Es: $("pippopaperino_"+localStorage.getItem("offertaFormativa")).empty();
+			//ovviamente la localStorage cambia a seconda se si sta nella pagina di offerta formativa, gestione tesi, ecc...
 			$("#funzionalita1Permission_"+localStorage.getItem("offertaFormativa")).empty();	
 			$("#funzionalita3Permission_"+localStorage.getItem("offertaFormativa")).empty();	
 			
@@ -47,12 +50,12 @@
 				window.location.replace("pageError.html");
 			}
 			
-			$("#spaceForUsername").html(localStorage.getItem("username")+' <i class="fa-angle-down"></i>');
+			$("#spaceForUsername").html(localStorage.getItem("username")+", "+localStorage.getItem("primaryKey")+' <i class="fa-angle-down"></i>');
 			
 			$("#logout").click(function(){
 				localStorage.removeItem("username");
 				localStorage.removeItem("typology");
-				localStorage.removeItem("classPermission");
+				localStorage.removeItem("primaryKey");
 				window.location.href="index.html";
 				
 				localStorage.removeItem("offertaFormativa");

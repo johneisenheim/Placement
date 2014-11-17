@@ -55,6 +55,7 @@ public class AuthenticateUserServlet extends HttpServlet {
             anAccount = handleUser.authenticate(userName, password);
             if (anAccount != null) {
                 message.put("status", 1);
+                message.put("primaryKey",anAccount.getPrimaryKey());
                 message.put("userType", anAccount.getTypeOfAccount()); 
                 message.put("userName", anAccount.getUserName());
                 message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());

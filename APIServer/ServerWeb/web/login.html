@@ -24,17 +24,17 @@
 	<script>
 		jQuery(document).ready(function($){
 			if(localStorage.getItem("username")!=null){
-				if(localStorage.getItem("typology")=="professor"){
-					alert("Professor");
+				if(localStorage.getItem("typology")=="Professore"){
+					window.location.replace("offertaFormativaProfessore.html");
 				}
-				if(localStorage.getItem("typology")=="student"){
+				if(localStorage.getItem("typology")=="Studente"){
 					window.location.replace("offertaFormativaStudente.html");
 				}
-				if(localStorage.getItem("typology")=="Organization"){
-					alert("Organization");
+				if(localStorage.getItem("typology")=="Organizzazione"){
+					window.location.replace("gestioneTirocinio&PlacementOrganizzazione.html");
 				}
-				if(localStorage.getItem("typology")=="Administrator"){
-					alert("Administrator");
+				if(localStorage.getItem("typology")=="Amministratore"){
+					window.location.replace("offertaFormativaAmministratore.html");
 				}
 			}
 		});
@@ -288,14 +288,8 @@
 							$("#messageControl").empty();
 							localStorage.setItem("username",parsed.userName);
 							localStorage.setItem("typology",parsed.userType);
-							localStorage.setItem("permission",parsed.classPermission);
-							if($("#rememberMeForLogin").is(':checked')){
-								localStorage.setItem("rememberMeForLogin","si");
-							}else{
-								localStorage.setItem("rememberMeForLogin","no");
-							}
-							
-							var permission = localStorage.getItem("permission");
+							localStorage.setItem("primaryKey",parsed.primaryKey);
+							var permission = parsed.classPermission;							
 							var myArray = permission.split("-");
 							localStorage.setItem("offertaFormativa",myArray[0]);
 							localStorage.setItem("gestioneTesi",myArray[1]);
@@ -303,8 +297,26 @@
 							localStorage.setItem("dottorato",myArray[3]);
 							localStorage.setItem("superAmministratore",myArray[4]);
 							
-							if(localStorage.getItem("typology")=="student"){
+							if($("#rememberMeForLogin").is(':checked')){
+								localStorage.setItem("rememberMeForLogin","si");
+							}else{
+								localStorage.setItem("rememberMeForLogin","no");
+							}							
+							
+							if(localStorage.getItem("typology")=="Studente"){
 								var url = 'offertaFormativaStudente.html';
+                                window.location.href= url;
+							}
+							if(localStorage.getItem("typology")=="Professore"){
+								var url = 'offertaFormativaProfessore.html';
+                                window.location.href= url;
+							}
+							if(localStorage.getItem("typology")=="Organizzazione"){
+								var url = 'gestioneTirocinio&PlacementOrganizzazione.html';
+                                window.location.href= url;
+							}
+							if(localStorage.getItem("typology")=="Amministratore"){
+								var url = 'offertaFormativaAmministratore.html';
                                 window.location.href= url;
 							}
 						}
