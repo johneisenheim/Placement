@@ -303,7 +303,7 @@
 							}else{
 								localStorage.setItem("rememberMeForLogin","no");
 							}							
-							
+							alert(localStorage.getItem("typology")=="Studente");
 							if(localStorage.getItem("typology")=="Studente"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href= url;
