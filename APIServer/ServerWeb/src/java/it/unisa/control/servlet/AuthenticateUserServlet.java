@@ -92,7 +92,7 @@ public class AuthenticateUserServlet extends HttpServlet {
         }
     }
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
