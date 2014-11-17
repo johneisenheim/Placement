@@ -297,13 +297,13 @@
 							localStorage.setItem("gestioneTirocinio",myArray[2]);
 							localStorage.setItem("dottorato",myArray[3]);
 							localStorage.setItem("superAmministratore",myArray[4]);
-							alert("bbb "+myArray);
+							
 							if($("#rememberMeForLogin").is(':checked')){
 								localStorage.setItem("rememberMeForLogin","si");
 							}else{
 								localStorage.setItem("rememberMeForLogin","no");
 							}							
-							alert(localStorage.getItem("typology")=="Studente");
+							
 							if(localStorage.getItem("typology")=="Studente"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href= url;
