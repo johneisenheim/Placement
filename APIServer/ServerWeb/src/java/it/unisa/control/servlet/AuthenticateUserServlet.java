@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 /**
  *
- * @author carlosborges
+ * @author carlosborges 
  */
 @WebServlet(name = "AuthenticateUserServlet", urlPatterns = {"/AuthenticateUserServlet"})
 public class AuthenticateUserServlet extends HttpServlet {
