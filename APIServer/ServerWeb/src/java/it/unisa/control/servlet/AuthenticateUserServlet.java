@@ -66,12 +66,9 @@ public class AuthenticateUserServlet extends HttpServlet {
             }
         } catch (JSONException ex) {
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
-<<<<<<< HEAD
+
         } catch (SQLException ex) { 
-=======
-        } catch (SQLException ex) {
->>>>>>> FETCH_HEAD
-            Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 
