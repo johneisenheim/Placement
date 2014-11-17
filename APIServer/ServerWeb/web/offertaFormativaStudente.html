@@ -238,21 +238,21 @@
 		<div class="main-content">
 					
 			<script>
-			jQuery(document).ready(function($)
-			{
-				$('a[href="#layout-variants"]').on('click', function(ev)
+				jQuery(document).ready(function($)
 				{
-					ev.preventDefault();
-					
-					var win = {top: $(window).scrollTop(), toTop: $("#layout-variants").offset().top - 15};
-					
-					TweenLite.to(win, .3, {top: win.toTop, roundProps: ["top"], ease: Sine.easeInOut, onUpdate: function()
-						{
-							$(window).scrollTop(win.top);
-						}
+					$('a[href="#layout-variants"]').on('click', function(ev)
+					{
+						ev.preventDefault();
+						
+						var win = {top: $(window).scrollTop(), toTop: $("#layout-variants").offset().top - 15};
+						
+						TweenLite.to(win, .3, {top: win.toTop, roundProps: ["top"], ease: Sine.easeInOut, onUpdate: function()
+							{
+								$(window).scrollTop(win.top);
+							}
+						});
 					});
 				});
-			});
 			</script>
 			
 			<div class="jumbotron">
@@ -528,17 +528,44 @@
 					</div>
 				
 				</div>
-			
+				
 			</div>
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
 			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
 			<!-- Or class "fixed" to  always fix the footer to the end of page -->
+			<footer class="main-footer sticky footer-type-1">
+				
+				<div class="footer-inner">
+				
+					<!-- Add your copyright text here -->
+					<div class="footer-text">
+						&copy; 2014 
+						<strong>Unisa</strong> 
+						<a href="http://www.unisa.it" target="_blank"></a>
+					</div>
+					
+					
+					<!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+					<div class="go-up">
+					
+						<a href="#" rel="go-top">
+							<i class="fa-angle-up"></i>
+						</a>
+						
+					</div>
+					
+				</div>
+				
+			</footer>
 		</div>
 		
 	</div>
 	
 	
+	<div class="page-loading-overlay">
+		<div class="loader-2"></div>
+	</div>
 	
 
 

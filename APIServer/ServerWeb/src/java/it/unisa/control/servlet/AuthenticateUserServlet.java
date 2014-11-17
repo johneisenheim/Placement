@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+ 
 /**
  *
  * @author carlosborges 
@@ -66,7 +66,11 @@ public class AuthenticateUserServlet extends HttpServlet {
             }
         } catch (JSONException ex) {
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+<<<<<<< HEAD
         } catch (SQLException ex) { 
+=======
+        } catch (SQLException ex) {
+>>>>>>> FETCH_HEAD
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
