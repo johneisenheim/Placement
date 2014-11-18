@@ -25,7 +25,7 @@
 		jQuery(document).ready(function($){
 		
 			$(window).on('beforeunload',function(e) {
-				if(localStorage.getItem("rememberMeForLogin")==="no"){
+				if(localStorage.getItem("rememberMeForLogin")=="no"){
 					localStorage.removeItem("username");
 					localStorage.removeItem("typology");
 					localStorage.removeItem("classPermission");
@@ -43,7 +43,7 @@
 			$("#funzionalita1Permission_"+localStorage.getItem("offertaFormativa")).empty();	
 			$("#funzionalita3Permission_"+localStorage.getItem("offertaFormativa")).empty();	
 			
-			if(localStorage.getItem("username")===null){
+			if(localStorage.getItem("username")==null){
 				window.location.replace("pageError.html");
 			}
 			
