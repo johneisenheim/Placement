@@ -50,7 +50,7 @@
 				window.location.replace("pageError.html");
 			}
 			
-			$("#spaceForUsername").html(localStorage.getItem("username")+", "+localStorage.getItem("primaryKey")+' <i class="fa-angle-down"></i>');
+			$("#spaceForUsername").html(localStorage.getItem("username")+' <i class="fa-angle-down"></i>');
 			
 			$("#logout").click(function(){
 				localStorage.removeItem("username");

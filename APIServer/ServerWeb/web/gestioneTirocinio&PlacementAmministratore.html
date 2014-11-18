@@ -50,7 +50,7 @@
 				window.location.replace("pageError.html");
 			}*/
 			
-			$("#spaceForUsername").html(localStorage.getItem("username")+", "+localStorage.getItem("primaryKey")+' <i class="fa-angle-down"></i>');
+			$("#spaceForUsername").html(localStorage.getItem("username")+' <i class="fa-angle-down"></i>');
 			
 			$("#logout").click(function(){
 				localStorage.removeItem("username");
@@ -241,8 +241,7 @@
 		<div class="main-content">
 					
 			<script>
-				jQuery(document).ready(function($)
-				{
+				jQuery(document).ready(function($){
 					$('a[href="#layout-variants"]').on('click', function(ev)
 					{
 						ev.preventDefault();
@@ -258,38 +257,32 @@
 				});
 			</script>
 			
-			<!-- Basic Setup -->
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<center><h3 class="panel-title"><strong>Avvisi/Notifiche</strong></h3></center>
-				</div>
-				<div class="panel-body">
-					<script type="text/javascript">
-						jQuery(document).ready(function($)
-						{
-							$("#example-1").dataTable({
-								aLengthMenu: [
-									[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
-								]
-							});
-						});
-					</script>
-					
-					<table id="tableNotifications" class="table table-striped table-bordered" cellspacing="0" width="100%">
-						<thead>
-							<tr>
-								<th>Matricola</th>
-								<th>Nominativo</th>
-								<th>File CV</th>
-								<th>Doc. Esami Svolti</th>
-								<th>Email</th>
-								<th>Telefono</th>
-							</tr>
-						</thead>
+			<div class="row">
+				<div class="col-md-12">
+				
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Notifiche</h3>
+						</div>
 						
-						<tbody align="center">
-						</tbody>
-					</table>
+						<div class="panel-body">
+							<table id="tableNotifications" class="table responsive">
+								<thead>
+									<tr>
+										<th>Matricola</th>
+										<th>Nominativo</th>
+										<th>CV</th>
+										<th>Esami Svolti</th>
+										<th>Email</th>
+										<th></th>
+									</tr>
+								</thead>
+								
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
 					
 				</div>
 			</div>
@@ -325,12 +318,108 @@
 		
 	</div>
 	
-	
+	<div class="modal fade" id="modal-6">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal Content is Responsive</h4>
+				</div>
+				
+				<div class="modal-body">
+				
+					<div class="row">
+						<div class="col-md-6">
+							
+							<div class="form-group">
+								<label for="field-1" class="control-label">Name</label>
+								
+								<input type="text" class="form-control" id="field-1" placeholder="John">
+							</div>	
+							
+						</div>
+						
+						<div class="col-md-6">
+							
+							<div class="form-group">
+								<label for="field-2" class="control-label">Surname</label>
+								
+								<input type="text" class="form-control" id="field-2" placeholder="Doe">
+							</div>	
+						
+						</div>
+					</div>
+				
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="form-group">
+								<label for="field-3" class="control-label">Address</label>
+								
+								<input type="text" class="form-control" id="field-3" placeholder="Address">
+							</div>	
+							
+						</div>
+					</div>
+				
+					<div class="row">
+						<div class="col-md-4">
+							
+							<div class="form-group">
+								<label for="field-4" class="control-label">City</label>
+								
+								<input type="text" class="form-control" id="field-4" placeholder="Boston">
+							</div>	
+							
+						</div>
+						
+						<div class="col-md-4">
+							
+							<div class="form-group">
+								<label for="field-5" class="control-label">Country</label>
+								
+								<input type="text" class="form-control" id="field-5" placeholder="United States">
+							</div>	
+						
+						</div>
+						
+						<div class="col-md-4">
+							
+							<div class="form-group">
+								<label for="field-6" class="control-label">Zip</label>
+								
+								<input type="text" class="form-control" id="field-6" placeholder="123456">
+							</div>	
+						
+						</div>
+					</div>
+				
+					<div class="row">
+						<div class="col-md-12">
+							
+							<div class="form-group no-margin">
+								<label for="field-7" class="control-label">Personal Info</label>
+								
+								<textarea class="form-control autogrow" id="field-7" placeholder="Write something about yourself"></textarea>
+							</div>	
+							
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-info">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="page-loading-overlay">
 		<div class="loader-2"></div>
 	</div>
-	
-
 
 	<!-- Imported styles on this page -->
 	<link rel="stylesheet" href="assets/js/datatables/dataTables.bootstrap.css">
@@ -353,8 +442,20 @@
 	<script src="assets/js/xenon-custom.js"></script>
 	
 	<script>
+		function prova(name){
+			alert(name);
+			jQuery('#modal-6').modal('show', {backdrop: 'static'});
+		}
+		
 		jQuery(document).ready(function($){
-			$("#tableNotifications").append("<tr><td>1</td><td>pippo togliatti</td><td>adf</td><td>asdf</td><td>123</td><td>123</td><td>asd</td><td>ggs</td></tr>");
+			$("#tableNotifications tbody").empty();
+			for(var i = 0; i < 20; i++){
+				var stringToAppend_tmp = "<tr style='background-color: red;'><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>";
+					stringToAppend_tmp = stringToAppend_tmp + '<button class="btn btn-icon btn-blue"><i class="fa-check"></i></button>';
+					stringToAppend_tmp = stringToAppend_tmp + "<button id='"+i+"' name='"+i+"' class='btn btn-icon btn-red' onClick='prova("+i+")'><i class='fa-remove'></i></td></tr>";
+					
+				$("#tableNotifications").append(stringToAppend_tmp);
+			}
 		});
 	</script>
 
