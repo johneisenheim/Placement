@@ -37,3 +37,35 @@ else
 END IF;
 
 END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `storeUploadFile`(in CVPath Varchar(45), in ATPath Varchar(45), in serialNumber Varchar(45) )
+BEGIN
+
+DECLARE pathCV VARCHAR(45);
+DECLARE pathAT VARCHAR(45);
+DECLARE lastID int;
+DECLARE foundSet INT default false;
+DECLARE FK_studentInformation INT;
+DECLARE selectCur CURSOR FOR SELECT FK_idStudentInformation FROM Student WHERE Student.serialNumber = serialNumber AND FK_idStudentInformation != '' ;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET foundSet = true; 
+open selectCur;
+fetch selectCur into FK_studentInformation;
+if foundSet=false
+	then
+	UPDATE StudentInformation Set CurriculumVitaePATH = CVPath , AccademicTranscriptPATH = ATPath WHERE idStudentInformation = FK_studentInformation;
+else if foundSet=true
+	then
+	INSERT INTO StudentInformation  (CurriculumVitaePATH, AccademicTranscriptPATH) values (CVPath,ATPath);
+	SET lastID = LAST_INSERT_ID();
+	UPDATE Student SET FK_idStudentInformation = lastID WHERE Student.serialNumber = serialNumber;
+END if;
+END if;
+ 
+
+END
