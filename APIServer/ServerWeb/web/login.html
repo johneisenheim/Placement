@@ -23,19 +23,19 @@
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
 		jQuery(document).ready(function($){
-			if(localStorage.getItem("username")!=null){
-				if(localStorage.getItem("typology")=="professor"){
-					alert("Professor");
-				}
-				if(localStorage.getItem("typology")=="student"){
-					window.location.replace("offertaFormativaStudente.html");
-				}
-				if(localStorage.getItem("typology")=="Organization"){
-					alert("Organization");
-				}
-				if(localStorage.getItem("typology")=="Administrator"){
-					alert("Administrator");
-				}
+			if(localStorage.getItem("username")!== null){
+                
+                switch( localStorage.getItem("typology") ){
+                        case 'professor':
+                        break;
+                        case 'student':
+                            window.location.replace("offertaFormativaStudente.html");
+                        break;
+                        case 'organization':
+                        break;
+                        case 'administrator':
+                        break;
+                }
 			}
 		});
 	</script>
@@ -303,7 +303,7 @@
 							localStorage.setItem("dottorato",myArray[3]);
 							localStorage.setItem("superAmministratore",myArray[4]);
 							
-							if(localStorage.getItem("typology")=="student"){
+							if(localStorage.getItem("typology")==="student"){
 								var url = 'offertaFormativaStudente.html';
                                 window.location.href= url;
 							}
