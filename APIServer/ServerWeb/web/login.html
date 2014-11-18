@@ -26,14 +26,17 @@
 			if(localStorage.getItem("username")!== null){
                 
                 switch( localStorage.getItem("typology") ){
-                        case 'professor':
+                        case 'Professore':
+							window.location.replace("offertaFormativaProfessore.html");
                         break;
-                        case 'student':
+                        case 'Studente':
                             window.location.replace("offertaFormativaStudente.html");
                         break;
-                        case 'organization':
+                        case 'Organizzazione':
+                            window.location.replace("gestioneTirocinio&PlacementOrganizzazione.html");
                         break;
-                        case 'administrator':
+                        case 'Amministratore':
+                            window.location.replace("offertaFormativaAmministratore.html");
                         break;
                 }
 			}
@@ -288,14 +291,14 @@
 							$("#messageControl").empty();
 							localStorage.setItem("username",parsed.userName);
 							localStorage.setItem("typology",parsed.userType);
-							localStorage.setItem("permission",parsed.classPermission);
+							var permission = parsed.classPermission;
+							
 							if($("#rememberMeForLogin").is(':checked')){
 								localStorage.setItem("rememberMeForLogin","si");
 							}else{
 								localStorage.setItem("rememberMeForLogin","no");
 							}
 							
-							var permission = localStorage.getItem("permission");
 							var myArray = permission.split("-");
 							localStorage.setItem("offertaFormativa",myArray[0]);
 							localStorage.setItem("gestioneTesi",myArray[1]);
@@ -303,8 +306,20 @@
 							localStorage.setItem("dottorato",myArray[3]);
 							localStorage.setItem("superAmministratore",myArray[4]);
 							
-							if(localStorage.getItem("typology")==="student"){
+							if(localStorage.getItem("typology")==="Studente"){
 								var url = 'offertaFormativaStudente.html';
+                                window.location.href= url;
+							}
+							if(localStorage.getItem("typology")==="Professore"){
+								var url = 'offertaFormativaProfessore.html';
+                                window.location.href= url;
+							}
+							if(localStorage.getItem("typology")==="Organizzazione"){
+								var url = 'gestioneTirocio&PlacementOrganizzazione.html';
+                                window.location.href= url;
+							}
+							if(localStorage.getItem("typology")==="Amministratore"){
+								var url = 'offertaFormativaAmministratore.html';
                                 window.location.href= url;
 							}
 						}
