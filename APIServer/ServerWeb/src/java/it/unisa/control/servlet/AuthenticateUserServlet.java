@@ -2,9 +2,9 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */  
 package it.unisa.control.servlet;
- 
+  
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.model.concrete.ConcreteAccount;
 import it.unisa.tp.model.concrete.ConcretePermissions;
@@ -58,6 +58,7 @@ public class AuthenticateUserServlet extends HttpServlet {
             anAccount = handleUser.authenticate(userName, password);
             if (anAccount != null) {
                 message.put("status", 1);
+                message.put("primaryKey", anAccount.getPrimaryKey());
                 message.put("userType", anAccount.getTypeOfAccount());
                 message.put("userName", anAccount.getUserName());
                 message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());

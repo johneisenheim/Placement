@@ -22,6 +22,30 @@ public class ConcreteStudentInformation implements StudentInformation{
     public ConcreteStudentInformation(){
     }
 
+    public String getCurriculumVitaePATH() {
+        return CurriculumVitaePATH;
+    }
+
+    public void setCurriculumVitaePATH(String CurriculumVitaePATH) {
+        this.CurriculumVitaePATH = CurriculumVitaePATH;
+    }
+
+    public String getAccademicTranscriptPATH() {
+        return AccademicTranscriptPATH;
+    }
+
+    public void setAccademicTranscriptPATH(String AccademicTranscriptPATH) {
+        this.AccademicTranscriptPATH = AccademicTranscriptPATH;
+    }
+
+    public Student getFK_Student() {
+        return FK_Student;
+    }
+
+    public void setFK_Student(Student FK_Student) {
+        this.FK_Student = FK_Student;
+    }
+
     public ConcreteStudentInformation(int idStudentInformation, String CurriculumVitaePATH, String AccademicTranscriptPATH){
     
         this.idStudentInformation = idStudentInformation;

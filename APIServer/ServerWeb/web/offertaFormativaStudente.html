@@ -28,7 +28,7 @@
 				if(localStorage.getItem("rememberMeForLogin")==="no"){
 					localStorage.removeItem("username");
 					localStorage.removeItem("typology");
-					localStorage.removeItem("classPermission");
+					localStorage.removeItem("primaryKey");
 						
 					localStorage.removeItem("offertaFormativa");
 					localStorage.removeItem("gestioneTesi");
@@ -52,7 +52,7 @@
 			$("#logout").click(function(){
 				localStorage.removeItem("username");
 				localStorage.removeItem("typology");
-				localStorage.removeItem("classPermission");
+				localStorage.removeItem("primaryKey");
 				window.location.href="index.html";
 				
 				localStorage.removeItem("offertaFormativa");
@@ -121,7 +121,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#l">
+					<a href="gestioneTirocinio&PlacementStudente.html">
 						<i class="linecons-megaphone"></i>
 						<span class="title">Gestione Tirocinio</span>
 					</a>
@@ -191,7 +191,7 @@
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 					<li class="opened active">
-						<a href="#">
+						<a href="gestioneTirocinio&PlacementStudente.html">
 							<i class="linecons-cog"></i>
 							<span class="title">Home</span>
 						</a>
