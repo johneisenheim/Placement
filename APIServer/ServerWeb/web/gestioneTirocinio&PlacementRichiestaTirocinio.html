@@ -18,7 +18,9 @@
 	<link rel="stylesheet" href="assets/css/xenon-forms.css">
 	<link rel="stylesheet" href="assets/css/xenon-components.css">
 	<link rel="stylesheet" href="assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="assets/css/jquery.fileupload.css">
 	<link rel="stylesheet" href="assets/css/custom.css">
+
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
@@ -37,6 +39,7 @@
 					localStorage.removeItem("superAmministratore");
 					window.location.href="index.html";
 				}
+                
 			});
 			
 			//quì ci vanno gli ID delle funzionalità che verranno messe all interno del menù laterale...basta copiare una riga e incollarla,
@@ -112,7 +115,7 @@
 					
 			<ul class="navbar-nav">
 				<li>
-					<a href="offertaFormativaProfessore.html">
+					<a href="offertaFormativaStudente.html">
 						<i class="linecons-desktop"></i>
 						<span class="title">Offerta Formativa</span>
 					</a>
@@ -124,7 +127,7 @@
 					</a>
 				</li>
 				<li class="opened active">
-					<a href="gestioneTirocinio&PlacementProfessore.html">
+					<a href="gestioneTirocinio&PlacementStudente.html">
 						<i class="linecons-megaphone"></i>
 						<span class="title">Gestione Tirocinio</span>
 					</a>
@@ -193,16 +196,16 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li class="opened active">
-						<a href="#">
+					<li>
+						<a href="offertaFormativaStudente.html">
 							<i class="linecons-cog"></i>
 							<span class="title">Home</span>
 						</a>
 					</li>
-					<li id="funzionalita1Permission_0">
+					<li class="opened active">
 						<a href="#">
 							<i class="linecons-cog"></i>
-							<span class="title">Funzionalit&agrave; 01</span>
+							<span class="title">Richiesta tirocinio</span>
 						</a>
 					</li>
 					<li>
@@ -255,283 +258,76 @@
 							}
 						});
 					});
+                    
+                    $("#sendFiles").on('click', function(e){
+                       if($('#field-4').val() == '' || $('#field-4').val() == ''){
+                            $("#filesControl").attr("class","alert alert-danger");
+				            $("#filesControl").html("<strong>Attenzione! </strong>Entrambi i files devono essere presenti prima di inviare la richiesta.");
+                           return;
+                       }
+                        $("#filesControl").empty();
+                        $("#filesControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
+                        var cv = $('#field-4').files;
+                        var doc = $('#field-5').files;
+                        var formData = new FormData();
+                        formData.append('cv[]', cv[0], file.name);
+                        formData.append('doc[]', doc[0], file.name);
+                        
+                        $.get('').done(function(e){
+                        }).fail(function(e){
+                        });
+                    });
 				});
 			</script>
-			
-			<div class="jumbotron">
-				<h1>Titolo del Pannello (può anche essere eliminato)</h1>
-				
-				<p>
-					Folly words widow one downs few age every seven. If miss part by fact he park just shew. Discovered had get considered projection who favourable. Necessary up knowledge it tolerably.
+            
+            <div class="row">
+               
+				<div class="col-md-12">
 					
-					Unwilling departure education is be dashwoods or an. Use off agreeable law unwilling sir deficient curiosity instantly. Easy mind life fact with see has bore ten. Parish any chatty can elinor direct for former. Up as meant widow equal an share least.
-				</p>
-				
-				<br />
-				<a class="btn btn-primary btn-lg" href="#layout-variants" role="button">Link</a>
-			</div>
-			
-			<h3 id="layout-toggles">
-				Titolo del Pannello (può anche essere eliminato)
-				<br />
-				<small>Links that will automatically collapse or expand side panels, chat or user settings pane.</small>
-			</h3>
-			<br />
-			<br />
-			<br />
-			
-			<h3 id="layout-variants">
-				Link
-			</h3>
-			
-			<div class="panel panel-default panel-headerless">
-				
-				<div class="panel-body layout-variants">
-				
-					<div class="row">
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-variants.html">
-										<img src="assets/images/layouts/layout-sidebar.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-variants.html">Left Sidebar</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-variants.html" class="">Fixed Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-static-sidebar.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-without-submenu-toggle.html" class="">Other Submenus Toggle Off</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-right-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-right.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-right-sidebar.html">Right Sidebar</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-right-sidebar.html" class="">Fixed Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-right-sidebar-static.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-without-submenu-toggle-right.html" class="">Other Submenus Toggle Off</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-collapsed-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-collapsed.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-collapsed-sidebar.html">Collapsed Sidebar</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-collapsed-sidebar.html" class="disabled">
-											<del>Fixed Sidebar</del>
-										</a>
-									</li>
-									<li>
-										<a href="layout-collapsed-sidebar.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-chat-open.html" class="">Static Sidebar &amp; Chat Open</a>
-									</li>
-								</ul>
-							</div>
-							
+					<!-- Default panel -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Richiesta Tirocinio
 						</div>
 						
-						<div class="clearfix"></div>
-						
-						<div class="col-sm-4">
+						<div class="panel-body">
 							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-right-collapsed-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-right-collapsed.png" />
-									</a>
+							<p>Questa sezione del sito ti permetterà di inoltrare una richiesta di tirocinio. Per inviare la tua richiesta, è necessario tu possieda un Curriculum Vitae e un documento sul quale vengono descritti esami effettuati, data di convalida e cfu ad essi associati.</p>
+							<p>Entrambi i files devono essere in formato PDF e inviati all'Ufficio Amministrativo tramite i moduli sottostanti. L'ufficio amministrativo, in seguito, provvederà ad esaminare la tua richiesta e ti comunicherà su questa pagina l'esito della stessa.</p>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <form role="form" class="form-horizontal">
+                                            <label class="col-sm-2 control-label" for="field-4" >Curriculum Vitae</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="file" class="form-control" id="field-4" name="cv[]">
+                                            </div>
+                                            <label class="col-sm-2 control-label" for="field-5">Esami svolti</label>
+                                            <br><br>
+                                            <div class="col-sm-10">
+                                                <input type="file" class="form-control" id="field-5" name="doc[]">
+                                            </div>
+                                            <br><br><br>
+                                            <div id="filesControl" align="center"></div>
+                                            <div class="row">
+                                                <center><span class="btn btn-success fileinput-button" id="sendFiles">
+                                                    <i class="fa-arrow-up"></i>
+                                                    <span>Invia Richiesta</span>
+                                                    <!-- The file input field used as target for the file upload widget -->
+                                                </span>    
+                                                </center>
+                                            </div>
+                                        </form>
 								</div>
-								<div class="layout-name">
-									<a href="layout-right-collapsed-sidebar.html">Collapsed Right Sidebar</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-right-collapsed-sidebar.html" class="disabled">
-											<del>Fixed Sidebar</del>
-										</a>
-									</li>
-									<li>
-										<a href="layout-right-collapsed-sidebar.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-right-collapsed-sidebar-chat-open.html" class="">Static Sidebar &amp; Chat Open</a>
-									</li>
-								</ul>
-							</div>
-							
+                                </div>
+                            </div>
 						</div>
-						
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-menu.html">
-										<img src="assets/images/layouts/layout-horizontal.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-menu.html">Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-menu.html" class="">Fixed to Top</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-static.html" class="">Static on Top</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-boxed.html" class="">Boxed Content with Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-click-to-open-subs.html" class="">Click to Open Submenus</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-min.html" class="">Minimal Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant layout-current">
-								<div class="layout-img">
-									<a href="layout-horizontal-plus-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-horizontal.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-plus-sidebar.html">Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-plus-sidebar.html" class="">Fixed Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-sidebar-menu-static.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-fixed-sidebar-menu-static.html" class="layout-mode-current">Static Sidebar, Fixed Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						
-						<div class="clearfix"></div>
-						
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-right-sidebar-menu.html">
-										<img src="assets/images/layouts/layout-horizontal-right-sidebar.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-right-sidebar-menu.html">Right Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-right-sidebar-menu.html" class="">Fixed Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-right-sidebar-menu-static.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-right-fixed-sidebar-menu-static.html" class="">Static Sidebar, Fixed Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-sidebar-menu-collapsed.html">
-										<img src="assets/images/layouts/layout-sidebar-collapsed-horizontal.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-sidebar-menu-collapsed.html">Collapsed Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-sidebar-menu-collapsed.html" class="">Static Sidebar &amp; Fixed Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-static-sidebar-menu-collapsed.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						
-						
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-sidebar-menu-collapsed-right.html">
-										<img src="assets/images/layouts/layout-horizontal-right-sidebar-collapsed.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-sidebar-menu-collapsed-right.html">Right Collapsed Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-sidebar-menu-collapsed-right.html" class="">Static Sidebar &amp; Fixed Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-static-sidebar-menu-collapsed-right.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						
 					</div>
-				
+					
 				</div>
-				
+                
 			</div>
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
@@ -565,12 +361,9 @@
 		
 	</div>
 	
-	
 	<div class="page-loading-overlay">
 		<div class="loader-2"></div>
 	</div>
-	
-
 
 
 	<!-- Bottom Scripts -->
@@ -580,7 +373,7 @@
 	<script src="assets/js/joinable.js"></script>
 	<script src="assets/js/xenon-api.js"></script>
 	<script src="assets/js/xenon-toggles.js"></script>
-
+    <script src="assets/js/rwd-table/js/rwd-table.min.js"></script>
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
