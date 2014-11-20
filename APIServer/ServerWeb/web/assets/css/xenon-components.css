@@ -4415,7 +4415,7 @@ button.toast-close-button {
   color: rgba(75, 75, 75, 0.95);
 }
 .xe-widget.xe-todo-list {
-  background: #fff;
+  background: #f4f4f4;
   padding: 25px 30px;
   margin-bottom: 20px;
 }

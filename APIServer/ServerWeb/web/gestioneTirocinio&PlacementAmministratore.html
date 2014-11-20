@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/bootstrap-mod.css">
 	<link rel="stylesheet" href="assets/css/xenon-core.css">
 	<link rel="stylesheet" href="assets/css/xenon-forms.css">
 	<link rel="stylesheet" href="assets/css/xenon-components.css">
@@ -22,7 +22,35 @@
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
+		var myArrayForModalMenu =[];
+		
+		function prova(count){
+			if($("#cvDocumentError").is(":checked")){
+				$("#cvDocumentError").click();
+			}
+			if($("#esDocumentError").is(":checked")){
+				$("#esDocumentError").click();
+			}
+			if($("#cfuNotFoundError").is(":checked")){
+				$("#cfuNotFoundError").click();
+			}
+			$("#textareaDescriptionError").val("");
+			$("#serialNumberModalForReject").attr("placeholder",myArrayForModalMenu[count]);
+			$("#nameANDsurnameModalForReject").attr("placeholder",myArrayForModalMenu[count]);
+			jQuery('#modal-6').modal('show', {backdrop: 'static'});
+		}
+		
 		jQuery(document).ready(function($){
+			$("#tableNotifications tbody").empty();
+			for(var i = 0; i < 10; i++){
+				myArrayForModalMenu[i] = i;
+				var stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>";
+					stringToAppend_tmp = stringToAppend_tmp + '<button class="btn btn-sm btn-icon btn-secondary">Accetta</button>';
+					stringToAppend_tmp = stringToAppend_tmp + "<button id='"+i+"' class='btn btn-sm btn-icon btn-red' onClick=prova("+i+")>Rifiuta</td></tr>";
+					
+				$("#tableNotifications").append(stringToAppend_tmp);
+			}
+			
 			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
 				if(localStorage.getItem("rememberMeForLogin")=="no"){
@@ -43,8 +71,8 @@
 			//facendo attenzione a cambiare l'ID
 			//Es: $("pippopaperino_"+localStorage.getItem("offertaFormativa")).empty();
 			//ovviamente la localStorage cambia a seconda se si sta nella pagina di offerta formativa, gestione tesi, ecc...
-			$("#funzionalita1Permission_"+localStorage.getItem("offertaFormativa")).empty();	
-			$("#funzionalita3Permission_"+localStorage.getItem("offertaFormativa")).empty();	
+			$("#funzionalita1Permission_"+localStorage.getItem("gestioneTirocinio")).empty();	
+			$("#funzionalita3Permission_"+localStorage.getItem("gestioneTirocinio")).empty();				
 			
 			/*if(localStorage.getItem("username")==null){
 				window.location.replace("pageError.html");
@@ -266,19 +294,31 @@
 						</div>
 						
 						<div class="panel-body">
-							<table id="tableNotifications" class="table responsive">
+							<script>
+								$(document).ready(function() {
+								$("#tableNotifications").dataTable({
+									aLengthMenu: [
+										[5, 10, 20, -1], [5, 10, 20, "Tutti"]
+									],
+									"columnDefs": [
+									  { "bSortable": false, "aTargets": [ 5 ] }
+									] } );
+								});
+							</script>
+							<table id="tableNotifications" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+							
 								<thead>
 									<tr>
 										<th>Matricola</th>
 										<th>Nominativo</th>
 										<th>CV</th>
-										<th>Esami Svolti</th>
-										<th>Email</th>
-										<th></th>
+										<th>Esami</th>
+										<th>E-mail</th>
+										<th>Azioni</th>
 									</tr>
 								</thead>
 								
-								<tbody>
+								<tbody align="center">
 								</tbody>
 							</table>
 						</div>
@@ -323,8 +363,7 @@
 			<div class="modal-content">
 				
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Modal Content is Responsive</h4>
+					<center><h4 class="modal-title">Rifiutare la domanda di tirocinio.</h4></center>
 				</div>
 				
 				<div class="modal-body">
@@ -333,9 +372,9 @@
 						<div class="col-md-6">
 							
 							<div class="form-group">
-								<label for="field-1" class="control-label">Name</label>
+								<label for="field-1" class="control-label">Matricola</label>
 								
-								<input type="text" class="form-control" id="field-1" placeholder="John">
+								<input type="text" id="serialNumberModalForReject"class="form-control" id="field-1" disabled>
 							</div>	
 							
 						</div>
@@ -343,75 +382,82 @@
 						<div class="col-md-6">
 							
 							<div class="form-group">
-								<label for="field-2" class="control-label">Surname</label>
+								<label for="field-2" class="control-label">Nominativo</label>
 								
-								<input type="text" class="form-control" id="field-2" placeholder="Doe">
+								<input type="text" id="nameANDsurnameModalForReject"class="form-control" id="field-1" disabled>
 							</div>	
 						
 						</div>
 					</div>
 				
 					<div class="row">
-						<div class="col-md-12">
-							
-							<div class="form-group">
-								<label for="field-3" class="control-label">Address</label>
-								
-								<input type="text" class="form-control" id="field-3" placeholder="Address">
-							</div>	
-							
+						<div class="col-lg-6">
+							<div class="xe-widget xe-todo-list">
+								<div class="xe-header">
+									<center><h4 class="title"><strong>Errori</strong> riscontrati.</h4></center>
+								</div>
+								<div class="xe-body">
+									<ul class="list-unstyled">
+										<li>
+											<label>
+												<input type="checkbox" id="cvDocumentError"class="cbr"/>
+												<span>CV</span>
+											</label>
+										</li>
+										<li>
+											<label>
+												<input type="checkbox" id="esDocumentError" class="cbr"/>
+												<span>Esami Svolti</span>
+											</label>
+										</li>
+										<li>
+											<label>
+												<input type="checkbox" id="cfuNotFoundError" class="cbr" />
+												<span>CFU mancanti</span>
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>
-					</div>
-				
-					<div class="row">
-						<div class="col-md-4">
-							
-							<div class="form-group">
-								<label for="field-4" class="control-label">City</label>
-								
-								<input type="text" class="form-control" id="field-4" placeholder="Boston">
-							</div>	
-							
-						</div>
-						
-						<div class="col-md-4">
-							
-							<div class="form-group">
-								<label for="field-5" class="control-label">Country</label>
-								
-								<input type="text" class="form-control" id="field-5" placeholder="United States">
-							</div>	
-						
-						</div>
-						
-						<div class="col-md-4">
-							
-							<div class="form-group">
-								<label for="field-6" class="control-label">Zip</label>
-								
-								<input type="text" class="form-control" id="field-6" placeholder="123456">
-							</div>	
-						
-						</div>
-					</div>
-				
-					<div class="row">
-						<div class="col-md-12">
-							
+						<script>
+							jQuery(document).ready(function($){
+								$("#mandalo").click(function(){
+									var stringCVError = "";
+									var stringESError = "";
+									var stringCFUNotFoundError = "";
+									
+									if($("#cvDocumentError").is(":checked")){
+										stringCVError = "CV: Documento errato;";
+									}
+									
+									if($("#esDocumentError").is(":checked")){
+										stringESError = "Esami svolti: Documento errato;";
+									}
+									
+									if($("#cfuNotFoundError").is(":checked")){
+										stringCFUNotFoundError = "CFU mancanti;";
+									}
+									
+									var stringTextareaDescriptionError = $("#textareaDescriptionError").val();
+									alert(stringCFUNotFoundError+" "+stringESError+" "+stringCVError+" "+stringTextareaDescriptionError);	
+								});
+							});
+						</script>
+						<div class="col-lg-6">
 							<div class="form-group no-margin">
-								<label for="field-7" class="control-label">Personal Info</label>
-								
-								<textarea class="form-control autogrow" id="field-7" placeholder="Write something about yourself"></textarea>
+								<label for="textareaDescriptionError" class="control-label">Descrizione errore:</label>
+								<textarea class="form-control autogrow" id="textareaDescriptionError"></textarea>
 							</div>	
-							
 						</div>
 					</div>
-					
 				</div>
 				
 				<div class="modal-footer">
-					<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-info">Save changes</button>
+					<center>
+						<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+						<button type="button" id="mandalo" class="btn btn-info">Save changes</button>
+					</center>
 				</div>
 			</div>
 		</div>
@@ -421,9 +467,10 @@
 		<div class="loader-2"></div>
 	</div>
 
-	<!-- Imported styles on this page -->
+	
 	<link rel="stylesheet" href="assets/js/datatables/dataTables.bootstrap.css">
-
+	<link rel="stylesheet" href="assets/css/fonts/meteocons/css/meteocons.css">
+	
 	<!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/TweenMax.min.js"></script>
@@ -431,33 +478,20 @@
 	<script src="assets/js/joinable.js"></script>
 	<script src="assets/js/xenon-api.js"></script>
 	<script src="assets/js/xenon-toggles.js"></script>
-	<script src="assets/js/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="assets/js/datatables/js/jquery.dataTables.js"></script>
 
 	<!-- Imported scripts on this page -->
 	<script src="assets/js/datatables/dataTables.bootstrap.js"></script>
 	<script src="assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
 	<script src="assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
+	
+	<!-- Imported scripts on this page -->
+	<script src="assets/js/xenon-widgets.js"></script>
+	<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="assets/js/jvectormap/regions/jquery-jvectormap-world-mill-en.js"></script>
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
-	
-	<script>
-		function prova(name){
-			alert(name);
-			jQuery('#modal-6').modal('show', {backdrop: 'static'});
-		}
-		
-		jQuery(document).ready(function($){
-			$("#tableNotifications tbody").empty();
-			for(var i = 0; i < 20; i++){
-				var stringToAppend_tmp = "<tr style='background-color: red;'><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>";
-					stringToAppend_tmp = stringToAppend_tmp + '<button class="btn btn-icon btn-blue"><i class="fa-check"></i></button>';
-					stringToAppend_tmp = stringToAppend_tmp + "<button id='"+i+"' name='"+i+"' class='btn btn-icon btn-red' onClick='prova("+i+")'><i class='fa-remove'></i></td></tr>";
-					
-				$("#tableNotifications").append(stringToAppend_tmp);
-			}
-		});
-	</script>
 
 </body>
 </html>
