@@ -35,9 +35,9 @@
 				$("#cfuNotFoundError").click();
 			}
 			$("#textareaDescriptionError").val("");
-			$("#serialNumberModalForReject").attr("placeholder",myArrayForModalMenu[count]);
-			$("#nameANDsurnameModalForReject").attr("placeholder",myArrayForModalMenu[count]);
-			jQuery('#modal-6').modal('show', {backdrop: 'static'});
+			$("#serialNumberModalForReject").val(myArrayForModalMenu[count]);
+			$("#nameANDsurnameModalForReject").val(myArrayForModalMenu[count]);
+			jQuery('#modalGestioneTirocinioANDPlacementAmministratore').modal('show', {backdrop: 'static'});
 		}
 		
 		jQuery(document).ready(function($){
@@ -46,7 +46,8 @@
 				myArrayForModalMenu[i] = i;
 				var stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>";
 					stringToAppend_tmp = stringToAppend_tmp + '<button class="btn btn-sm btn-icon btn-secondary">Accetta</button>';
-					stringToAppend_tmp = stringToAppend_tmp + "<button id='"+i+"' class='btn btn-sm btn-icon btn-red' onClick=prova("+i+")>Rifiuta</td></tr>";
+					stringToAppend_tmp = stringToAppend_tmp + "<button id='reject_"+i+"' class='btn btn-sm btn-icon btn-red' onClick=prova("+i+")>Rifiuta</button>";
+					stringToAppend_tmp = stringToAppend_tmp + "<button id='"+i+"' class='btn btn-sm btn-icon btn-blue' onClick=prova("+i+")>Concluso</button></td></tr>";
 					
 				$("#tableNotifications").append(stringToAppend_tmp);
 			}
@@ -358,7 +359,7 @@
 		
 	</div>
 	
-	<div class="modal fade" id="modal-6">
+	<div class="modal fade" id="modalGestioneTirocinioANDPlacementAmministratore">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				
@@ -372,9 +373,9 @@
 						<div class="col-md-6">
 							
 							<div class="form-group">
-								<label for="field-1" class="control-label">Matricola</label>
+								<label for="serialNumberModalForReject" class="control-label">Matricola</label>
 								
-								<input type="text" id="serialNumberModalForReject"class="form-control" id="field-1" disabled>
+								<input type="text" id="serialNumberModalForReject" class="form-control" disabled>
 							</div>	
 							
 						</div>
@@ -382,9 +383,9 @@
 						<div class="col-md-6">
 							
 							<div class="form-group">
-								<label for="field-2" class="control-label">Nominativo</label>
+								<label for="nameANDsurnameModalForReject" class="control-label">Nominativo</label>
 								
-								<input type="text" id="nameANDsurnameModalForReject"class="form-control" id="field-1" disabled>
+								<input type="text" id="nameANDsurnameModalForReject" class="form-control" disabled>
 							</div>	
 						
 						</div>
