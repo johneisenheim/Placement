@@ -22,13 +22,13 @@
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
-		localStorage.setItem("gestioneTirocinio",1);
+	
 		var myArrayForNewsTrainingOrganization =[];
 		
 		jQuery(document).ready(function($){
 			$("#tableNewsTrainingOrganization tbody").empty();
 			$("#tableNewsTrainingOrganization thead").empty();
-			alert(localStorage.getItem("gestioneTirocinio"));
+			
 			if(localStorage.getItem("gestioneTirocinio")==0){
 				alert("ciao");
 				var stringToAppend_tmp = "<thead><tr><th>Nome Azienda</th><th>Professore Associato</th><th>Descrizione</th></tr></thead><tbody align='center'>";
