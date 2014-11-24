@@ -32,3 +32,5 @@ APIServer/ServerWeb/web/assets/js/.DS_Store
 APIServer/ServerWeb/web/assets/css/.DS_Store
 
 *.properties
+
+APIServer/ServerWeb/nbproject/project.properties
