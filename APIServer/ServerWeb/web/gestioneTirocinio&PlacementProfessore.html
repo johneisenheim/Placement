@@ -196,7 +196,7 @@
 					<li class="opened active">
 						<a href="#">
 							<i class="linecons-cog"></i>
-							<span class="title">Home</span>
+							<span class="title">Offerta Tirocinio</span>
 						</a>
 					</li>
 					<li id="funzionalita1Permission_0">
@@ -241,6 +241,26 @@
 		<div class="main-content">
 					
 			<script>
+                function emptyControl(id){
+                    if($("#"+id).val() == "")
+                        return false;
+                    return true;
+                }
+
+                function checkNotEmptyFields(){
+                    var tmp1 = emptyControl("title");
+                    var tmp2 = emptyControl("description");
+                    if(!tmp1) {
+                        $("#validate_title").html("Campo Titolo vuoto");
+                        $("#title").attr("style","border-color:#cc3f44;");
+                    }
+                    if(!tmp2) {
+                        $("#validate_description").html("Campo Descrizione vuoto");
+                        $("#description").attr("style","border-color:#cc3f44;");
+                    }
+
+                    return tmp1&tmp2;
+                }
 				jQuery(document).ready(function($)
 				{
 					$('a[href="#layout-variants"]').on('click', function(ev)
@@ -255,284 +275,126 @@
 							}
 						});
 					});
+                    
+                    $("#title").keyup(function(){
+                        $("#title").attr("style","border-color:#e4e4e4;");
+                        $("#validate_title").html("");
+                    });
+
+                    $("#description").keyup(function(){
+                        $("#description").attr("style","border-color:#e4e4e4;");
+                        $("#validate_description").html("");
+                    });
+                    
+                    $("#addTrainingProf").click(function(e){
+                        e.preventDefault();
+                        $("#messageControl").removeAttr("class");
+                        $("#messageControl").empty();
+                        if(checkNotEmptyFields()){
+                            $("#messageControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
+                            $.get("http://localhost:8080/ServerWeb/AuthenticateUserServlet",{username:$("#username").val(),password:$("#password").val()}).done(function(e){
+                                var parsed = jQuery.parseJSON(e);
+                                if(parsed.status==0){
+                                    $("#messageControl").attr("class","alert alert-danger");
+                                    $("#messageControl").html("<strong>Spiacente, </strong> c\'è stato un errore nell\'invio della richiesta.");
+                                }else{
+                                    $("#messageControl").empty();
+                                }
+                            }).fail(function(e){
+                                $("#messageControl").attr("class","alert alert-warning");
+                                $("#messageControl").html("<strong>Spiacenti, </strong> c\'è stato un problema nell\'elaborazione della richiesta. Riprova a breve.");
+                            });
+                        }
+                    });
 				});
 			</script>
 			
-			<div class="jumbotron">
-				<h1>Titolo del Pannello (può anche essere eliminato)</h1>
-				
-				<p>
-					Folly words widow one downs few age every seven. If miss part by fact he park just shew. Discovered had get considered projection who favourable. Necessary up knowledge it tolerably.
-					
-					Unwilling departure education is be dashwoods or an. Use off agreeable law unwilling sir deficient curiosity instantly. Easy mind life fact with see has bore ten. Parish any chatty can elinor direct for former. Up as meant widow equal an share least.
-				</p>
-				
-				<br />
-				<a class="btn btn-primary btn-lg" href="#layout-variants" role="button">Link</a>
-			</div>
-			
-			<h3 id="layout-toggles">
-				Titolo del Pannello (può anche essere eliminato)
-				<br />
-				<small>Links that will automatically collapse or expand side panels, chat or user settings pane.</small>
-			</h3>
-			<br />
-			<br />
-			<br />
-			
-			<h3 id="layout-variants">
-				Link
-			</h3>
-			
-			<div class="panel panel-default panel-headerless">
-				
-				<div class="panel-body layout-variants">
-				
-					<div class="row">
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-variants.html">
-										<img src="assets/images/layouts/layout-sidebar.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-variants.html">Left Sidebar</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-variants.html" class="">Fixed Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-static-sidebar.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-without-submenu-toggle.html" class="">Other Submenus Toggle Off</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-right-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-right.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-right-sidebar.html">Right Sidebar</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-right-sidebar.html" class="">Fixed Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-right-sidebar-static.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-without-submenu-toggle-right.html" class="">Other Submenus Toggle Off</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-collapsed-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-collapsed.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-collapsed-sidebar.html">Collapsed Sidebar</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-collapsed-sidebar.html" class="disabled">
-											<del>Fixed Sidebar</del>
-										</a>
-									</li>
-									<li>
-										<a href="layout-collapsed-sidebar.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-chat-open.html" class="">Static Sidebar &amp; Chat Open</a>
-									</li>
-								</ul>
-							</div>
-							
+			<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+						<div class="panel-heading">
+							Aggiungi Offerta di Tirocinio
 						</div>
 						
-						<div class="clearfix"></div>
-						
-						<div class="col-sm-4">
+						<div class="panel-body">
 							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-right-collapsed-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-right-collapsed.png" />
-									</a>
+							<p align="justify">Questa sezione è adibita all'inserimento di un'offerta di Tirocinio. Completa i campi sottostanti per rendere l'offerta visualizzabile agli studenti; al termine di questa operazione, potrai visualizzare tutti i tirocini inseriti nella tabella di riepilogo nel pannello sottostante. Puoi ovviamente inserire più tirocini per i tuoi studenti utilizzando sempre questo modulo.</p>
+                            <br><br>
+                            <form role="form" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Titolo del Tirocinio</label>
+									
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="title" placeholder="Titolo...">
+                                        <span id="validate_title" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<div class="layout-name">
-									<a href="layout-right-collapsed-sidebar.html">Collapsed Right Sidebar</a>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-5">Descrizione del Tirocinio</label>
+									
+									<div class="col-sm-10">
+										<textarea class="form-control" cols="5" rows="5" id="description" placeholder="Descrizione..." maxlength="250"></textarea>
+                                        <span id="validate_description" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-right-collapsed-sidebar.html" class="disabled">
-											<del>Fixed Sidebar</del>
-										</a>
-									</li>
-									<li>
-										<a href="layout-right-collapsed-sidebar.html" class="">Static Sidebar</a>
-									</li>
-									<li>
-										<a href="layout-right-collapsed-sidebar-chat-open.html" class="">Static Sidebar &amp; Chat Open</a>
-									</li>
-								</ul>
-							</div>
-							
+                                <div class="col-sm-12">
+                                    <div id="messageControl" align="center">
+                                    </div>
+							    </div>
+                                <div class="form-group">
+                                    <center>
+                                        <button class="btn btn-success btn-icon" id="addTrainingProf">
+									       <i class="fa-plus"></i>
+									       <span> Aggiungi Tirocinio</span>
+								        </button>
+                                    </center>
+                                </div>
+							</form>
 						</div>
-						
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-menu.html">
-										<img src="assets/images/layouts/layout-horizontal.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-menu.html">Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-menu.html" class="">Fixed to Top</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-static.html" class="">Static on Top</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-boxed.html" class="">Boxed Content with Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-click-to-open-subs.html" class="">Click to Open Submenus</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-menu-min.html" class="">Minimal Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant layout-current">
-								<div class="layout-img">
-									<a href="layout-horizontal-plus-sidebar.html">
-										<img src="assets/images/layouts/layout-sidebar-horizontal.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-plus-sidebar.html">Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-plus-sidebar.html" class="">Fixed Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-sidebar-menu-static.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-fixed-sidebar-menu-static.html" class="layout-mode-current">Static Sidebar, Fixed Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						
-						<div class="clearfix"></div>
-						
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-right-sidebar-menu.html">
-										<img src="assets/images/layouts/layout-horizontal-right-sidebar.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-right-sidebar-menu.html">Right Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-right-sidebar-menu.html" class="">Fixed Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-right-sidebar-menu-static.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-right-fixed-sidebar-menu-static.html" class="">Static Sidebar, Fixed Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-sidebar-menu-collapsed.html">
-										<img src="assets/images/layouts/layout-sidebar-collapsed-horizontal.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-sidebar-menu-collapsed.html">Collapsed Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-sidebar-menu-collapsed.html" class="">Static Sidebar &amp; Fixed Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-static-sidebar-menu-collapsed.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						
-						
-						<div class="col-sm-4">
-							
-							<div class="layout-variant">
-								<div class="layout-img">
-									<a href="layout-horizontal-sidebar-menu-collapsed-right.html">
-										<img src="assets/images/layouts/layout-horizontal-right-sidebar-collapsed.png" />
-									</a>
-								</div>
-								<div class="layout-name">
-									<a href="layout-horizontal-sidebar-menu-collapsed-right.html">Right Collapsed Sidebar &amp; Horizontal Menu</a>
-								</div>
-								<ul class="layout-links">
-									<li>
-										<a href="layout-horizontal-sidebar-menu-collapsed-right.html" class="">Static Sidebar &amp; Fixed Horizontal Menu</a>
-									</li>
-									<li>
-										<a href="layout-horizontal-static-sidebar-menu-collapsed-right.html" class="">Static Sidebar &amp; Horizontal Menu</a>
-									</li>
-								</ul>
-							</div>
-							
-						</div>
-						
 					</div>
-				
-				</div>
-				
-			</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+						<div class="panel-heading">
+							Riepilogo Offerte Tirocinio
+						</div>
+						
+						<div class="panel-body">
+                            <div class="list-group">
+										<a href="#" class="list-group-item" onclick="return false;" style="cursor:default;">
+											<h4 class="list-group-item-heading">Domestic confined any but son</h4>
+											<p class="list-group-item-text">Consider speaking me prospect whatever if. Ten nearer rather hunted six parish indeed number. Allowance repulsive sex may contained can set suspected abilities cordially. Do part am he high rest that. So fruit to ready it being views match. </p>
+                                            <p align="right">
+                                                    <button class="btn btn-orange btn-icon btn-sm" id="addTrainingProf">
+                                                       <i class="fa-pencil"></i>
+                                                       <span> Modifica</span>
+                                                    </button>
+                                                    &nbsp;
+                                                    <button class="btn btn-red btn-icon btn-sm" id="addTrainingProf">
+                                                       <i class="fa-trash"></i>
+                                                       <span> Elimina</span>
+                                                    </button>
+                                            </p>
+										</a>
+										
+										<a href="#" class="list-group-item">
+											<h4 class="list-group-item-heading">Why painful the sixteen how minuter</h4>
+											<p class="list-group-item-text">Started his hearted any civilly. So me by marianne admitted speaking. Men bred fine call ask. Cease one miles truth day above seven. Suspicion sportsmen provision suffering mrs saw engrossed something. Snug soon he on plan in be dine some. </p>
+										</a>
+										
+										<a href="#" class="list-group-item">
+											<h4 class="list-group-item-heading">Barton waited twenty always repair</h4>
+											<p class="list-group-item-text">Talking chamber as shewing an it minutes. Trees fully of blind do. Exquisite favourite at do extensive listening. Improve up musical welcome he. Gay attended vicinity prepared now diverted. Esteems it ye sending reached as. Longer lively her design settle tastes advice mrs off who. </p>
+										</a>
+									</div>
+						</div>
+					</div>
+                </div>
+            </div>
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
 			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->

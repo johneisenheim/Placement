@@ -287,7 +287,7 @@
 				$("#messageControl").empty();
 				$("#signin").text("Attendi...");
 				if(checkNotEmptyFields()){
-					$("#messageControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#40bbea;"></i></center>');
+					$("#messageControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
 					$.get("http://localhost:8080/ServerWeb/AuthenticateUserServlet",{username:$("#username").val(),password:$("#password").val()}).done(function(e){
 						var parsed = jQuery.parseJSON(e);
 						if(parsed.status==0){

@@ -4,6 +4,6 @@ package it.unisa.tp.model.interfaces;
 public interface FisicPerson {
 
 	int getPrimaryKey();
-	int setPrimaryKey();
+	void setPrimaryKey(int primaryKey);
 	String toString();
 }

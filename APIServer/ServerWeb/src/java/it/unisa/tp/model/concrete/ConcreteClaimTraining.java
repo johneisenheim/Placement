@@ -25,12 +25,12 @@ public class ConcreteClaimTraining implements ClaimTraining{
 
     @Override
     public int getPrimaryKey() {
-        return this.getIdClaimTraining();
+        return this.idClaimTraining;
     }
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        this.setIdClaimTraining(primaryKey);
+        this.idClaimTraining=primaryKey;
     }
 
     /**
