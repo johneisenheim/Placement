@@ -24,17 +24,17 @@
 	<script>
 		jQuery(document).ready(function($){
 			if(localStorage.getItem("username")!=null){
-				if(localStorage.getItem("typology")=="Professor"){
-					alert("Professor");
+				if(localStorage.getItem("typology")=="Professore"){
+					window.location.href="offertaFormativaProfessore.html";
 				}
-				if(localStorage.getItem("typology")=="student"){
-					window.location.replace("offertaFormativaStudente.html");
+				if(localStorage.getItem("typology")=="Studente"){
+					window.location.href="offertaFormativaStudente.html";
 				}
-				if(localStorage.getItem("typology")=="Organization"){
-					alert("Organization");
+				if(localStorage.getItem("typology")=="Organizzazione"){
+					window.location.href="gestioneTirocinio&PlacementOrganizzazione.html";
 				}
-				if(localStorage.getItem("typology")=="Administrator"){
-					alert("Administrator");
+				if(localStorage.getItem("typology")=="Amministratore"){
+					window.location.href="offertaFormativaAmministratore.html";
 				}
 			}
 		});

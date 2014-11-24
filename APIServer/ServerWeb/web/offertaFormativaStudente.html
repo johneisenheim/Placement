@@ -25,10 +25,10 @@
 		jQuery(document).ready(function($){
 		
 			$(window).on('beforeunload',function(e) {
-				if(localStorage.getItem("rememberMeForLogin")=="no"){
+				if(localStorage.getItem("rememberMeForLogin")==="no"){
 					localStorage.removeItem("username");
 					localStorage.removeItem("typology");
-					localStorage.removeItem("classPermission");
+					localStorage.removeItem("primaryKey");
 						
 					localStorage.removeItem("offertaFormativa");
 					localStorage.removeItem("gestioneTesi");
@@ -43,7 +43,7 @@
 			$("#funzionalita1Permission_"+localStorage.getItem("offertaFormativa")).empty();	
 			$("#funzionalita3Permission_"+localStorage.getItem("offertaFormativa")).empty();	
 			
-			if(localStorage.getItem("username")==null){
+			if(localStorage.getItem("username")===null){
 				window.location.replace("pageError.html");
 			}
 			
@@ -52,7 +52,7 @@
 			$("#logout").click(function(){
 				localStorage.removeItem("username");
 				localStorage.removeItem("typology");
-				localStorage.removeItem("classPermission");
+				localStorage.removeItem("primaryKey");
 				window.location.href="index.html";
 				
 				localStorage.removeItem("offertaFormativa");
@@ -121,7 +121,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#l">
+					<a href="gestioneTirocinio&PlacementStudente.html">
 						<i class="linecons-megaphone"></i>
 						<span class="title">Gestione Tirocinio</span>
 					</a>
@@ -191,7 +191,7 @@
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 					<li class="opened active">
-						<a href="#">
+						<a href="gestioneTirocinio&PlacementStudente.html">
 							<i class="linecons-cog"></i>
 							<span class="title">Home</span>
 						</a>
@@ -238,21 +238,21 @@
 		<div class="main-content">
 					
 			<script>
-			jQuery(document).ready(function($)
-			{
-				$('a[href="#layout-variants"]').on('click', function(ev)
+				jQuery(document).ready(function($)
 				{
-					ev.preventDefault();
-					
-					var win = {top: $(window).scrollTop(), toTop: $("#layout-variants").offset().top - 15};
-					
-					TweenLite.to(win, .3, {top: win.toTop, roundProps: ["top"], ease: Sine.easeInOut, onUpdate: function()
-						{
-							$(window).scrollTop(win.top);
-						}
+					$('a[href="#layout-variants"]').on('click', function(ev)
+					{
+						ev.preventDefault();
+						
+						var win = {top: $(window).scrollTop(), toTop: $("#layout-variants").offset().top - 15};
+						
+						TweenLite.to(win, .3, {top: win.toTop, roundProps: ["top"], ease: Sine.easeInOut, onUpdate: function()
+							{
+								$(window).scrollTop(win.top);
+							}
+						});
 					});
 				});
-			});
 			</script>
 			
 			<div class="jumbotron">
@@ -528,17 +528,44 @@
 					</div>
 				
 				</div>
-			
+				
 			</div>
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
 			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
 			<!-- Or class "fixed" to  always fix the footer to the end of page -->
+			<footer class="main-footer sticky footer-type-1">
+				
+				<div class="footer-inner">
+				
+					<!-- Add your copyright text here -->
+					<div class="footer-text">
+						&copy; 2014 
+						<strong>Unisa</strong> 
+						<a href="http://www.unisa.it" target="_blank"></a>
+					</div>
+					
+					
+					<!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+					<div class="go-up">
+					
+						<a href="#" rel="go-top">
+							<i class="fa-angle-up"></i>
+						</a>
+						
+					</div>
+					
+				</div>
+				
+			</footer>
 		</div>
 		
 	</div>
 	
 	
+	<div class="page-loading-overlay">
+		<div class="loader-2"></div>
+	</div>
 	
 
 

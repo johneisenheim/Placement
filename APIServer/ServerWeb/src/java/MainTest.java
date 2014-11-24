@@ -1,6 +1,7 @@
 
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.control.DBConnection;
+import it.unisa.tp.control.UploadInformationFiles;
 import it.unisa.tp.model.concrete.ConcreteAccount;
 import it.unisa.tp.model.concrete.ConcretePermissions;
 import java.io.IOException;
@@ -21,12 +22,8 @@ public class MainTest {
     
      public static void main(String[] args) {
          try {
-             DBConnection.connect();
-             ConcreteAccount anAccount;
-            AuthenticateUser handleUser = new AuthenticateUser();
-            
-            anAccount = handleUser.authenticate("pippo", "paperino");
-            System.out.printf(((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
+             UploadInformationFiles upload = new UploadInformationFiles();
+             upload.UploadFilesPathToDB("provacv", "provaAT", "1");
          } catch (ClassNotFoundException ex) {
              Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
          } catch (SQLException ex) {
@@ -34,5 +31,6 @@ public class MainTest {
          } catch (IOException ex) {
              Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
          }
+         
     }
 }

@@ -10788,7 +10788,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sFirst": "First",
+				"sFirst": "Primo",
 	
 	
 				/**
@@ -10811,7 +10811,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sLast": "Last",
+				"sLast": "Ultimo",
 	
 	
 				/**
@@ -10834,7 +10834,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Next",
+				"sNext": "Successivo",
 	
 	
 				/**
@@ -10857,7 +10857,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sPrevious": "Precedente"
 			},
 	
 			/**
@@ -10880,7 +10880,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "Nessun dato disponibile!",
 	
 	
 			/**
@@ -10912,7 +10912,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Mostro da _START_ a _END_ di _TOTAL_ record",
 	
 	
 			/**
@@ -10933,7 +10933,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Mostro da 0 a 0 di 0 record",
 	
 	
 			/**
@@ -10955,7 +10955,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "(filtrati da _MAX_ record totali)",
 	
 	
 			/**
@@ -11073,7 +11073,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": "Mostra _MENU_ record",
 	
 	
 			/**
@@ -11097,7 +11097,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "Loading...",
+			"sLoadingRecords": "Caricamento...",
 	
 	
 			/**
@@ -11118,7 +11118,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "Processing...",
+			"sProcessing": "Processo...",
 	
 	
 			/**
@@ -11153,7 +11153,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "Cerca:",
 	
 	
 			/**
@@ -11211,7 +11211,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "Nessun record trovato!"
 		},
 	
 	
