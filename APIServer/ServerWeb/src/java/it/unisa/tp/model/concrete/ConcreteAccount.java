@@ -12,14 +12,14 @@ public class ConcreteAccount implements Account{
 
 
     private int idAccount;
-    private String unserName;
+    private String userName;
     private String password;
     private String typeOfAccount;
     private Permissions FKPermission;
     
     public ConcreteAccount(int idAccount, String unserName, String password, String typeOfAccount, Permissions FKPermission) {
         this.idAccount = idAccount;
-        this.unserName = unserName;
+        this.userName = unserName;
         this.password = password;
         this.typeOfAccount = typeOfAccount;
         this.FKPermission = FKPermission;
@@ -47,12 +47,12 @@ public class ConcreteAccount implements Account{
         this.idAccount = idAccount;
     }
 
-    public String getUnserName() {
-        return unserName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUnserName(String unserName) {
-        this.unserName = unserName;
+    public void setUserName(String unserName) {
+        this.userName = unserName;
     }
 
     public String getPassword() {
