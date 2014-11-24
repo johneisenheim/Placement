@@ -23,24 +23,24 @@ public class ConcreteOrganization implements Organization{
     private String addres;
     private String phone;
     private String mail;
-    private Account account;
-    private FisicPerson fisicPerson;
+    private int FK_Account;
+    private int FK_FisicPerson;
     private String training;
-    private Professor profesor;
+    private int FK_Professor;
     
     
     public ConcreteOrganization (int idOrganization, String companyName, String city, String address, String phone, String mail,
-            Account account, FisicPerson fisicPerson, String training, Professor profesor){
+            int FK_Account, int FK_FisicPerson, String training, int FK_Professor){
         this.idOrganization=idOrganization;
         this.companyName=companyName;
         this.city=city;
         this.addres=address;
         this.phone=phone;
         this.mail=mail;
-        this.account=account;
-        this.fisicPerson=fisicPerson;
+        this.FK_Account= FK_Account;
+        this.FK_FisicPerson=FK_FisicPerson;
         this.training=training;
-        this.profesor=profesor;
+        this.FK_Professor=FK_Professor;
     }
     
     public ConcreteOrganization(){
@@ -144,29 +144,29 @@ public class ConcreteOrganization implements Organization{
     /**
      * @return the account
      */
-    public Account getAccount() {
-        return account;
+    public int getFK_Account() {
+        return FK_Account;
     }
 
     /**
      * @param account the account to set
      */
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setFK_Account(int FK_Account) {
+        this.FK_Account = FK_Account;
     }
 
     /**
      * @return the fisicPerson
      */
-    public FisicPerson getFisicPerson() {
-        return fisicPerson;
+    public int getFK_FisicPerson() {
+        return FK_FisicPerson;
     }
 
     /**
      * @param fisicPerson the fisicPerson to set
      */
-    public void setFisicPerson(FisicPerson fisicPerson) {
-        this.fisicPerson = fisicPerson;
+    public void setFisicPerson(int FK_FisicPerson) {
+        this.FK_FisicPerson = FK_FisicPerson;
     }
 
     /**
@@ -186,21 +186,21 @@ public class ConcreteOrganization implements Organization{
     /**
      * @return the profesor
      */
-    public Professor getProfesor() {
-        return profesor;
+    public int getFK_Professor() {
+        return FK_Professor;
     }
 
     /**
      * @param profesor the profesor to set
      */
-    public void setProfesor(Professor profesor) {
-        this.profesor = profesor;
+    public void setProfesor(int FK_Professor) {
+        this.FK_Professor = FK_Professor;
     }
     
     public String toString(){
         return ("IDOrganization: \n"+idOrganization+"Company name: \n"+companyName
-                +"City: \n"+city+"Address: \n"+addres+"Phone: \n"+phone+"Mail:\n"+mail+"Account: \n"+account
-                +"Fisic Person:\n"+fisicPerson+"Training: \n"+training+"Professor: \n"+profesor);
+                +"City: \n"+city+"Address: \n"+addres+"Phone: \n"+phone+"Mail:\n"+mail+"Account: \n"+FK_Account
+                +"Fisic Person:\n"+FK_FisicPerson+"Training: \n"+training+"Professor: \n"+FK_Professor);
     }
     
     

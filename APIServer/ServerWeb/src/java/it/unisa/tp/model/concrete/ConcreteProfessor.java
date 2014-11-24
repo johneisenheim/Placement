@@ -22,12 +22,12 @@ public class ConcreteProfessor implements Professor{
     private String officePhoneNum;
     private String officeHours;
     private String officeEmail;
-    private Account FKAccount;
-    private FisicPerson FKFisicPerson;
-    private Department FKDepartment;
+    private int FKAccount;
+    private int FKFisicPerson;
+    private int FKDepartment;
     
     public ConcreteProfessor(int idProfessor, String position, String officePhoneNum, String officeHours,
-            String officeEmail, Account FKAccount, FisicPerson FKFisicPerson, Department FKDepartment){
+            String officeEmail, int FKAccount, int FKFisicPerson, int FKDepartment){
         this.idProfessor=idProfessor;
         this.position=position;
         this.officePhoneNum=officePhoneNum;
@@ -124,42 +124,42 @@ public class ConcreteProfessor implements Professor{
     /**
      * @return the FKAccount
      */
-    public Account getFKAccount() {
+    public int getFKAccount() {
         return FKAccount;
     }
 
     /**
      * @param FKAccount the FKAccount to set
      */
-    public void setFKAccount(Account FKAccount) {
+    public void setFKAccount(int FKAccount) {
         this.FKAccount = FKAccount;
     }
 
     /**
      * @return the FKFisicPerson
      */
-    public FisicPerson getFKFisicPerson() {
+    public int getFKFisicPerson() {
         return FKFisicPerson;
     }
 
     /**
      * @param FKFisicPerson the FKFisicPerson to set
      */
-    public void setFKFisicPerson(FisicPerson FKFisicPerson) {
+    public void setFKFisicPerson(int FKFisicPerson) {
         this.FKFisicPerson = FKFisicPerson;
     }
 
     /**
      * @return the FKDepartment
      */
-    public Department getFKDepartment() {
+    public int getFKDepartment() {
         return FKDepartment;
     }
 
     /**
      * @param FKDepartment the FKDepartment to set
      */
-    public void setFKDepartment(Department FKDepartment) {
+    public void setFKDepartment(int FKDepartment) {
         this.FKDepartment = FKDepartment;
     }
     

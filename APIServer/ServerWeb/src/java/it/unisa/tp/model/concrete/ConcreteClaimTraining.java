@@ -19,10 +19,21 @@ public class ConcreteClaimTraining implements ClaimTraining{
     
     private int idClaimTraining;
     private String description;
-    private ClaimStatus FKClaimStatus;
-    private Professor FKProfessor;
-    private Organization FKOrganization;
+    private int FKClaimStatus;
+    private int FKProfessor;
+    private int FKOrganization;
 
+    public ConcreteClaimTraining(){
+    }
+    
+    public ConcreteClaimTraining(int idClaimTraining, String description, int FKClaimStatus, int FKProfessor, int FKOrganization){
+    this.idClaimTraining = idClaimTraining;
+    this.description = description;
+    this.FKClaimStatus = FKClaimStatus;
+    this.FKProfessor=FKProfessor;
+    this.FKOrganization = FKOrganization;
+    }
+    
     @Override
     public int getPrimaryKey() {
         return this.idClaimTraining;
@@ -64,42 +75,42 @@ public class ConcreteClaimTraining implements ClaimTraining{
     /**
      * @return the FKClaimStatus
      */
-    public ClaimStatus getFKClaimStatus() {
+    public int getFKClaimStatus() {
         return FKClaimStatus;
     }
 
     /**
      * @param FKClaimStatus the FKClaimStatus to set
      */
-    public void setFKClaimStatus(ClaimStatus FKClaimStatus) {
+    public void setFKClaimStatus(int FKClaimStatus) {
         this.FKClaimStatus = FKClaimStatus;
     }
 
     /**
      * @return the FKProfessor
      */
-    public Professor getFKProfessor() {
+    public int getFKProfessor() {
         return FKProfessor;
     }
 
     /**
      * @param FKProfessor the FKProfessor to set
      */
-    public void setFKProfessor(Professor FKProfessor) {
+    public void setFKProfessor(int FKProfessor) {
         this.FKProfessor = FKProfessor;
     }
 
     /**
      * @return the FKOrganization
      */
-    public Organization getFKOrganization() {
+    public int getFKOrganization() {
         return FKOrganization;
     }
 
     /**
      * @param FKOrganization the FKOrganization to set
      */
-    public void setFKOrganization(Organization FKOrganization) {
+    public void setFKOrganization(int FKOrganization) {
         this.FKOrganization = FKOrganization;
     }
     

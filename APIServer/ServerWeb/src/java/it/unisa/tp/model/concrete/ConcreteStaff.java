@@ -20,12 +20,12 @@ public class ConcreteStaff implements Staff{
     private int idStaff;
     private String officePhoneNum;
     private String officeMail;
-    private Department FKDepartment;
-    private Account FKAccount;
-    private FisicPerson FKFisicPerson;
+    private int FKDepartment;
+    private int FKAccount;
+    private int FKFisicPerson;
     
     
-    public ConcreteStaff(int idStaff, String officePhoneNum, String officeMail, Department FKDepartment, Account FKAccount, FisicPerson FKFisicPerson){
+    public ConcreteStaff(int idStaff, String officePhoneNum, String officeMail, int FKDepartment, int FKAccount, int FKFisicPerson){
         this.idStaff=idStaff;
         this.officeMail=officeMail;
         this.officePhoneNum=officePhoneNum;
@@ -93,42 +93,42 @@ public class ConcreteStaff implements Staff{
     /**
      * @return the FKDepartment
      */
-    public Department getFKDepartment() {
+    public int getFKDepartment() {
         return FKDepartment;
     }
 
     /**
      * @param FKDepartment the FKDepartment to set
      */
-    public void setFKDepartment(Department FKDepartment) {
+    public void setFKDepartment(int FKDepartment) {
         this.FKDepartment = FKDepartment;
     }
 
     /**
      * @return the FKAccount
      */
-    public Account getFKAccount() {
+    public int getFKAccount() {
         return FKAccount;
     }
 
     /**
      * @param FKAccount the FKAccount to set
      */
-    public void setFKAccount(Account FKAccount) {
+    public void setFKAccount(int FKAccount) {
         this.FKAccount = FKAccount;
     }
 
     /**
      * @return the FKFisicPerson
      */
-    public FisicPerson getFKFisicPerson() {
+    public int getFKFisicPerson() {
         return FKFisicPerson;
     }
 
     /**
      * @param FKFisicPerson the FKFisicPerson to set
      */
-    public void setFKFisicPerson(FisicPerson FKFisicPerson) {
+    public void setFKFisicPerson(int FKFisicPerson) {
         this.FKFisicPerson = FKFisicPerson;
     }
     

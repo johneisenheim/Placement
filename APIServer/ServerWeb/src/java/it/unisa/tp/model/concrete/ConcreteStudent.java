@@ -24,14 +24,18 @@ public class ConcreteStudent implements Student{
     private String yearEnrollment;
     private String cycle;
     private String universityEmail;
-    private Account FKAccount;
-    private FisicPerson FKFisicAccount;
-    private Department FKDepartment;
-    private StudentStatus FKStudentStatus;
-    private ClaimStatus FKClaimStatus;
+    private int FKAccount;
+    private int FKFisicPerson;
+    private int FKDepartment;
+    private int FKStudentStatus;
+    private int FKClaimStatus;
+    private int FKClaimTraining;
+    private String FKSerialNumber;
+    private int FKidStudentInformation;
+    private String FKRejectedTrainingMessage;
     
     public ConcreteStudent(String SerialNumber, String coverLetter, String yearEnrollment, String cycle, String universityEmail,
-            Account FKAccount, FisicPerson FKFisicPerson, Department FKDepartment, StudentStatus FKStudentStatus, ClaimStatus FKClaimStatus){
+            int FKAccount, int FKFisicPerson, int FKDepartment, int FKStudentStatus, int FKClaimStatus, int FKClaimTraining, String FKSerialNumber, int FKidStudentInformation, String FKRejctedTrainingMessage){
         
         this.SerialNumber=SerialNumber;
         this.coverLetter=coverLetter;
@@ -39,10 +43,14 @@ public class ConcreteStudent implements Student{
         this.cycle=cycle;
         this.universityEmail=universityEmail;
         this.FKAccount=FKAccount;
-        this.FKFisicAccount=FKFisicPerson;
+        this.FKFisicPerson=FKFisicPerson;
         this.FKDepartment=FKDepartment;
         this.FKStudentStatus=FKStudentStatus;
         this.FKClaimStatus=FKClaimStatus;
+        this.FKClaimTraining=FKClaimTraining;
+        this.FKSerialNumber=FKSerialNumber;
+        this.FKidStudentInformation=FKidStudentInformation;
+        this.FKRejectedTrainingMessage=FKRejectedTrainingMessage;
     }
     
     public ConcreteStudent(){
@@ -132,76 +140,109 @@ public class ConcreteStudent implements Student{
     /**
      * @return the FKAccount
      */
-    public Account getFKAccount() {
+    public int getFKAccount() {
         return FKAccount;
     }
 
     /**
      * @param FKAccount the FKAccount to set
      */
-    public void setFKAccount(Account FKAccount) {
+    public void setFKAccount(int FKAccount) {
         this.FKAccount = FKAccount;
     }
 
     /**
      * @return the FKFisicAccount
      */
-    public FisicPerson getFKFisicAccount() {
-        return FKFisicAccount;
+    public int getFKFisicPerson() {
+        return FKFisicPerson;
     }
 
     /**
      * @param FKFisicAccount the FKFisicAccount to set
      */
-    public void setFKFisicAccount(FisicPerson FKFisicAccount) {
-        this.FKFisicAccount = FKFisicAccount;
+    public void setFKFisicPerson(int FKFisicPerson) {
+        this.FKFisicPerson = FKFisicPerson;
     }
 
     /**
      * @return the FKDepartment
      */
-    public Department getFKDepartment() {
+    public int getFKDepartment() {
         return FKDepartment;
     }
 
     /**
      * @param FKDepartment the FKDepartment to set
      */
-    public void setFKDepartment(Department FKDepartment) {
+    public void setFKDepartment(int FKDepartment) {
         this.FKDepartment = FKDepartment;
     }
 
     /**
      * @return the FKStudentStatus
      */
-    public StudentStatus getFKStudentStatus() {
+    public int getFKStudentStatus() {
         return FKStudentStatus;
     }
 
     /**
      * @param FKStudentStatus the FKStudentStatus to set
      */
-    public void setFKStudentStatus(StudentStatus FKStudentStatus) {
+    public void setFKStudentStatus(int FKStudentStatus) {
         this.FKStudentStatus = FKStudentStatus;
     }
 
     /**
      * @return the FKClaimStatus
      */
-    public ClaimStatus getFKClaimStatus() {
+    public int getFKClaimStatus() {
         return FKClaimStatus;
     }
 
     /**
      * @param FKClaimStatus the FKClaimStatus to set
      */
-    public void setFKClaimStatus(ClaimStatus FKClaimStatus) {
+    public void setFKClaimStatus(int FKClaimStatus) {
         this.FKClaimStatus = FKClaimStatus;
     }
     
+    public int getFKClaimTraining() {
+        return FKClaimStatus;
+    }
+
+    /**
+     * @param FKClaimTraining the FKClaimStatus to set
+     */
+    public void setFKClaimTraining(int FKClaimTraining) {
+        this.FKClaimTraining = FKClaimTraining;
+    }
+    
+    public String getFKSerialNumber(){
+        return FKSerialNumber;
+    }
+    public void setFKSerialNumber(String FKSerialNumber){
+        this.FKSerialNumber=FKSerialNumber;
+    }
+    
+    public int getFKidStudentInformation(){
+        return FKidStudentInformation;
+    }
+    
+    public void setFKidStudentInformation(int FKidStudentInformation){
+        this.FKidStudentInformation=FKidStudentInformation;
+    }
+    
+    public String getFKRejectedTrainingMessage(){
+        return FKRejectedTrainingMessage;
+    }
+    
+    public void setFKRejectedTrainingMessage(String FKRejectedTrainingMessage){
+        this.FKRejectedTrainingMessage=FKRejectedTrainingMessage;
+    }
     public String toString(){
         return ("SerialNumber: \n"+SerialNumber+"coverLetter: \n"+coverLetter+"YearEnrollment: \n"+yearEnrollment+
-                "cycle: \n"+cycle+"UniversityEmail: \n"+universityEmail+"FKAccount: \n"+FKAccount+"FKFisicPerson:\n"+FKFisicAccount
+                "cycle: \n"+cycle+"UniversityEmail: \n"+universityEmail+"FKAccount: \n"+FKAccount+"FKFisicPerson:\n"+FKFisicPerson
                 +"FKDepartment: \n"+FKDepartment+"FKStudentStatus:\n"+FKStudentStatus+"FKClaimStatus:\n"+FKClaimStatus);
     }
     
