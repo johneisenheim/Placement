@@ -46,3 +46,7 @@ APIServer/ServerWeb/nbproject/project.xml
 DB/TPSchema.mwb.bak
 
 DB/TPSchema.mwb
+
+APIServer/ServerWeb/nbproject/ant-deploy.xml
+
+APIServer/ServerWeb/nbproject/project.properties
