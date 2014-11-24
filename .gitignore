@@ -31,6 +31,7 @@ APIServer/ServerWeb/web/assets/js/.DS_Store
 
 <<<<<<< Updated upstream
 APIServer/ServerWeb/web/assets/css/.DS_Store
+<<<<<<< HEAD
 =======
 APIServer/ServerWeb/nbproject/build-impl.xml
 
@@ -48,5 +49,9 @@ DB/TPSchema.mwb.bak
 DB/TPSchema.mwb
 
 APIServer/ServerWeb/nbproject/ant-deploy.xml
+=======
+
+*.properties
+>>>>>>> FETCH_HEAD
 
 APIServer/ServerWeb/nbproject/project.properties

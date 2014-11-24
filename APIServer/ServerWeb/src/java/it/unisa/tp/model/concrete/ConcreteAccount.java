@@ -15,9 +15,9 @@ public class ConcreteAccount implements Account{
     private String userName;
     private String password;
     private String typeOfAccount;
-    private Permissions FKPermission;
+    private int FKPermission;
     
-    public ConcreteAccount(int idAccount, String unserName, String password, String typeOfAccount, Permissions FKPermission) {
+    public ConcreteAccount(int idAccount, String unserName, String password, String typeOfAccount, int FKPermission) {
         this.idAccount = idAccount;
         this.userName = unserName;
         this.password = password;
@@ -71,16 +71,16 @@ public class ConcreteAccount implements Account{
         this.typeOfAccount = typeOfAccount;
     }
 
-    public Permissions getFKPermission() {
+    public int getFKPermission() {
         return FKPermission;
     }
 
-    public void setFKPermission(Permissions FKPermission) {
+    public void setFKPermission(int FKPermission) {
         this.FKPermission = FKPermission;
     }
     
     public String toString(){
-        return ("IDAccount: \n"+idAccount+"UserName: \n"+unserName+"Password: \n"+password+
+        return ("IDAccount: \n"+idAccount+"UserName: \n"+userName+"Password: \n"+password+
                 "TypeOfAccount: \n"+typeOfAccount+"Permissions: \n"+FKPermission);
     }
     

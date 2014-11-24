@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/bootstrap-mod.css">
 	<link rel="stylesheet" href="assets/css/xenon-core.css">
 	<link rel="stylesheet" href="assets/css/xenon-forms.css">
 	<link rel="stylesheet" href="assets/css/xenon-components.css">
@@ -22,7 +22,36 @@
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
+	
+		var myArrayForNewsTrainingOrganization =[];
+		
 		jQuery(document).ready(function($){
+			$("#tableNewsTrainingOrganization tbody").empty();
+			$("#tableNewsTrainingOrganization thead").empty();
+			
+			if(localStorage.getItem("gestioneTirocinio")==0){
+				alert("ciao");
+				var stringToAppend_tmp = "<thead><tr><th>Nome Azienda</th><th>Professore Associato</th><th>Descrizione</th></tr></thead><tbody align='center'>";
+				$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
+				for(var i = 0; i < 10; i++){
+					myArrayForNewsTrainingOrganization[i] = i;
+					stringToAppend_tmp = "";
+					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td></tr>";
+					$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
+				}
+				$("#tableNewsTrainingOrganization").append("</tbody>");
+			}else{
+				var stringToAppend_tmp = "<thead><tr><th>Nome Azienda</th><th>Professore Associato</th><th>Descrizione</th><th>Contatti</th></tr></thead><tbody align='center'>";
+				$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
+				for(var i = 0; i < 10; i++){
+					myArrayForNewsTrainingOrganization[i] = i;
+					stringToAppend_tmp = "";
+					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td></tr>";
+					$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
+				}
+				$("#tableNewsTrainingOrganization").append("</tbody>");
+			}
+		
 			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
 				if(localStorage.getItem("rememberMeForLogin")=="no"){
@@ -193,7 +222,7 @@
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 					<li class="opened active">
-						<a href="#">
+						<a href="gestioneTirocinio&PlacementStudente.html">
 							<i class="linecons-cog"></i>
 							<span class="title">Home</span>
 						</a>
@@ -238,7 +267,6 @@
 		</div>
 		
 		<div class="main-content">
-            
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel panel-default"><!-- Add class "collapsed" to minimize the panel -->
@@ -295,6 +323,36 @@
 					});
 				});
 			</script>
+			
+			<div class="row">
+				<div class="col-md-12">
+				
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">News Tirocini</h3>
+						</div>
+						
+						<div class="panel-body">
+							<script>
+								$(document).ready(function() {
+								$("#tableNotifications").dataTable({
+									aLengthMenu: [
+										[5, 10, 20, -1], [5, 10, 20, "Tutti"]
+									]/*,
+									"columnDefs": [
+									  { "bSortable": false, "aTargets": [ 5 ] }
+									]*/ } );
+								});
+							</script>
+							<table id="tableNewsTrainingOrganization" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+							
+							</table>
+						</div>
+					</div>
+					
+				</div>
+			</div>		
+			
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
 			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
@@ -333,7 +391,8 @@
 	</div>
 	
 
-
+	<link rel="stylesheet" href="assets/js/datatables/dataTables.bootstrap.css">
+	<link rel="stylesheet" href="assets/css/fonts/meteocons/css/meteocons.css">
 
 	<!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
@@ -342,7 +401,17 @@
 	<script src="assets/js/joinable.js"></script>
 	<script src="assets/js/xenon-api.js"></script>
 	<script src="assets/js/xenon-toggles.js"></script>
+	<script src="assets/js/datatables/js/jquery.dataTables.js"></script>
 
+	<!-- Imported scripts on this page -->
+	<script src="assets/js/datatables/dataTables.bootstrap.js"></script>
+	<script src="assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
+	<script src="assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
+	
+	<!-- Imported scripts on this page -->
+	<script src="assets/js/xenon-widgets.js"></script>
+	<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="assets/js/jvectormap/regions/jquery-jvectormap-world-mill-en.js"></script>
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
