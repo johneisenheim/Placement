@@ -69,3 +69,18 @@ END if;
  
 
 END
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: Here we read the data of the table StudentAttendence
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudentAttendence`()
+BEGIN
+
+SELECT * from StudentAttendence;
+
+
+END
