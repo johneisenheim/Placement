@@ -6,12 +6,9 @@
 
 package it.unisa.tp.model.concrete;
 
-import it.unisa.tp.model.interfaces.Account;
-import it.unisa.tp.model.interfaces.ClaimStatus;
-import it.unisa.tp.model.interfaces.Department;
-import it.unisa.tp.model.interfaces.FisicPerson;
+
 import it.unisa.tp.model.interfaces.Student;
-import it.unisa.tp.model.interfaces.StudentStatus;
+
 
 /**
  *
@@ -35,7 +32,7 @@ public class ConcreteStudent implements Student{
     private String FKRejectedTrainingMessage;
     
     public ConcreteStudent(String SerialNumber, String coverLetter, String yearEnrollment, String cycle, String universityEmail,
-            int FKAccount, int FKFisicPerson, int FKDepartment, int FKStudentStatus, int FKClaimStatus, int FKClaimTraining, String FKSerialNumber, int FKidStudentInformation, String FKRejctedTrainingMessage){
+            int FKAccount, int FKFisicPerson, int FKDepartment, int FKStudentStatus, int FKClaimStatus, int FKClaimTraining, String FKSerialNumber, int FKidStudentInformation, String FKRejectedTrainingMessage){
         
         this.SerialNumber=SerialNumber;
         this.coverLetter=coverLetter;

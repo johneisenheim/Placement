@@ -11,7 +11,13 @@ package it.unisa.tp.model.interfaces;
  */
 public interface StudentAttendence {
     
-    String getPrimaryKey();
-    void setPrimaryKey(String primaryKey);
-    String toString();
+    public int getPrimaryKey();
+    public void setPrimaryKey(int primaryKey);
+
+    /**
+     *
+     * @return a string of the object
+     */
+    @Override
+    public String toString();
 }

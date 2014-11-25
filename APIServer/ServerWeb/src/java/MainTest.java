@@ -1,7 +1,7 @@
 
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.control.DBConnection;
-import it.unisa.tp.control.GetStudentInformation;
+import it.unisa.tp.control.StudentInformation;
 import it.unisa.tp.control.UploadInformationFiles;
 import it.unisa.tp.model.concrete.ConcreteAccount;
 import it.unisa.tp.model.concrete.ConcretePermissions;
@@ -24,11 +24,9 @@ public class MainTest {
     
      public static void main(String[] args) {
          try {
-          GetStudentInformation ainformation = new GetStudentInformation();
+          StudentInformation ainformation = new StudentInformation();
           ConcreteStudent loggedStudent;
           
-          loggedStudent = ainformation.getInformation(1);
-          System.out.printf(loggedStudent.toString());
          } catch (ClassNotFoundException ex) {
              Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
          } catch (SQLException ex) {

@@ -14,25 +14,47 @@ import java.sql.Date;
  */
 public class ConcreteStudentAttendence implements StudentAttendence{
     
-    private String SerialNum;
+    private int SerialNum;
     private Date Date;
+    private String FK_Student;
     
     public ConcreteStudentAttendence(){
     }
     
-    public ConcreteStudentAttendence(String SerialNum, Date Date){
+    public ConcreteStudentAttendence(int SerialNum, Date Date){
     this.SerialNum = SerialNum;
     this.Date = Date;
     }
 
     
-    public String getPrimaryKey() {
+    @Override
+    public int getPrimaryKey() {
         return SerialNum;
                 }
 
-   
-    public void setPrimaryKey(String primaryKey) {
+    /**
+     *
+     * @param primaryKey
+     */
+    @Override
+    public void setPrimaryKey(int primaryKey) {
     this.SerialNum = primaryKey;
+    }
+
+    public Date getDate() {
+        return Date;
+    }
+
+    public void setDate(Date Date) {
+        this.Date = Date;
+    }
+
+    public String getFKStudent() {
+        return FK_Student;
+    }
+
+    public void setFKStudent(String FK_Student) {
+        this.FK_Student = FK_Student;
     }
     
     

@@ -7,6 +7,8 @@ package it.unisa.tp.control;
  */
 import it.unisa.tp.model.concrete.ConcreteStudent;
 import it.unisa.tp.model.concrete.ConcreteStudentAttendence;
+import it.unisa.tp.model.concrete.StudentTrainingInformation;
+import it.unisa.tp.model.interfaces.FisicPerson;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -14,36 +16,42 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+
 /**
  *
  * @author carlosborges
  */
 public class StudentAttendanceInformation {
-    
+
     private final Connection aConnection;
-    
-    public StudentAttendanceInformation() throws ClassNotFoundException, SQLException, IOException{
+
+    public StudentAttendanceInformation() throws ClassNotFoundException, SQLException, IOException {
         aConnection = DBConnection.connect();
     }
-    
-    public Map<ArrayList<ContreteStudentAttendence, ConcreteStudent>> StudentInformation () throws SQLException{
-        
-        List<HashMap<ConcreteStudentAttendence, ConcreteStudent>> data = new ArrayList<HashMap<ConcreteStudentAttendence, ConcreteStudent>>();
-        CallableStatement pcUpload = aConnection.prepareCall("{call getStudentAttendence()}");
-        ResultSet rs = pcUpload.executeQuery();
-        ArrayList<ConcreteStudentAttendence> StudentAttendenceList = new ArrayList<ConcreteStudentAttendence>();
-        while(rs.next()){
-            ConcreteStudentAttendence aStudentAttendence = new ConcreteStudentAttendence();
-            aStudentAttendence.setPrimaryKey(rs.getInt(1));
-            aStudentAttendence.setDate(rs.getDate(2));
-            aStudentAttendence.setFKStudent(rs.getString(3));
-            StudentAttendenceList.add(aStudentAttendence);
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList getStudentInformation() throws SQLException, ClassNotFoundException, IOException
+    {
+        CallableStatement pcSelect = aConnection.prepareCall("{call getStudentAttendence()}");
+        ArrayList<HashMap<ConcreteStudent, ContreteStudentAttendence>> data = new ArrayList<HashMap<ConcreteStudent, ContreteStudentAttendence>>();
+        ArrayList<StudentTrainingInformation> studentsTrainingList = new ArrayList<StudentTrainingInformation>();//a list of information of student who are in waiting list
+        StudentInformation studentInformation = new StudentInformation();
+        ResultSet rs = pcSelect.executeQuery(); 
+        while (rs.next()) {//import into the arrayList all the records present into the StudentAttendence
+            StudentTrainingInformation aStudentAttendence = new StudentTrainingInformation();
+            aStudentAttendence.setAStudent(studentInformation.getInformationbyPrimaryKey(rs.getString(3)));
+            
+            studentsTrainingList.add(aStudentAttendence);
+            
         }
-        pcUpload.close();
-         GetStudentInformation getStudent = GetStudentInformation();
-         
+        pcSelect.close();
         
+        
+        return data;
     }
 }
