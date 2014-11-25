@@ -22,7 +22,25 @@
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
+		var myArrayForListTraining = [];
+			
+		function modifyTrainingToDatabase(idModify){
+			$("#descriptionTrainingForModify").attr("placeholder",$('#paragraphDescriptionListTraining_'+idModify).text());
+			$("#descriptionTrainingForModify").val($('#paragraphDescriptionListTraining_'+idModify).text());
+			jQuery('#modalGestioneTirocinioANDPlacementProfessore').modal('show', {backdrop: 'static'});
+		}
+		function removeTrainingToDatabase(idRemove){
+			if(confirm("Sei sicuro di voler eliminare questo tirocinio?")){
+				alert("removeListTraining_"+idRemove+" - ahahaha eliminato! Afammocc");
+			}
+		}
+		
 		jQuery(document).ready(function($){
+			
+			$("#modifyDataForTrainingIntoDatabase").click(function(){
+				alert($("#descriptionTrainingForModify").val());
+			});
+			
 			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
 				if(localStorage.getItem("rememberMeForLogin")=="no"){
@@ -65,8 +83,21 @@
 				localStorage.removeItem("superAmministratore");
 				
 			});
+			
+			$("#listTrainingProfessore").empty();
+			for(var i = 0; i < 10; i++){
+				myArrayForListTraining[i] = i;
+				var stringToAppend_tmp = '<a href="#" class="list-group-item" onclick="return false;" style="cursor:default;">';
+					stringToAppend_tmp = stringToAppend_tmp + '<p id="paragraphDescriptionListTraining_'+i+'" class="list-group-item-text">'+i+' - aaaa - '+i+'</p><div class="vertical-top" align="right">';
+					stringToAppend_tmp = stringToAppend_tmp + '<button id="modifyListTraining_'+i+'" class="btn btn-orange btn-sm" onclick=modifyTrainingToDatabase('+i+')><i class="fa fa-pencil"></i><span> Modifica</span></button>';
+					stringToAppend_tmp = stringToAppend_tmp + '<button id="removeListTraining_'+i+'" class="btn btn-red btn-sm" onclick=removeTrainingToDatabase('+i+')><i class="fa fa-trash"></i><span> Elimina</span></button>';
+					stringToAppend_tmp = stringToAppend_tmp + '</div></a>';
+					
+				$("#listTrainingProfessore").append(stringToAppend_tmp);
+			}			
 		});
 	</script>
+
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -84,7 +115,7 @@
 		
 			<!-- Navbar Brand -->
 			<div class="navbar-brand">
-				<a href="offertaFormativaStudente.html" class="logo">
+				<a href="offertaFormativaProfessore.html" class="logo">
 					<img src="assets/images/mitforsite.png" width="80" alt="" class="hidden-xs" />
 					<img src="assets/images/mitforsitemini.png" width="80" alt="" class="visible-xs" />
 				</a>
@@ -193,46 +224,11 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li class="opened active">
-						<a href="#">
+					<li id="offertaTirocini" class="opened active">
+						<a href="gestioneTirocinio&PlacementProfessore.html">
 							<i class="linecons-cog"></i>
 							<span class="title">Offerta Tirocinio</span>
 						</a>
-					</li>
-					<li id="funzionalita1Permission_0">
-						<a href="#">
-							<i class="linecons-cog"></i>
-							<span class="title">Funzionalit&agrave; 01</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="linecons-note"></i>
-							<span class="title">Funzionalit&agrave; 02</span>
-						</a>
-					</li>
-					<li id="funzionalita3Permission_0">
-						<a href="#">
-							<i class="linecons-mail"></i>
-							<span class="title">Funzionalit&agrave; 03</span>
-						</a>
-						<ul>
-							<li>
-								<a href="#">
-									<span class="title">INSERT</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span class="title">DELETE</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span class="title">VIEW</span>
-								</a>
-							</li>
-						</ul>
 					</li>
 				</ul>
 			</div>
@@ -241,26 +237,6 @@
 		<div class="main-content">
 					
 			<script>
-                function emptyControl(id){
-                    if($("#"+id).val() == "")
-                        return false;
-                    return true;
-                }
-
-                function checkNotEmptyFields(){
-                    var tmp1 = emptyControl("title");
-                    var tmp2 = emptyControl("description");
-                    if(!tmp1) {
-                        $("#validate_title").html("Campo Titolo vuoto");
-                        $("#title").attr("style","border-color:#cc3f44;");
-                    }
-                    if(!tmp2) {
-                        $("#validate_description").html("Campo Descrizione vuoto");
-                        $("#description").attr("style","border-color:#cc3f44;");
-                    }
-
-                    return tmp1&tmp2;
-                }
 				jQuery(document).ready(function($)
 				{
 					$('a[href="#layout-variants"]').on('click', function(ev)
@@ -275,126 +251,65 @@
 							}
 						});
 					});
-                    
-                    $("#title").keyup(function(){
-                        $("#title").attr("style","border-color:#e4e4e4;");
-                        $("#validate_title").html("");
-                    });
-
-                    $("#description").keyup(function(){
-                        $("#description").attr("style","border-color:#e4e4e4;");
-                        $("#validate_description").html("");
-                    });
-                    
-                    $("#addTrainingProf").click(function(e){
-                        e.preventDefault();
-                        $("#messageControl").removeAttr("class");
-                        $("#messageControl").empty();
-                        if(checkNotEmptyFields()){
-                            $("#messageControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
-                            $.get("http://localhost:8080/ServerWeb/AuthenticateUserServlet",{username:$("#username").val(),password:$("#password").val()}).done(function(e){
-                                var parsed = jQuery.parseJSON(e);
-                                if(parsed.status==0){
-                                    $("#messageControl").attr("class","alert alert-danger");
-                                    $("#messageControl").html("<strong>Spiacente, </strong> c\'è stato un errore nell\'invio della richiesta.");
-                                }else{
-                                    $("#messageControl").empty();
-                                }
-                            }).fail(function(e){
-                                $("#messageControl").attr("class","alert alert-warning");
-                                $("#messageControl").html("<strong>Spiacenti, </strong> c\'è stato un problema nell\'elaborazione della richiesta. Riprova a breve.");
-                            });
-                        }
-                    });
 				});
 			</script>
 			
 			<div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
+				<div class="col-sm-12">
+					
+					<div class="panel panel-default">
 						<div class="panel-heading">
-							Aggiungi Offerta di Tirocinio
+							<h3 class="panel-title">Aggiungi Offerta di Tirocinio</h3>
 						</div>
-						
 						<div class="panel-body">
-							
-							<p align="justify">Questa sezione è adibita all'inserimento di un'offerta di Tirocinio. Completa i campi sottostanti per rendere l'offerta visualizzabile agli studenti; al termine di questa operazione, potrai visualizzare tutti i tirocini inseriti nella tabella di riepilogo nel pannello sottostante. Puoi ovviamente inserire più tirocini per i tuoi studenti utilizzando sempre questo modulo.</p>
-                            <br><br>
-                            <form role="form" class="form-horizontal">
+							<p align="justify">
+								Questa sezione è adibita all'inserimento di un'offerta di tirocinio. Completa i campi sottostanti per rendere l'offerta visualizzabile agli studenti; al termine di questa operazione, potrai visualizzare tutti i tirocini inseriti nella tabella di riepilogo nel pannello sottostante. Puoi ovviamente inserire più tirocini per gli studenti interessati utilizzando sempre questo modulo.
+							</p>
+							<br>
+								
+							<form role="form" class="form-horizontal">
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="field-1">Titolo del Tirocinio</label>
-									
+									<label class="col-sm-2 control-label" for="field-2">Descrizione del Tirocinio</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="title" placeholder="Titolo...">
-                                        <span id="validate_title" style="color:#cc3f44"></span>
+										<textarea id="descriptionTrainingProfessore" class="form-control" rows="5" cols="5" placeholder="Descrizione..." maxlength="250"></textarea>
+										<span id="validate_descriptionTrainingProfessore" style="color:#cc3f44"></span>
 									</div>
 								</div>
 								
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="field-5">Descrizione del Tirocinio</label>
-									
-									<div class="col-sm-10">
-										<textarea class="form-control" cols="5" rows="5" id="description" placeholder="Descrizione..." maxlength="250"></textarea>
-                                        <span id="validate_description" style="color:#cc3f44"></span>
-									</div>
+								<div class="col-sm-12">
+									<div id="messageTrainingControl" align="center"></div>
 								</div>
-                                <div class="col-sm-12">
-                                    <div id="messageControl" align="center">
-                                    </div>
-							    </div>
-                                <div class="form-group">
-                                    <center>
-                                        <button class="btn btn-success btn-icon" id="addTrainingProf">
-									       <i class="fa-plus"></i>
-									       <span> Aggiungi Tirocinio</span>
-								        </button>
-                                    </center>
-                                </div>
+								
+								<div class="form-group">
+									<center>
+										<button type="button" class="btn btn-secondary btn-single" id="addTrainingProfessore">
+											<i class="fa-plus"></i>
+											<span>Aggiungi Tirocinio</span>
+										</button>
+									</center>
+								</div>
 							</form>
 						</div>
 					</div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
 						<div class="panel-heading">
-							Riepilogo Offerte Tirocinio
+							Lista dei tirocini aggiunti
 						</div>
-						
 						<div class="panel-body">
-                            <div class="list-group">
-										<a href="#" class="list-group-item" onclick="return false;" style="cursor:default;">
-											<h4 class="list-group-item-heading">Domestic confined any but son</h4>
-											<p class="list-group-item-text">Consider speaking me prospect whatever if. Ten nearer rather hunted six parish indeed number. Allowance repulsive sex may contained can set suspected abilities cordially. Do part am he high rest that. So fruit to ready it being views match. </p>
-                                            <p align="right">
-                                                    <button class="btn btn-orange btn-icon btn-sm" id="addTrainingProf">
-                                                       <i class="fa-pencil"></i>
-                                                       <span> Modifica</span>
-                                                    </button>
-                                                    &nbsp;
-                                                    <button class="btn btn-red btn-icon btn-sm" id="addTrainingProf">
-                                                       <i class="fa-trash"></i>
-                                                       <span> Elimina</span>
-                                                    </button>
-                                            </p>
-										</a>
-										
-										<a href="#" class="list-group-item">
-											<h4 class="list-group-item-heading">Why painful the sixteen how minuter</h4>
-											<p class="list-group-item-text">Started his hearted any civilly. So me by marianne admitted speaking. Men bred fine call ask. Cease one miles truth day above seven. Suspicion sportsmen provision suffering mrs saw engrossed something. Snug soon he on plan in be dine some. </p>
-										</a>
-										
-										<a href="#" class="list-group-item">
-											<h4 class="list-group-item-heading">Barton waited twenty always repair</h4>
-											<p class="list-group-item-text">Talking chamber as shewing an it minutes. Trees fully of blind do. Exquisite favourite at do extensive listening. Improve up musical welcome he. Gay attended vicinity prepared now diverted. Esteems it ye sending reached as. Longer lively her design settle tastes advice mrs off who. </p>
-										</a>
-									</div>
+							<div class="col-sm-12">
+								<div id="listTrainingProfessore" class="list-group">
+								</div>
+							</div>
 						</div>
 					</div>
-                </div>
-            </div>
+				</div>
+			</div>
+			
 			<!-- Main Footer -->
 			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
 			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
@@ -426,15 +341,38 @@
 		</div>
 		
 	</div>
-	
+	<div class="modal fade" id="modalGestioneTirocinioANDPlacementProfessore">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<center><h4 class="modal-title">Modifica il Tirocinio.</h4></center>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="descriptionTrainingForModify" class="col-sm-3 control-label">Descrizione del Tirocinio</label>
+								<div class="col-sm-9">
+									<textarea id="descriptionTrainingForModify" class="form-control" placeholder="" rows="5" cols="5" maxlength="250"></textarea>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<center>
+						<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+						<button type="button" id="modifyDataForTrainingIntoDatabase" class="btn btn-orange">Modifica</button>
+					</center>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<div class="page-loading-overlay">
 		<div class="loader-2"></div>
 	</div>
 	
-
-
-
 	<!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/TweenMax.min.js"></script>
@@ -446,6 +384,42 @@
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
-
+	<script>		
+		function emptyControl(id){
+			if($("#"+id).val() == "")
+				return false;
+			return true;
+		}
+		
+		function checkNotEmptyFields(){
+			var tmp2 = emptyControl("descriptionTrainingProfessore");
+			if(!tmp2) {
+				$("#validate_descriptionTrainingProfessore").html("Campo descrizione vuoto");
+				$("#descriptionTrainingProfessore").attr("style","border-color:#cc3f44;");
+			}
+			
+			return tmp2;
+		}
+		
+		jQuery(document).ready(function($){
+		
+			$("#descriptionTrainingProfessore").keyup(function(){
+				$("#descriptionTrainingProfessore").attr("style","border-color:#e4e4e4;");
+				$("#validate_descriptionTrainingProfessore").html("");
+			});
+			
+			$("#addTrainingProfessore").click(function(){
+				$("#messageTrainingControl").removeAttr("class");
+				$("#messageTrainingControl").empty();
+				$("#addTrainingProfessore").text("Attendi...");
+				if(checkNotEmptyFields()){
+					$("#messageTrainingControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
+					alert($("#descriptionTrainingProfessore").val());
+				}
+				$("#addTrainingProfessore").text("Aggiungi Tirocinio");
+			});
+		});
+	</script>
+	
 </body>
 </html>

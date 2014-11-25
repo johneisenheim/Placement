@@ -37,7 +37,7 @@
 		
 		jQuery(document).ready(function($){
 			
-			$("#mandalo").click(function(){
+			$("#modifyDataForTrainingIntoDatabase").click(function(){
 				alert($("#descriptionTrainingForModify").val());
 			});
 			
@@ -114,7 +114,7 @@
 		
 			<!-- Navbar Brand -->
 			<div class="navbar-brand">
-				<a href="offertaFormativaStudente.html" class="logo">
+				<a href="offertaFormativaOrganizzazione.html" class="logo">
 					<img src="assets/images/mitforsite.png" width="80" alt="" class="hidden-xs" />
 					<img src="assets/images/mitforsitemini.png" width="80" alt="" class="visible-xs" />
 				</a>
@@ -270,7 +270,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="field-2">Descrizione del Tirocinio</label>
 									<div class="col-sm-10">
-										<textarea id="descriptionTrainingOrganizzazione" class="form-control" rows="5" cols="5" placeholder="Descrizione..." maxlength="250"></textarea>
+										<textarea id="descriptionTrainingOrganizzazione" style="resize:none" class="form-control" rows="5" cols="5" placeholder="Descrizione..." maxlength="250"></textarea>
 										<span id="validate_descriptionTrainingOrganizzazione" style="color:#cc3f44"></span>
 									</div>
 								</div>
@@ -362,7 +362,7 @@
 				<div class="modal-footer">
 					<center>
 						<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-						<button type="button" id="mandalo" class="btn btn-info">Save changes</button>
+						<button type="button" id="modifyDataForTrainingIntoDatabase" class="btn btn-orange">Modifica</button>
 					</center>
 				</div>
 			</div>
@@ -414,7 +414,7 @@
 				$("#addTrainingOrganizzazione").text("Attendi...");
 				if(checkNotEmptyFields()){
 					$("#messageTrainingControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
-					alert($("#titleTrainingOrganizzazione").val()+" - "+$("#descriptionTrainingOrganizzazione").val());
+					alert($("#descriptionTrainingOrganizzazione").val());
 				}
 				$("#addTrainingOrganizzazione").text("Aggiungi Tirocinio");
 			});
