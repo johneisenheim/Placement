@@ -7,6 +7,7 @@ package it.unisa.tp.model.concrete;
 
 import it.unisa.tp.model.interfaces.StudentAttendence;
 import java.sql.Date;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -15,13 +16,13 @@ import java.sql.Date;
 public class ConcreteStudentAttendence implements StudentAttendence{
     
     private int SerialNum;
-    private Date Date;
+    private GregorianCalendar Date;
     private String FK_Student;
     
     public ConcreteStudentAttendence(){
     }
     
-    public ConcreteStudentAttendence(int SerialNum, Date Date){
+    public ConcreteStudentAttendence(int SerialNum, GregorianCalendar Date){
     this.SerialNum = SerialNum;
     this.Date = Date;
     }
@@ -41,11 +42,11 @@ public class ConcreteStudentAttendence implements StudentAttendence{
     this.SerialNum = primaryKey;
     }
 
-    public Date getDate() {
+    public GregorianCalendar getDate() {
         return Date;
     }
 
-    public void setDate(Date Date) {
+    public void setDate(GregorianCalendar Date) {
         this.Date = Date;
     }
 

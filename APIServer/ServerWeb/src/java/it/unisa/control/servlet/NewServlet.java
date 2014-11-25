@@ -5,31 +5,20 @@
  */
 package it.unisa.control.servlet;
 
-import it.unisa.tp.control.StudentAttendanceDetails;
-import it.unisa.tp.model.concrete.StudentTrainingInformation;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  *
  * @author carlosborges
  */
-@WebServlet(name = "StudenteAttDetailsServlet", urlPatterns = {"/StudenteAttDetailsServlet"})
-public class StudenteAttDetailsServlet extends HttpServlet {
-
-    private final JSONObject message = new JSONObject();
+@WebServlet(name = "NewServlet", urlPatterns = {"/NewServlet"})
+public class NewServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,39 +31,19 @@ public class StudenteAttDetailsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject studentInfo = new JSONObject();
-        JSONObject studentList = new JSONObject();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");
+            out.println("<title>Servlet NewServlet</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            StudentAttendanceDetails details = new StudentAttendanceDetails();
-            ArrayList<StudentTrainingInformation> dataToReturn = details.getStudentDetails();
-            for (StudentTrainingInformation aStundetInfo : dataToReturn) {
-                studentInfo.put("serialNumber", aStundetInfo.getStudent().getPrimaryKey());
-                studentInfo.put("name", aStundetInfo.getFisicPerson().getName());
-                studentInfo.put("surname", aStundetInfo.getFisicPerson().getLastName());
-                studentInfo.put("cvPath", aStundetInfo.getStudentInformation().getCurriculumVitaePATH());
-                studentInfo.put("atPath", aStundetInfo.getStudentInformation().getAccademicTranscriptPATH());
-                studentInfo.put("email", aStundetInfo.getStudent().getUniversityEmail());
-                studentList.put("Student", studentInfo);
-            }
-            message.put("StudentList", studentList);
-            response.getWriter().write(message.toString());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(StudenteAttDetailsServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(StudenteAttDetailsServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-            Logger.getLogger(StudenteAttDetailsServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

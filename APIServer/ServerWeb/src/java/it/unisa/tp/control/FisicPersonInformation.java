@@ -32,7 +32,7 @@ public class FisicPersonInformation {
         
         ConcreteFisicPerson afisicPerson = new ConcreteFisicPerson();
         Statement aStatement = aConnection.createStatement();
-        String query = "select * from FisicPerson where idFisicPerson='" + idFisicPerson;
+        String query = "select * from FisicPerson where idFisicPerson='" + idFisicPerson+"'";
         ResultSet rs = aStatement.executeQuery(query);
         while (rs.next()) {
             
@@ -52,10 +52,6 @@ public class FisicPersonInformation {
         
             return afisicPerson;
         }
-        
-    
-    
-
 }                   
 
 
