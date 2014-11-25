@@ -132,133 +132,161 @@
     
     <div class="page-container">
         <div class="main-content">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8">
-				<div class="panel">
-				
-					<div class="panel-heading">
-						<h3 class="panel-title">Registrati a MITPlatform</h3>
-					</div>
-					
-					<div class="panel-body">
-						<form role="form" class="form-horizontal">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Nome: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="nameUser">
+			<script>
+				jQuery(document).ready(function($){
+					$('a[href="#layout-variants"]').on('click', function(ev)
+					{
+						ev.preventDefault();
+						
+						var win = {top: $(window).scrollTop(), toTop: $("#layout-variants").offset().top - 15};
+						
+						TweenLite.to(win, .3, {top: win.toTop, roundProps: ["top"], ease: Sine.easeInOut, onUpdate: function()
+							{
+								$(window).scrollTop(win.top);
+							}
+						});
+					});
+				});
+			</script>
+		
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">Registrati a MITPlatform</h3>
+						</div>
+						
+						<div class="panel-body">
+							<form role="form" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Nome: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="nameUser">
+										<span id="validate_nameUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_nameUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Cognome: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="surnameUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Cognome: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="surnameUser">
+										<span id="validate_surnameUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_surnameUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Telefono: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="phoneUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Telefono: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="phoneUser">
+										<span id="validate_phoneUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_phoneUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Citt&agrave;: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="cityUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Citt&agrave;: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="cityUser">
+										<span id="validate_cityUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_cityUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Indirizzo: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="addressUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Indirizzo: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="addressUser">
+										<span id="validate_addressUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_addressUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">C.A.P.: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="capUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">C.A.P.: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="capUser">
+										<span id="validate_capUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_capUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Sesso: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="sexUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Sesso: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="sexUser">
+										<span id="validate_sexUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_sexUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Cittadinanza: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="cityzenshipUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Cittadinanza: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="cityzenshipUser">
+										<span id="validate_cityzenshipUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_cityzenshipUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Codice Fiscale: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="cfUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Codice Fiscale: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="cfUser">
+										<span id="validate_cfUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_cfUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">E-mail: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="emailPersonalUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">E-mail: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="emailPersonalUser">
+										<span id="validate_emailPersonalUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_emailUser" style="color:#cc3f44"></span>
-							</div>
-							<br>
 								<div class="form-group-separator"></div>
-							<br>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">E-mail Universitaria: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="emailUniversityUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">E-mail Universitaria: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="emailUniversityUser">
+										<span id="validate_emailUniversityUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_emailUniversityUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Password: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="passwordUniversityUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Password: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="passwordUniversityUser">
+										<span id="validate_passwordUniversityUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_passwordUniversityUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Ripeti Password: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="repeatPasswordUniversityUser">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Ripeti Password: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="repeatPasswordUniversityUser">
+										<span id="validate_repeatPasswordUniversityUser" style="color:#cc3f44"></span>
+									</div>
 								</div>
-								<span id="validate_repeatPasswordUniversityUser" style="color:#cc3f44"></span>
-							</div>
-							<div class="form-group" align="center">
-								<button class="btn btn-blue" id="sendCodeForCompleteRecording">Inviami Codice</button>
-							</div>
-							<br>
+								<div align="center">
+									<button type="button" id="sendCodeForCompleteRecording" class="btn btn-blue">Inviami Codice</button>
+								</div>
 								<div class="form-group-separator"></div>
-							<br>
-							<div> <h3> Conferma E-mail </h3> </div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Inserisci Il codice di attivazione: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="codeActivationUser" disabled>
+								<div> <h3> Conferma E-mail </h3> </div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Inserisci Il codice di attivazione: </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="codeActivationUser" disabled>
+									</div>
 								</div>
-							</div>
-							
-							<div class="form-group" align="center">
-								<button class="btn btn-red" disabled>Registrazione</button>
-							</div>
-							
-						</form>
+								<div align="center">
+									<button type="button" class="btn btn-red" id="registerCompleteForUpdateIntoDatabase" disabled>Registrazione</button>
+								</div>
+								
+							</form>
+						</div>
 					</div>
 				</div>
+				<div class="col-sm-2"></div>
 			</div>
-            <div class="col-sm-2"></div>
+			<footer class="main-footer sticky footer-type-1">
+				<div class="footer-inner">
+					<!-- Add your copyright text here -->
+					<div class="footer-text">
+						&copy;
+						<a href="http://www.unisa.it" target="_blank"><strong>Unisa</strong> </a>
+					</div>
+					<!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+					<div class="go-up">
+						<a href="#" rel="go-top">
+							<i class="fa-angle-up"></i>
+						</a>
+					</div>
+				</div>
+			</footer>
         </div>
     </div>
 
@@ -276,14 +304,14 @@
 	<script src="assets/js/xenon-custom.js"></script>
 	
 	<script>
-		/*funzione che controlla se i campi sono vuoti, passando l'opportuno id*/
+		// funzione che controlla se i campi sono vuoti, passando l'opportuno id
 		function emptyControl(id){
 			if($("#"+id).val() == "")
 				return false;
 			return true;
 		}
 		
-		/*funzione che mi rilascia dei messaggio sotto ogni campo vuoto*/
+		// funzione che mi rilascia dei messaggio sotto ogni campo vuoto
 		function checkNotEmptyFields(){
 			var tmp1 = emptyControl("nameUser");
 			var tmp2 = emptyControl("surnameUser");
@@ -325,7 +353,7 @@
 				$("#capUser").attr("style","border-color:#cc3f44;");
 			}
 			if(!tmp7) {
-				$("#validate_sexUser").html("Campo C.A.P. vuoto");
+				$("#validate_sexUser").html("Campo Sesso vuoto");
 				$("#sexUser").attr("style","border-color:#cc3f44;");
 			}
 			if(!tmp8) {
@@ -360,13 +388,12 @@
 				$("#repeatPasswordUniversityUser").attr("style","border-color:#cc3f44;");
 			}
 			
-			var result = (tmp1 && tmp2) && (tmp3 && tmp4) && (tmp5 && tmp6) && (tmp7 && tmp8) && (tmp9 && tmp10) && (tmp11 && tmp12) && (tmp13 && tmp14);
-			alert(result);
+			var result = ((tmp1 && tmp2) && (tmp3 && tmp4) && (tmp5 && tmp6) && (tmp7 && tmp8) && (tmp9 && tmp10) && (tmp11 && tmp12) && (tmp13 && tmp14));
 			return result;
 		}
 		
 		jQuery(document).ready(function($){
-			/* DA QUI */
+			//DA QUI
 			$("#nameUser").keyup(function(){
 				$("#nameUser").attr("style","border-color:#e4e4e4;");
 				$("#validate_nameUser").html("");
@@ -419,14 +446,38 @@
 				$("#repeatPasswordUniversityUser").attr("style","border-color:#e4e4e4;");
 				$("#validate_repeatPasswordUniversityUser").html("");
 			});
-			/* A QUI*/
-			/*LE FUNZIONI SCRITTE FINO A QUESTO PUNTO SERVONO PER FARE IL CLEAR DEI CAMPI, SETTANDO I BORDI ROSSI, E I MESSAGGI DI ERRORE*/
+			// A QUI
+			// LE FUNZIONI SCRITTE FINO A QUESTO PUNTO SERVONO PER FARE IL CLEAR DEI CAMPI, SETTANDO I BORDI ROSSI, E I MESSAGGI DI ERRORE
 			
+			//funzione che controlla i campi, qualora i campi sono 'pieni', rilascia il codice identificativo sulla email
+			// Al momento è solo da simulare
 			$("#sendCodeForCompleteRecording").click(function(){
 				if(checkNotEmptyFields()){
-					alert("ok");
+					var x = Math.floor((Math.random() * 999999) + 1);
+					$("#codeActivationUser").attr("disabled",false);
+					$("#registerCompleteForUpdateIntoDatabase").attr("disabled",false);
+					alert("Il tuo codice è: "+x+"\nSi prega di scriverlo nell apposito campo");
+					
+					// Immetto una localStorage per simulare il Database (verrà rimossa qualora si ultima la servlet)
+					localStorage.setItem("codice",x);
+				}
+			});
+			$("#codeActivationUser").keyup(function(){
+				$("#codeActivationUser").attr("style","border-color:#e4e4e4;");
+			});
+			
+			$("#registerCompleteForUpdateIntoDatabase").click(function(){
+				if(emptyControl("codeActivationUser")){
+					if(localStorage.getItem("codice") === $("#codeActivationUser").val()){
+						$("#codeActivationUser").attr("style","border-color:#e4e4e4;");
+						alert("Ok, il codice è giusto");
+					}else{
+						$("#codeActivationUser").attr("style","border-color:#cc3f44;");
+						alert("il codice è errato");
+					}
 				}else{
-					alert("bho");
+					$("#codeActivationUser").attr("style","border-color:#cc3f44;");
+					alert("il codice è vuoto");
 				}
 			});
 		});
