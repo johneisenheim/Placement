@@ -25,8 +25,6 @@
 		var myArrayForListTraining = [];
 			
 		function modifyTrainingToDatabase(idModify){
-			$("#titleTrainingForModify").attr("placeholder",$('#headerTitleListTraining_'+idModify).text());
-			$("#titleTrainingForModify").val($('#headerTitleListTraining_'+idModify).text());
 			$("#descriptionTrainingForModify").attr("placeholder",$('#paragraphDescriptionListTraining_'+idModify).text());
 			$("#descriptionTrainingForModify").val($('#paragraphDescriptionListTraining_'+idModify).text());
 			jQuery('#modalGestioneTirocinioANDPlacementOrganizzazione').modal('show', {backdrop: 'static'});
@@ -90,7 +88,6 @@
 			for(var i = 0; i < 10; i++){
 				myArrayForListTraining[i] = i;
 				var stringToAppend_tmp = '<a href="#" class="list-group-item" onclick="return false;" style="cursor:default;">';
-				    stringToAppend_tmp = stringToAppend_tmp + '<h4 id="headerTitleListTraining_'+i+'" class="list-group-item-heading">'+i+'</h4>';
 					stringToAppend_tmp = stringToAppend_tmp + '<p id="paragraphDescriptionListTraining_'+i+'" class="list-group-item-text">'+i+' - aaaa - '+i+'</p><div class="vertical-top" align="right">';
 					stringToAppend_tmp = stringToAppend_tmp + '<button id="modifyListTraining_'+i+'" class="btn btn-orange btn-sm" onclick=modifyTrainingToDatabase('+i+')><i class="fa fa-pencil"></i><span> Modifica</span></button>';
 					stringToAppend_tmp = stringToAppend_tmp + '<button id="removeListTraining_'+i+'" class="btn btn-red btn-sm" onclick=removeTrainingToDatabase('+i+')><i class="fa fa-trash"></i><span> Elimina</span></button>';
@@ -271,13 +268,6 @@
 								
 							<form role="form" class="form-horizontal">
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="field-1">Titolo del tirocinio</label>
-									<div class="col-sm-10">
-										<input  id="titleTrainingOrganizzazione" type="text" class="form-control" placeholder="Titolo...">
-										<span id="validate_titleTrainingOrganizzazione" style="color:#cc3f44"></span>
-									</div>
-								</div>
-								<div class="form-group">
 									<label class="col-sm-2 control-label" for="field-2">Descrizione del Tirocinio</label>
 									<div class="col-sm-10">
 										<textarea id="descriptionTrainingOrganizzazione" class="form-control" rows="5" cols="5" placeholder="Descrizione..." maxlength="250"></textarea>
@@ -361,17 +351,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="titleTrainingForModify" class="col-sm-2 control-label">Titolo</label>
-								<div class="col-sm-10">
-									<input type="text" id="titleTrainingForModify" class="form-control" placeholder="">
-								</div>
-							</div>	
-						</div>
-						<div></div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="descriptionTrainingForModify" class="col-sm-2 control-label">Descrizione</label>
-								<div class="col-sm-10">
+								<label for="descriptionTrainingForModify" class="col-sm-3 control-label">Descrizione del Tirocinio</label>
+								<div class="col-sm-9">
 									<textarea id="descriptionTrainingForModify" class="form-control" placeholder="" rows="5" cols="5" maxlength="250"></textarea>
 								</div>
 							</div>	
@@ -411,27 +392,17 @@
 		}
 		
 		function checkNotEmptyFields(){
-			var tmp1 = emptyControl("titleTrainingOrganizzazione");
 			var tmp2 = emptyControl("descriptionTrainingOrganizzazione");
-			if(!tmp1) {
-				$("#validate_titleTrainingOrganizzazione").html("Campo titolo vuoto");
-				$("#titleTrainingOrganizzazione").attr("style","border-color:#cc3f44;");
-			}
 			if(!tmp2) {
 				$("#validate_descriptionTrainingOrganizzazione").html("Campo descrizione vuoto");
 				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#cc3f44;");
 			}
 			
-			return tmp1&tmp2;
+			return tmp2;
 		}
 		
 		jQuery(document).ready(function($){
 		
-			$("#titleTrainingOrganizzazione").keyup(function(){
-				$("#titleTrainingOrganizzazione").attr("style","border-color:#e4e4e4;");
-				$("#validate_titleTrainingOrganizzazione").html("");
-			});
-			
 			$("#descriptionTrainingOrganizzazione").keyup(function(){
 				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#e4e4e4;");
 				$("#validate_descriptionTrainingOrganizzazione").html("");

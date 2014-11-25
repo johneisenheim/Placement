@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/bootstrap-mod.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" href="assets/css/xenon-core.css">
 	<link rel="stylesheet" href="assets/css/xenon-forms.css">
 	<link rel="stylesheet" href="assets/css/xenon-components.css">
@@ -22,48 +22,24 @@
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script>
-		var myArrayForModalMenu =[];
-		
-		function rejectTrainingRequest(count){
-			if($("#cvDocumentError").is(":checked")){
-				$("#cvDocumentError").click();
-			}
-			if($("#esDocumentError").is(":checked")){
-				$("#esDocumentError").click();
-			}
-			if($("#cfuNotFoundError").is(":checked")){
-				$("#cfuNotFoundError").click();
-			}
-			$("#textareaDescriptionError").val("");
-			$("#serialNumberModalForReject").val(myArrayForModalMenu[count]);
-			$("#nameANDsurnameModalForReject").val(myArrayForModalMenu[count]);
-			jQuery('#modalGestioneTirocinioANDPlacementAmministratore').modal('show', {backdrop: 'static'});
+		var myArrayForListTraining = [];
+			
+		function modifyTrainingToDatabase(idModify){
+			$("#descriptionTrainingForModify").attr("placeholder",$('#paragraphDescriptionListTraining_'+idModify).text());
+			$("#descriptionTrainingForModify").val($('#paragraphDescriptionListTraining_'+idModify).text());
+			jQuery('#modalGestioneTirocinioANDPlacementOrganizzazione').modal('show', {backdrop: 'static'});
 		}
-		
-		function acceptTrainingRequest(idRequest){
-			$("#changeRequestTrainingForComplete_"+idRequest).html("");
-			$("#changeRequestTrainingForComplete_"+idRequest).html("<button id='complete_"+idRequest+"' class='btn btn-sm btn-icon btn-blue' onClick=completeTrainingRequest("+idRequest+")>Concluso</button>");
-			localStorage.setItem("completo_"+idRequest,idRequest);
-		}
-		function completeTrainingRequest(idComplete){
-			alert(idComplete+" è completo");
+		function removeTrainingToDatabase(idRemove){
+			if(confirm("Sei sicuro di voler eliminare questo tirocinio?")){
+				alert("removeListTraining_"+idRemove+" - ahahaha eliminato! Afammocc");
+			}
 		}
 		
 		jQuery(document).ready(function($){
-			$("#tableNotifications tbody").empty();
-			for(var i = 0; i < 10; i++){
-				myArrayForModalMenu[i] = i;
-				var stringToAppend_tmp = "";
-				if(localStorage.getItem("completo_"+i)!=i){
-					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>";
-					stringToAppend_tmp = stringToAppend_tmp + '<span id="changeRequestTrainingForComplete_'+i+'"><button id="accept'+i+'" class="btn btn-sm btn-icon btn-secondary" onClick=acceptTrainingRequest('+i+')>Accetta</button>';
-					stringToAppend_tmp = stringToAppend_tmp + "<button id='reject_"+i+"' class='btn btn-sm btn-icon btn-red' onClick=rejectTrainingRequest("+i+")>Rifiuta</button></span></td></tr>";
-				}else{
-					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>";
-					stringToAppend_tmp = stringToAppend_tmp + '<span id="changeRequestTrainingForComplete_'+i+'"><button id="complete_'+i+'" class="btn btn-sm btn-icon" onClick=completeTrainingRequest('+i+') style="background-color:#38548f; color:white;">Concluso</button></span></td></tr>';
-				}
-				$("#tableNotifications").append(stringToAppend_tmp);
-			}
+			
+			$("#mandalo").click(function(){
+				alert($("#descriptionTrainingForModify").val());
+			});
 			
 			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
@@ -86,7 +62,7 @@
 			//Es: $("pippopaperino_"+localStorage.getItem("offertaFormativa")).empty();
 			//ovviamente la localStorage cambia a seconda se si sta nella pagina di offerta formativa, gestione tesi, ecc...
 			$("#funzionalita1Permission_"+localStorage.getItem("gestioneTirocinio")).empty();	
-			$("#funzionalita3Permission_"+localStorage.getItem("gestioneTirocinio")).empty();				
+			$("#funzionalita3Permission_"+localStorage.getItem("gestioneTirocinio")).empty();	
 			
 			/*if(localStorage.getItem("username")==null){
 				window.location.replace("pageError.html");
@@ -107,6 +83,18 @@
 				localStorage.removeItem("superAmministratore");
 				
 			});
+			
+			$("#listTrainingOrganizzazione").empty();
+			for(var i = 0; i < 10; i++){
+				myArrayForListTraining[i] = i;
+				var stringToAppend_tmp = '<a href="#" class="list-group-item" onclick="return false;" style="cursor:default;">';
+					stringToAppend_tmp = stringToAppend_tmp + '<p id="paragraphDescriptionListTraining_'+i+'" class="list-group-item-text">'+i+' - aaaa - '+i+'</p><div class="vertical-top" align="right">';
+					stringToAppend_tmp = stringToAppend_tmp + '<button id="modifyListTraining_'+i+'" class="btn btn-orange btn-sm" onclick=modifyTrainingToDatabase('+i+')><i class="fa fa-pencil"></i><span> Modifica</span></button>';
+					stringToAppend_tmp = stringToAppend_tmp + '<button id="removeListTraining_'+i+'" class="btn btn-red btn-sm" onclick=removeTrainingToDatabase('+i+')><i class="fa fa-trash"></i><span> Elimina</span></button>';
+					stringToAppend_tmp = stringToAppend_tmp + '</div></a>';
+					
+				$("#listTrainingOrganizzazione").append(stringToAppend_tmp);
+			}			
 		});
 	</script>
 
@@ -154,7 +142,7 @@
 					
 			<ul class="navbar-nav">
 				<li>
-					<a href="offertaFormativaAmministratore.html">
+					<a href="offertaFormativaStudente.html">
 						<i class="linecons-desktop"></i>
 						<span class="title">Offerta Formativa</span>
 					</a>
@@ -166,7 +154,7 @@
 					</a>
 				</li>
 				<li class="opened active">
-					<a href="gestioneTirocinio&PlacementAmministratore.html">
+					<a href="gestioneTirocinio&PlacementStudente.html">
 						<i class="linecons-megaphone"></i>
 						<span class="title">Gestione Tirocinio</span>
 					</a>
@@ -207,7 +195,7 @@
 					
 					<ul class="dropdown-menu user-profile-menu list-unstyled">
 						<li>
-							<a href="#">
+							<a href="gestioneTirocinio&PlacementProfiloStudente.html">
 								<i class="fa-edit"></i>
 								Profilo
 							</a>
@@ -235,10 +223,10 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li class="opened active">
-						<a href="gestioneTirocinio&PlacementAmministratore.html">
+					<li id="offertaTirocini" class="opened active">
+						<a href="gestioneTirocinio&PlacementStudente.html">
 							<i class="linecons-cog"></i>
-							<span class="title">Home</span>
+							<span class="title">Offerta Tirocinio</span>
 						</a>
 					</li>
 				</ul>
@@ -248,7 +236,8 @@
 		<div class="main-content">
 					
 			<script>
-				jQuery(document).ready(function($){
+				jQuery(document).ready(function($)
+				{
 					$('a[href="#layout-variants"]').on('click', function(ev)
 					{
 						ev.preventDefault();
@@ -266,40 +255,52 @@
 			
 			<div class="row">
 				<div class="col-md-12">
-				
-					<div class="panel panel-default">
+					
+					<!-- Tabbed panel -->
+					<div class="panel panel-default"><!-- Add class "collapsed" to minimize the panel -->
 						<div class="panel-heading">
-							<h3 class="panel-title">Notifiche</h3>
+							<h3 class="panel-title">Tabbed panel</h3>
+							
+							<div class="panel-options">
+								
+								<ul class="nav nav-tabs">
+									<li class="">
+										<a href="#tab-1" data-toggle="tab">Apples</a>
+									</li>
+									<li class="">
+										<a href="#tab-2" data-toggle="tab">Bananas</a>
+									</li>
+									<li class="active">
+										<a href="#tab-3" data-toggle="tab">Pears</a>
+									</li>
+								</ul>
+								
+							</div>
 						</div>
 						
 						<div class="panel-body">
-							<script>
-								$(document).ready(function() {
-								$("#tableNotifications").dataTable({
-									aLengthMenu: [
-										[5, 10, 20, -1], [5, 10, 20, "Tutti"]
-									],
-									"columnDefs": [
-									  { "bSortable": false, "aTargets": [ 5 ] }
-									] } );
-								});
-							</script>
-							<table id="tableNotifications" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
 							
-								<thead>
-									<tr>
-										<th>Matricola</th>
-										<th>Nominativo</th>
-										<th>CV</th>
-										<th>Esami</th>
-										<th>E-mail</th>
-										<th>Azioni</th>
-									</tr>
-								</thead>
+							<div class="tab-content">
 								
-								<tbody align="center">
-								</tbody>
-							</table>
+								<div class="tab-pane" id="tab-1">
+									<p>Breakfast agreeable incommode departure it an. By ignorant at on wondered relation. Enough at tastes really so cousin am of. Extensive therefore supported by extremity of contented. Is pursuit compact demesne invited elderly be. View him she roof tell her case has sigh. Moreover is possible he admitted sociable concerns. By in cold no less been sent hard hill. </p>
+									<p>He do subjects prepared bachelor juvenile ye oh. He feelings removing informed he as ignorant we prepared. Evening do forming observe spirits is in. Country hearted be of justice sending. On so they as with room cold ye. Be call four my went mean. Celebrated if remarkably especially an. Going eat set she books found met aware. </p>
+								</div>
+								
+								<div class="tab-pane" id="tab-2">
+									<p>Building mr concerns servants in he outlived am breeding. He so lain good miss when sell some at if. Told hand so an rich gave next. How doubt yet again see son smart. While mirth large of on front. Ye he greater related adapted proceed entered an. Through it examine express promise no. Past add size game cold girl off how old. </p>
+									<p>Old there any widow law rooms. Agreed but expect repair she nay sir silent person. Direction can dependent one bed situation attempted. His she are man their spite avoid. Her pretended fulfilled extremely education yet. Satisfied did one admitting incommode tolerably how are. </p>
+									<p>Dispatched entreaties boisterous say why stimulated. Certain forbade picture now prevent carried she get see sitting. Up twenty limits as months. Inhabit so perhaps of in to certain. Sex excuse chatty was seemed warmth. Nay add far few immediate sweetness earnestly dejection. </p>
+								</div>
+								
+								<div class="tab-pane active" id="tab-3">
+									<p>In to am attended desirous raptures declared diverted confined at. Collected instantly remaining up certainly to necessary as. Over walk dull into son boy door went new. At or happiness commanded daughters as. Is handsome an declared at received in extended vicinity subjects. Into miss on he over been late pain an. Only week bore boy what fat case left use. Match round scale now sex style far times. Your me past an much. </p>
+									<p>Far concluded not his something extremity. Want four we face an he gate. On he of played he ladies answer little though nature. Blessing oh do pleasure as so formerly. Took four spot soon led size you. Outlived it received he material. Him yourself joy moderate off repeated laughter outweigh screened. </p>
+									<p>Resources exquisite set arranging moonlight sex him household had. Months had too ham cousin remove far spirit. She procuring the why performed continual improving. Civil songs so large shade in cause. Lady an mr here must neat sold. Children greatest ye extended delicate of. No elderly passage earnest as in removed winding or. </p>
+								</div>
+								
+							</div>
+			
 						</div>
 					</div>
 					
@@ -316,8 +317,9 @@
 				
 					<!-- Add your copyright text here -->
 					<div class="footer-text">
-						&copy;
-						<a href="http://www.unisa.it" target="_blank"><strong>Unisa</strong> </a>
+						&copy; 2014 
+						<strong>Unisa</strong> 
+						<a href="http://www.unisa.it" target="_blank"></a>
 					</div>
 					
 					
@@ -337,101 +339,24 @@
 		
 	</div>
 	
-	<div class="modal fade" id="modalGestioneTirocinioANDPlacementAmministratore">
+	<div class="modal fade" id="modalGestioneTirocinioANDPlacementOrganizzazione">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				
 				<div class="modal-header">
-					<center><h4 class="modal-title">Rifiutare la domanda di tirocinio.</h4></center>
+					<center><h4 class="modal-title">Modifica il Tirocinio.</h4></center>
 				</div>
-				
 				<div class="modal-body">
-				
 					<div class="row">
-						<div class="col-md-6">
-							
+						<div class="col-md-12">
 							<div class="form-group">
-								<label for="serialNumberModalForReject" class="control-label">Matricola</label>
-								
-								<input type="text" id="serialNumberModalForReject" class="form-control" disabled>
-							</div>	
-							
-						</div>
-						
-						<div class="col-md-6">
-							
-							<div class="form-group">
-								<label for="nameANDsurnameModalForReject" class="control-label">Nominativo</label>
-								
-								<input type="text" id="nameANDsurnameModalForReject" class="form-control" disabled>
-							</div>	
-						
-						</div>
-					</div>
-				
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="xe-widget xe-todo-list">
-								<div class="xe-header">
-									<center><h4 class="title"><strong>Errori</strong> riscontrati.</h4></center>
+								<label for="descriptionTrainingForModify" class="col-sm-3 control-label">Descrizione del Tirocinio</label>
+								<div class="col-sm-9">
+									<textarea id="descriptionTrainingForModify" class="form-control" placeholder="" rows="5" cols="5" maxlength="250"></textarea>
 								</div>
-								<div class="xe-body">
-									<ul class="list-unstyled">
-										<li>
-											<label>
-												<input type="checkbox" id="cvDocumentError"class="cbr"/>
-												<span>CV</span>
-											</label>
-										</li>
-										<li>
-											<label>
-												<input type="checkbox" id="esDocumentError" class="cbr"/>
-												<span>Esami Svolti</span>
-											</label>
-										</li>
-										<li>
-											<label>
-												<input type="checkbox" id="cfuNotFoundError" class="cbr" />
-												<span>CFU mancanti</span>
-											</label>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<script>
-							jQuery(document).ready(function($){
-								$("#mandalo").click(function(){
-									var stringCVError = "";
-									var stringESError = "";
-									var stringCFUNotFoundError = "";
-									
-									if($("#cvDocumentError").is(":checked")){
-										stringCVError = "CV: Documento errato;";
-									}
-									
-									if($("#esDocumentError").is(":checked")){
-										stringESError = "Esami svolti: Documento errato;";
-									}
-									
-									if($("#cfuNotFoundError").is(":checked")){
-										stringCFUNotFoundError = "CFU mancanti;";
-									}
-									
-									var stringTextareaDescriptionError = $("#textareaDescriptionError").val();
-									alert(stringCFUNotFoundError+" "+stringESError+" "+stringCVError+" "+stringTextareaDescriptionError);	
-								});
-							});
-						</script>
-						<div class="col-lg-6">
-							<div class="form-group no-margin">
-								<label for="textareaDescriptionError" class="control-label">Descrizione errore:</label>
-								<textarea class="form-control autogrow" id="textareaDescriptionError"></textarea>
 							</div>	
 						</div>
 					</div>
 				</div>
-				
 				<div class="modal-footer">
 					<center>
 						<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -441,14 +366,10 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="page-loading-overlay">
 		<div class="loader-2"></div>
 	</div>
-
-	
-	<link rel="stylesheet" href="assets/js/datatables/dataTables.bootstrap.css">
-	<link rel="stylesheet" href="assets/css/fonts/meteocons/css/meteocons.css">
 	
 	<!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
@@ -457,20 +378,46 @@
 	<script src="assets/js/joinable.js"></script>
 	<script src="assets/js/xenon-api.js"></script>
 	<script src="assets/js/xenon-toggles.js"></script>
-	<script src="assets/js/datatables/js/jquery.dataTables.js"></script>
 
-	<!-- Imported scripts on this page -->
-	<script src="assets/js/datatables/dataTables.bootstrap.js"></script>
-	<script src="assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
-	<script src="assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
-	
-	<!-- Imported scripts on this page -->
-	<script src="assets/js/xenon-widgets.js"></script>
-	<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="assets/js/jvectormap/regions/jquery-jvectormap-world-mill-en.js"></script>
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
-
+	<script>		
+		function emptyControl(id){
+			if($("#"+id).val() == "")
+				return false;
+			return true;
+		}
+		
+		function checkNotEmptyFields(){
+			var tmp2 = emptyControl("descriptionTrainingOrganizzazione");
+			if(!tmp2) {
+				$("#validate_descriptionTrainingOrganizzazione").html("Campo descrizione vuoto");
+				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#cc3f44;");
+			}
+			
+			return tmp2;
+		}
+		
+		jQuery(document).ready(function($){
+		
+			$("#descriptionTrainingOrganizzazione").keyup(function(){
+				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#e4e4e4;");
+				$("#validate_descriptionTrainingOrganizzazione").html("");
+			});
+			
+			$("#addTrainingOrganizzazione").click(function(){
+				$("#messageTrainingControl").removeAttr("class");
+				$("#messageTrainingControl").empty();
+				$("#addTrainingOrganizzazione").text("Attendi...");
+				if(checkNotEmptyFields()){
+					$("#messageTrainingControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
+					alert($("#titleTrainingOrganizzazione").val()+" - "+$("#descriptionTrainingOrganizzazione").val());
+				}
+				$("#addTrainingOrganizzazione").text("Aggiungi Tirocinio");
+			});
+		});
+	</script>
+	
 </body>
 </html>
