@@ -5,12 +5,17 @@ package it.unisa.tp.control;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import it.unisa.tp.model.concrete.ConcreteStudent;
 import it.unisa.tp.model.concrete.ConcreteStudentAttendence;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  *
  * @author carlosborges
@@ -23,7 +28,7 @@ public class StudentAttendanceInformation {
         aConnection = DBConnection.connect();
     }
     
-    public Map<ArrayList<ContreteStudentAttendence, ConcreteStudent>> StudentInformation (){
+    public Map<ArrayList<ContreteStudentAttendence, ConcreteStudent>> StudentInformation () throws SQLException{
         
         List<HashMap<ConcreteStudentAttendence, ConcreteStudent>> data = new ArrayList<HashMap<ConcreteStudentAttendence, ConcreteStudent>>();
         CallableStatement pcUpload = aConnection.prepareCall("{call getStudentAttendence()}");
@@ -32,7 +37,7 @@ public class StudentAttendanceInformation {
         while(rs.next()){
             ConcreteStudentAttendence aStudentAttendence = new ConcreteStudentAttendence();
             aStudentAttendence.setPrimaryKey(rs.getInt(1));
-            aStudentAttendence.seDate(rs.getDate(2));
+            aStudentAttendence.setDate(rs.getDate(2));
             aStudentAttendence.setFKStudent(rs.getString(3));
             StudentAttendenceList.add(aStudentAttendence);
         }

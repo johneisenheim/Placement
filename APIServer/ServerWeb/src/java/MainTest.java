@@ -1,9 +1,11 @@
 
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.control.DBConnection;
+import it.unisa.tp.control.GetStudentInformation;
 import it.unisa.tp.control.UploadInformationFiles;
 import it.unisa.tp.model.concrete.ConcreteAccount;
 import it.unisa.tp.model.concrete.ConcretePermissions;
+import it.unisa.tp.model.concrete.ConcreteStudent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,8 +24,11 @@ public class MainTest {
     
      public static void main(String[] args) {
          try {
-             UploadInformationFiles upload = new UploadInformationFiles();
-             upload.UploadFilesPathToDB("provacv", "provaAT", "1");
+          GetStudentInformation ainformation = new GetStudentInformation();
+          ConcreteStudent loggedStudent;
+          
+          loggedStudent = ainformation.getInformation(1);
+          System.out.printf(loggedStudent.toString());
          } catch (ClassNotFoundException ex) {
              Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
          } catch (SQLException ex) {

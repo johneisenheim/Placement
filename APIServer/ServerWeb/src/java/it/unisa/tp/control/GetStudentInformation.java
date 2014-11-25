@@ -20,72 +20,64 @@ import java.sql.Statement;
  * @author katiasolomita
  */
 public class GetStudentInformation {
-    
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
-
+    /*
+     * To change this license header, choose License Headers in Project Properties.
+     * To change this template file, choose Tools | Templates
+     * and open the template in the editor.
+     */
     private Connection aConnection;
-    
+
     public GetStudentInformation() throws ClassNotFoundException, SQLException, IOException {
         aConnection = DBConnection.connect();
     }
 
-    public ConcreteStudent authenticate(int FK_Account) throws SQLException  {
+    public ConcreteStudent getInformation(int FK_Account) throws SQLException {
         int rsResult = 0;
         ConcreteStudent loggedStudent = new ConcreteStudent();
         Statement aStatement = aConnection.createStatement();
-        String query = "select * from Student where = FK_Account" ;
+        String query = "select * from Student where FK_Account = '" + FK_Account + "'";
         ResultSet rs = aStatement.executeQuery(query);
         while (rs.next()) {
             rsResult++;
             loggedStudent.setPrimaryKey(rs.getNString(1));
             loggedStudent.setCoverLetter(rs.getString(2));
             loggedStudent.setYearEnrollment(rs.getString(3));
-            loggedStudent.setUniversityEmail(rs.getNString(4));
+            loggedStudent.setUniversityEmail(rs.getString(4));
             loggedStudent.setFKAccount(FK_Account);
             loggedStudent.setFKFisicPerson(rs.getInt(6));
             loggedStudent.setFKDepartment(rs.getInt(7));
             loggedStudent.setFKStudentStatus(rs.getInt(8));
             loggedStudent.setFKClaimTraining(rs.getInt(9));
-            loggedStudent.setFKSerialNumber(rs.getNString(10));
+            loggedStudent.setFKSerialNumber(rs.getString(10));
             loggedStudent.setFKidStudentInformation(rs.getInt(11));
-            loggedStudent.setFKRejectedTrainingMessage(rs.getNString(12));
-            aConnection.close();
-            
+            loggedStudent.setFKRejectedTrainingMessage(rs.getString(12));
+
         }
-        if (rsResult == 0) {
-            return null;
-        } else {
-            return loggedStudent;
-        }
-        
+        aConnection.close();
+        return loggedStudent;
+
     }
-    
+
     /**
-     * This method is used to load from DB the permission associated to the idAccount  
+     * This method is used to load from DB the permission associated to the
+     * idAccount
+     *
      * @param permissionId
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
-    private ConcretePermissions getAccountPermission(int permissionId) throws SQLException{
+    private ConcretePermissions getAccountPermission(int permissionId) throws SQLException {
         ConcretePermissions aPermission = new ConcretePermissions();
         Statement aStatement = aConnection.createStatement();
-        String query = "SELECT * from Permissions WHERE idPermissions="+permissionId;
+        String query = "SELECT * from Permissions WHERE idPermissions=" + permissionId;
         ResultSet rs = aStatement.executeQuery(query);
-        while(rs.next()){
+        while (rs.next()) {
             aPermission.setPrimaryKey(rs.getInt(1));
             aPermission.setDescription(rs.getString(2));
             aPermission.setClassPermission(rs.getString(3));
         }
-        return aPermission; 
+        return aPermission;
     }
 
-}                   
+}
