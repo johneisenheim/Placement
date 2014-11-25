@@ -27,29 +27,23 @@
 		
 		jQuery(document).ready(function($){
 			$("#tableNewsTrainingOrganization tbody").empty();
-			$("#tableNewsTrainingOrganization thead").empty();
-			
+			var stringToAppend_tmp = "";			
 			if(localStorage.getItem("gestioneTirocinio")==0){
-				alert("ciao");
-				var stringToAppend_tmp = "<thead><tr><th>Nome Azienda</th><th>Professore Associato</th><th>Descrizione</th></tr></thead><tbody align='center'>";
-				$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
+				$("#tableNewsTrainingOrganization").append("<thead><tr><th>Nome Azienda</th><th>Professore Associato</th><th>Descrizione</th></tr></thead>");
 				for(var i = 0; i < 10; i++){
 					myArrayForNewsTrainingOrganization[i] = i;
 					stringToAppend_tmp = "";
-					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td></tr>";
+					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td></tr>";
 					$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
 				}
-				$("#tableNewsTrainingOrganization").append("</tbody>");
 			}else{
-				var stringToAppend_tmp = "<thead><tr><th>Nome Azienda</th><th>Professore Associato</th><th>Descrizione</th><th>Contatti</th></tr></thead><tbody align='center'>";
-				$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
+				$("#tableNewsTrainingOrganization").append("<thead><tr><th>Nome Azienda</th><th>Professore Associato</th><th>Descrizione</th><th>Contatti</th></tr></thead>");
 				for(var i = 0; i < 10; i++){
 					myArrayForNewsTrainingOrganization[i] = i;
 					stringToAppend_tmp = "";
-					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td></tr>";
+					stringToAppend_tmp = "<tr><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td><td>"+i+"</td></tr>";
 					$("#tableNewsTrainingOrganization").append(stringToAppend_tmp);
 				}
-				$("#tableNewsTrainingOrganization").append("</tbody>");
 			}
 		
 			/*bisogna metterla in ogni pagina*/
@@ -193,7 +187,7 @@
 					
 					<ul class="dropdown-menu user-profile-menu list-unstyled">
 						<li>
-							<a href="#">
+							<a href="gestioneTirocinio&PlacementProfiloStudente.html">
 								<i class="fa-edit"></i>
 								Profilo
 							</a>
@@ -228,7 +222,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="gestioneTirocinio&PlacementRichiestaTirocinio.html">
+						<a href="gestioneTirocinio&PlacementRichiestaTirocinioStudente.html">
 							<i class="linecons-cog"></i>
 							<span class="title">Richiesta Tirocinio</span>
 						</a>
@@ -335,17 +329,24 @@
 						<div class="panel-body">
 							<script>
 								$(document).ready(function() {
-								$("#tableNotifications").dataTable({
-									aLengthMenu: [
-										[5, 10, 20, -1], [5, 10, 20, "Tutti"]
-									]/*,
-									"columnDefs": [
-									  { "bSortable": false, "aTargets": [ 5 ] }
-									]*/ } );
+									$("#tableNewsTrainingOrganization").dataTable({
+										aLengthMenu: [
+											[5, 10, 20, -1], [5, 10, 20, "Tutti"]
+										]
+									});
 								});
 							</script>
 							<table id="tableNewsTrainingOrganization" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
-							
+								<!--<thead>
+									<tr>
+										<th>Nome Azienda</th>
+										<th>Professore Associato</th>
+										<th>Descrizione</th>
+										<th>Contatti</th>
+									</tr>
+								</thead>-->
+								<tbody align='center'>
+								</tbody>
 							</table>
 						</div>
 					</div>

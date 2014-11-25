@@ -57,3 +57,7 @@ APIServer/ServerWeb/nbproject/ant-deploy.xml
 APIServer/ServerWeb/nbproject/project.properties
 
 APIServer/ServerWeb/nbproject/project.properties
+
+APIServer/ServerWeb/web/gestioneTirocinio&PlacementOrganizzazione.html
+
+APIServer/ServerWeb/web/gestioneTirocinio&PlacementProfiloUtente.html
