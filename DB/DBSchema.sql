@@ -206,6 +206,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mydb`.`StudentInformation`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`StudentInformation` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`StudentInformation` (
+  `idStudentInformation` INT NULL,
+  `CurriculumVitaePATH` VARCHAR(200) NULL,
+  `AccademicTranscriptPATH` VARCHAR(200) NULL,
+  PRIMARY KEY (`idStudentInformation`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `mydb`.`Student`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Student` ;
@@ -221,12 +234,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Student` (
   `FK_Department` INT NOT NULL,
   `FK_StudentStatus` INT NOT NULL,
   `FK_ClaimTraining` INT NOT NULL,
+  `FK_idStudentInformation` INT NOT NULL,
+  `FK_RejectedTrainingMessage` VARCHAR(45) NULL,
   PRIMARY KEY (`serialNumber`),
   INDEX `fk_Student_Account1_idx` (`FK_Account` ASC),
   INDEX `fk_Student_Department1_idx` (`FK_Department` ASC),
   INDEX `fk_Student_FisicPerson1_idx` (`FK_FisicPerson` ASC),
   INDEX `fk_Student_StudentStatus1_idx` (`FK_StudentStatus` ASC),
   INDEX `fk_Student_ClaimTraining1_idx` (`FK_ClaimTraining` ASC),
+  INDEX `fk_Student_StudentInformation1_idx` (`FK_idStudentInformation` ASC),
   CONSTRAINT `fk_Student_Account1`
     FOREIGN KEY (`FK_Account`)
     REFERENCES `mydb`.`Account` (`idAccount`)
@@ -250,6 +266,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Student` (
   CONSTRAINT `fk_Student_ClaimTraining1`
     FOREIGN KEY (`FK_ClaimTraining`)
     REFERENCES `mydb`.`ClaimTraining` (`idClaimTraining`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Student_StudentInformation1`
+    FOREIGN KEY (`FK_idStudentInformation`)
+    REFERENCES `mydb`.`StudentInformation` (`idStudentInformation`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -284,6 +305,64 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Staff` (
   CONSTRAINT `fk_Staff_FisicPerson1`
     FOREIGN KEY (`FK_FisicPerson`)
     REFERENCES `mydb`.`FisicPerson` (`idFisicPerson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`StudentAttendence`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`StudentAttendence` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`StudentAttendence` (
+  `SerialNum` INT NOT NULL,
+  `Date` DATETIME NULL,
+  `FK_Student` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`SerialNum`),
+  INDEX `fk_StudentAttendence_Student1_idx` (`FK_Student` ASC),
+  CONSTRAINT `fk_StudentAttendence_Student1`
+    FOREIGN KEY (`FK_Student`)
+    REFERENCES `mydb`.`Student` (`serialNumber`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`OfferTraining`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`OfferTraining` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`OfferTraining` (
+  `idOfferTraining` INT NOT NULL,
+  `description` VARCHAR(45) NULL,
+  `Fk_Organization` VARCHAR(45) NULL,
+  `Organization_idOrganization` INT NOT NULL,
+  PRIMARY KEY (`idOfferTraining`),
+  INDEX `fk_OfferTraining_Organization1_idx` (`Organization_idOrganization` ASC),
+  CONSTRAINT `fk_OfferTraining_Organization1`
+    FOREIGN KEY (`Organization_idOrganization`)
+    REFERENCES `mydb`.`Organization` (`idOrganization`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`RejectedTrainingMessage`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`RejectedTrainingMessage` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`RejectedTrainingMessage` (
+  `idRejectedTrainingMessage` INT NOT NULL,
+  `description` VARCHAR(45) NULL,
+  `FK_Student` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idRejectedTrainingMessage`),
+  INDEX `fk_RejectedTrainingMessage_Student1_idx` (`FK_Student` ASC),
+  CONSTRAINT `fk_RejectedTrainingMessage_Student1`
+    FOREIGN KEY (`FK_Student`)
+    REFERENCES `mydb`.`Student` (`serialNumber`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
