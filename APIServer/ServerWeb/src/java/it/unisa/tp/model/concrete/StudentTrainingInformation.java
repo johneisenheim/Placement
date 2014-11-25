@@ -11,41 +11,43 @@ package it.unisa.tp.model.concrete;
  */
 public class StudentTrainingInformation {
     private ConcreteStudent aStudent;
-    private ConcreteStudentAttendence aAttendence;
     private ConcreteFisicPerson aFisicPerson;
+    private ConcreteStudentInformation aStudentInformation;
 
-    public StudentTrainingInformation(ConcreteStudent aStudent, ConcreteStudentAttendence aAttendence, ConcreteFisicPerson aFisicPerson) {
+    public StudentTrainingInformation(ConcreteStudent aStudent, ConcreteFisicPerson aFisicPerson, ConcreteStudentInformation aStudentInformation) {
         this.aStudent = aStudent;
-        this.aAttendence = aAttendence;
         this.aFisicPerson = aFisicPerson;
+        this.aStudentInformation = aStudentInformation;
     }
+
     public StudentTrainingInformation(){
         
     }
 
-    public ConcreteStudent getAStudent() {
+    public ConcreteStudent getStudent() {
         return aStudent;
     }
 
-    public void setAStudent(ConcreteStudent aStudent) {
+    public void setStudent(ConcreteStudent aStudent) {
         this.aStudent = aStudent;
     }
 
-    public ConcreteStudentAttendence getAttendence() {
-        return aAttendence;
-    }
-
-    public void setAttendence(ConcreteStudentAttendence aAttendence) {
-        this.aAttendence = aAttendence;
-    }
-
-    public ConcreteFisicPerson getaFisicPerson() {
+    public ConcreteFisicPerson getFisicPerson() {
         return aFisicPerson;
     }
 
-    public void setaFisicPerson(ConcreteFisicPerson aFisicPerson) {
+    public void setFisicPerson(ConcreteFisicPerson aFisicPerson) {
         this.aFisicPerson = aFisicPerson;
     }
+
+    public ConcreteStudentInformation getStudentInformation() {
+        return aStudentInformation;
+    }
+
+    public void setaStudentInformation(ConcreteStudentInformation aStudentInformation) {
+        this.aStudentInformation = aStudentInformation;
+    }
+
     
     
 }

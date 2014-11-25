@@ -17,7 +17,7 @@ import java.sql.Statement;
  *
  * @author katiasolomita
  */
-public class StudentInformation {
+public class StudentDBOperation {
 
     /*
      * To change this license header, choose License Headers in Project Properties.
@@ -26,7 +26,7 @@ public class StudentInformation {
      */
     private final Connection aConnection;
 
-    public StudentInformation() throws ClassNotFoundException, SQLException, IOException {
+    public StudentDBOperation() throws ClassNotFoundException, SQLException, IOException {
         aConnection = DBConnection.connect();
     }
 
@@ -37,13 +37,11 @@ public class StudentInformation {
      * @throws SQLException 
      */
     public ConcreteStudent getInformationbyFK_Account(int FK_Account) throws SQLException {
-        int rsResult = 0;
         ConcreteStudent loggedStudent = new ConcreteStudent();
         Statement aStatement = aConnection.createStatement();
         String query = "select * from Student where FK_Account = '" + FK_Account + "'";
         ResultSet rs = aStatement.executeQuery(query);
         while (rs.next()) {
-            rsResult++;
             loggedStudent.setPrimaryKey(rs.getString(1));
             loggedStudent.setCoverLetter(rs.getString(2));
             loggedStudent.setYearEnrollment(rs.getString(3));
@@ -70,13 +68,11 @@ public class StudentInformation {
      * @throws SQLException 
      */
     public ConcreteStudent getInformationbyPrimaryKey(String PrimaryKey) throws SQLException {
-        int rsResult = 0;
         ConcreteStudent loggedStudent = new ConcreteStudent();
         Statement aStatement = aConnection.createStatement();
         String query = "select * from Student where FK_Account = '" + PrimaryKey + "'";
         ResultSet rs = aStatement.executeQuery(query);
         while (rs.next()) {
-            rsResult++;
             loggedStudent.setPrimaryKey(rs.getString(1));
             loggedStudent.setCoverLetter(rs.getString(2));
             loggedStudent.setYearEnrollment(rs.getString(3));

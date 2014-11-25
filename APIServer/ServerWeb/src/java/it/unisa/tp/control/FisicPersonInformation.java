@@ -5,7 +5,7 @@
  */
 package it.unisa.tp.control;
 
-import it.unisa.tp.model.concrete.ConcreteAccount;
+
 import it.unisa.tp.model.concrete.ConcreteFisicPerson;
 import it.unisa.tp.model.concrete.ConcretePermissions;
 import java.io.IOException;
@@ -22,49 +22,39 @@ public class FisicPersonInformation {
 
 
 
-    private Connection aConnection;
+    private final Connection aConnection;
     
     public FisicPersonInformation() throws ClassNotFoundException, SQLException, IOException {
         aConnection = DBConnection.connect();
     }
 
     public ConcreteFisicPerson getFisicPersonInformation(int idFisicPerson) throws SQLException  {
-        int rsResult = 0;
-        ConcreteFisicPerson loggedFisicPerson = new ConcreteFisicPerson();
+        
+        ConcreteFisicPerson afisicPerson = new ConcreteFisicPerson();
         Statement aStatement = aConnection.createStatement();
         String query = "select * from FisicPerson where idFisicPerson='" + idFisicPerson;
         ResultSet rs = aStatement.executeQuery(query);
         while (rs.next()) {
-            rsResult++;
-            loggedFisicPerson.setPrimaryKey(rs.getInt(1));
             
-            
+            afisicPerson.setPrimaryKey(rs.getInt(1));
+            afisicPerson.setName(rs.getString(2));
+            afisicPerson.setLastName(rs.getString(3));
+            afisicPerson.setPhoneNum(rs.getString(4));
+            afisicPerson.setCity(rs.getString(5));
+            afisicPerson.setAddress(rs.getString(6));
+            afisicPerson.setCAP(rs.getString(7));
+            afisicPerson.setSEX(rs.getString(8).charAt(0));
+            afisicPerson.setCitizenship(rs.getString(9));
+            afisicPerson.setCF(rs.getString(10));
+            afisicPerson.setEmail(rs.getString(11));  
         }
             aConnection.close();
         
-            return loggedFisicPerson;
+            return afisicPerson;
         }
         
     
     
-    /**
-     * This method is used to load from DB the permission associated to the idAccount  
-     * @param permissionId
-     * @return
-     * @throws SQLException 
-     */
-    private ConcretePermissions getAccountPermission(int permissionId) throws SQLException{
-        ConcretePermissions aPermission = new ConcretePermissions();
-        Statement aStatement = aConnection.createStatement();
-        String query = "SELECT * from Permissions WHERE idPermissions="+permissionId;
-        ResultSet rs = aStatement.executeQuery(query);
-        while(rs.next()){
-            aPermission.setPrimaryKey(rs.getInt(1));
-            aPermission.setDescription(rs.getString(2));
-            aPermission.setClassPermission(rs.getString(3));
-        }
-        return aPermission; 
-    }
 
 }                   
 

@@ -6,52 +6,52 @@ package it.unisa.tp.control;
  * and open the template in the editor.
  */
 import it.unisa.tp.model.concrete.ConcreteStudent;
-import it.unisa.tp.model.concrete.ConcreteStudentAttendence;
 import it.unisa.tp.model.concrete.StudentTrainingInformation;
-import it.unisa.tp.model.interfaces.FisicPerson;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 /**
  *
  * @author carlosborges
  */
-public class StudentAttendanceInformation {
+public class StudentAttendanceDetails {
 
     private final Connection aConnection;
 
-    public StudentAttendanceInformation() throws ClassNotFoundException, SQLException, IOException {
+    public StudentAttendanceDetails() throws ClassNotFoundException, SQLException, IOException {
         aConnection = DBConnection.connect();
     }
 
     /**
-     *
+      Return for all students into the StudentAttendece table the Corresponding Student fisicPerson and 
+      * studentInformation object
      * @return
      * @throws SQLException
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.io.IOException
      */
-    public ArrayList getStudentInformation() throws SQLException, ClassNotFoundException, IOException
+    public ArrayList<StudentTrainingInformation> getStudentDetails() throws SQLException, ClassNotFoundException, IOException
     {
         CallableStatement pcSelect = aConnection.prepareCall("{call getStudentAttendence()}");
-        ArrayList<HashMap<ConcreteStudent, ContreteStudentAttendence>> data = new ArrayList<HashMap<ConcreteStudent, ContreteStudentAttendence>>();
         ArrayList<StudentTrainingInformation> studentsTrainingList = new ArrayList<StudentTrainingInformation>();//a list of information of student who are in waiting list
-        StudentInformation studentInformation = new StudentInformation();
+        StudentDBOperation studentInformation = new StudentDBOperation();
+        FisicPersonInformation personInformation = new FisicPersonInformation();
+        StudentInformationDBOperation studentAttendanceInfo = new StudentInformationDBOperation();
         ResultSet rs = pcSelect.executeQuery(); 
         while (rs.next()) {//import into the arrayList all the records present into the StudentAttendence
             StudentTrainingInformation aStudentAttendence = new StudentTrainingInformation();
-            aStudentAttendence.setAStudent(studentInformation.getInformationbyPrimaryKey(rs.getString(3)));
-            
-            studentsTrainingList.add(aStudentAttendence);
-            
+            ConcreteStudent aStudent = studentInformation.getInformationbyPrimaryKey(rs.getString(3));
+            aStudentAttendence.setStudent(aStudent);
+            aStudentAttendence.setFisicPerson(personInformation.getFisicPersonInformation(aStudent.getFKFisicPerson()));
+            aStudentAttendence.setaStudentInformation(studentAttendanceInfo.getStudentInfoByPrimaryKey(aStudent.getFKidStudentInformation()));
+            studentsTrainingList.add(aStudentAttendence);  
         }
         pcSelect.close();
-        
-        
-        return data;
+        return studentsTrainingList;     
     }
 }

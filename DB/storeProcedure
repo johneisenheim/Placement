@@ -4,9 +4,11 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `requestStartTraining`(IN  studentSerialNumber VARCHAR(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudentAttendence`()
 BEGIN
-UPDATE Students SET KF_StudentStatus = 2 WHERE serialNumber = studentSerialNumber;
+
+SELECT * from StudentAttendence;
+
 
 END
 
@@ -17,24 +19,39 @@ END
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudentInformation`(in primaryKey int)
+BEGIN
+SELECT * from StudentInformation where idStudentInformation = primaryKey;
+END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `requestStartTraining`(IN  studentSerialNumber VARCHAR(45), IN FK_IDstundetInformation int)
 BEGIN
-declare pathCV int;
-declare pathAT int;
+declare pathCV VARCHAR(45);
+declare pathAT VARCHAR(45);
+
 
 declare selectCur CURSOR FOR SELECT CurriculumVitaePATH, AccademicTranscriptPATH FROM StudentInformation  = FK_IDstundetInformation;
-DECLARE EXIT HANDLER FOR SQLSTATE '42000'
-    SELECT 'The student dont still have all information to claim a training.';
+
 open selectCur;
 fetch selectCur into pathCV, pathAT;
 
-if (pathCV != null AND pathAT != null)
-	THEN
-	UPDATE Students SET KF_StudentStatus = 2 WHERE serialNumber = studentSerialNumber;
-	insert into StudentAttendence values (studentSerialNumber, current_date);
-else 
- call raise_error;
-END IF;
+
+if pathCV IS null 
+	then SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'CV not inserted.';
+	else if pathAT is null
+		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accademic Transcript not inserted.';
+	else 
+		insert into StudentAttendence values (studentSerialNumber, current_date);
+		UPDATE Student SET FK_StudentStatus = 2 WHERE serialNumber = studentSerialNumber;
+	
+END if;
+END if;
 
 END
 
@@ -52,6 +69,7 @@ DECLARE pathAT VARCHAR(45);
 DECLARE lastID int;
 DECLARE foundSet INT default false;
 DECLARE FK_studentInformation INT;
+-- Cursore for check if the FK of student status is setting or not
 DECLARE selectCur CURSOR FOR SELECT FK_idStudentInformation FROM Student WHERE Student.serialNumber = serialNumber AND FK_idStudentInformation != '' ;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET foundSet = true; 
 open selectCur;
@@ -67,20 +85,5 @@ else if foundSet=true
 END if;
 END if;
  
-
-END
-
-
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: Here we read the data of the table StudentAttendence
--- --------------------------------------------------------------------------------
-DELIMITER $$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudentAttendence`()
-BEGIN
-
-SELECT * from StudentAttendence;
-
 
 END

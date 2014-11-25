@@ -1,7 +1,7 @@
 
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.control.DBConnection;
-import it.unisa.tp.control.StudentInformation;
+import it.unisa.tp.control.StudentDBOperation;
 import it.unisa.tp.control.UploadInformationFiles;
 import it.unisa.tp.model.concrete.ConcreteAccount;
 import it.unisa.tp.model.concrete.ConcretePermissions;
@@ -24,7 +24,7 @@ public class MainTest {
     
      public static void main(String[] args) {
          try {
-          StudentInformation ainformation = new StudentInformation();
+          StudentDBOperation ainformation = new StudentDBOperation();
           ConcreteStudent loggedStudent;
           
          } catch (ClassNotFoundException ex) {
