@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,8 +43,8 @@ public class StudenteAttDetailsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject studentInfo = new JSONObject();
-        JSONObject studentList = new JSONObject();
+        
+        JSONArray studentList = new JSONArray();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -59,13 +60,14 @@ public class StudenteAttDetailsServlet extends HttpServlet {
             StudentAttendanceDetails details = new StudentAttendanceDetails();
             ArrayList<StudentTrainingInformation> dataToReturn = details.getStudentDetails();
             for (StudentTrainingInformation aStundetInfo : dataToReturn) {
+                JSONObject studentInfo = new JSONObject();
                 studentInfo.put("serialNumber", aStundetInfo.getStudent().getPrimaryKey());
                 studentInfo.put("name", aStundetInfo.getFisicPerson().getName());
                 studentInfo.put("surname", aStundetInfo.getFisicPerson().getLastName());
                 studentInfo.put("cvPath", aStundetInfo.getStudentInformation().getCurriculumVitaePATH());
                 studentInfo.put("atPath", aStundetInfo.getStudentInformation().getAccademicTranscriptPATH());
                 studentInfo.put("email", aStundetInfo.getStudent().getUniversityEmail());
-                studentList.put("Student", studentInfo);
+                studentList.put(studentInfo);
             }
             message.put("StudentList", studentList);
             response.getWriter().write(message.toString());

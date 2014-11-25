@@ -1,13 +1,15 @@
-
 import it.unisa.tp.control.AuthenticateUser;
 import it.unisa.tp.control.DBConnection;
+import it.unisa.tp.control.StudentAttendanceDetails;
 import it.unisa.tp.control.StudentDBOperation;
 import it.unisa.tp.control.UploadInformationFiles;
 import it.unisa.tp.model.concrete.ConcreteAccount;
 import it.unisa.tp.model.concrete.ConcretePermissions;
 import it.unisa.tp.model.concrete.ConcreteStudent;
+import it.unisa.tp.model.concrete.StudentTrainingInformation;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,19 +23,24 @@ import java.util.logging.Logger;
  * @author carlosborges
  */
 public class MainTest {
-    
-     public static void main(String[] args) {
-         try {
-          StudentDBOperation ainformation = new StudentDBOperation();
-          ConcreteStudent loggedStudent;
-          
-         } catch (ClassNotFoundException ex) {
-             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (SQLException ex) {
-             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (IOException ex) {
-             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
+
+    public static void main(String[] args) {
+        StudentAttendanceDetails details;
+
+        try {
+            details = new StudentAttendanceDetails();
+            ArrayList<StudentTrainingInformation> dataToReturn = details.getStudentDetails();
+            for (StudentTrainingInformation aStundetInfo : dataToReturn) {
+                System.out.print(aStundetInfo.getStudent().getPrimaryKey());
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
+
 }

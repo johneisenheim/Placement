@@ -22,14 +22,14 @@ public class FisicPersonInformation {
 
 
 
-    private final Connection aConnection;
+    private Connection aConnection;
     
     public FisicPersonInformation() throws ClassNotFoundException, SQLException, IOException {
         aConnection = DBConnection.connect();
     }
 
-    public ConcreteFisicPerson getFisicPersonInformation(int idFisicPerson) throws SQLException  {
-        
+    public ConcreteFisicPerson getFisicPersonInformation(int idFisicPerson) throws SQLException, ClassNotFoundException, IOException  {
+        aConnection = DBConnection.connect();
         ConcreteFisicPerson afisicPerson = new ConcreteFisicPerson();
         Statement aStatement = aConnection.createStatement();
         String query = "select * from FisicPerson where idFisicPerson='" + idFisicPerson+"'";

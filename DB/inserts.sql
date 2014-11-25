@@ -9,4 +9,12 @@ UPDATE `mydb`.`Student` SET `FK_StudentStatus`='2', `FK_idStudentInformation`='1
 
 
 
+INSERT INTO `mydb`.`FisicPerson` (`idFisicPerson`, `name`, `lastName`, `phoneNum`, `city`, `CAP`, `sex`, `citizenship`, `CF`, `email`) VALUES ('2', 'Nello', 'Saulino', '23124323', 'Sabaudia', '89034', 'm', 'Italiano', 'NSW1231ea', 'a.saulino@gmail.com');
+INSERT INTO `mydb`.`Account` (`idAccount`, `userName`, `password`, `typeOfAccount`, `FK_permission`) VALUES ('2', 'nello', 'saulino', 'student', '1-1-1-1-1');
+INSERT INTO `mydb`.`Student` (`serialNumber`, `yearEnrollment`, `cycle`, `universityEmail`, `FK_Account`, `FK_FisicPerson`, `FK_Department`, `FK_StudentStatus`, `FK_idStudentInformation`) VALUES ('0512200013', '2008/01/02', '2', 'a.saulino@studenti.unisa.it', '1', '2', '1', '2', '1');
+INSERT INTO `mydb`.`StudentInformation` (`idStudentInformation`, `CurriculumVitaePATH`) VALUES ('2', 'c:\\usr\\utenti\\platform\\1200052200\\cv.pdf');
+UPDATE `mydb`.`Student` SET `FK_idStudentInformation`='2' WHERE `serialNumber`='1';
+INSERT INTO `mydb`.`StudentAttendence` (`SerialNum`, `Date`, `FK_Student`) VALUES ('2', '2015/12/01', '0512200013');
+
+
 
