@@ -50,6 +50,7 @@
 		}
 		
 		jQuery(document).ready(function($){
+<<<<<<< HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementProfiloUtente.html
 			$("#tableNotifications tbody").empty();
 			for(var i = 0; i < 10; i++){
 				myArrayForModalMenu[i] = i;
@@ -64,6 +65,12 @@
 				}
 				$("#tableNotifications").append(stringToAppend_tmp);
 			}
+=======
+			
+			$("#modifyDataForTrainingIntoDatabase").click(function(){
+				alert($("#descriptionTrainingForModify").val());
+			});
+>>>>>>> FETCH_HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementOrganizzazione.html
 			
 			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
@@ -126,7 +133,7 @@
 		
 			<!-- Navbar Brand -->
 			<div class="navbar-brand">
-				<a href="offertaFormativaStudente.html" class="logo">
+				<a href="offertaFormativaOrganizzazione.html" class="logo">
 					<img src="assets/images/mitforsite.png" width="80" alt="" class="hidden-xs" />
 					<img src="assets/images/mitforsitemini.png" width="80" alt="" class="visible-xs" />
 				</a>
@@ -297,9 +304,34 @@
 									</tr>
 								</thead>
 								
+<<<<<<< HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementProfiloUtente.html
 								<tbody align="center">
 								</tbody>
 							</table>
+=======
+							<form role="form" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-2">Descrizione del Tirocinio</label>
+									<div class="col-sm-10">
+										<textarea id="descriptionTrainingOrganizzazione" style="resize:none" class="form-control" rows="5" cols="5" placeholder="Descrizione..." maxlength="250"></textarea>
+										<span id="validate_descriptionTrainingOrganizzazione" style="color:#cc3f44"></span>
+									</div>
+								</div>
+								
+								<div class="col-sm-12">
+									<div id="messageTrainingControl" align="center"></div>
+								</div>
+								
+								<div class="form-group">
+									<center>
+										<button type="button" class="btn btn-secondary btn-single" id="addTrainingOrganizzazione">
+											<i class="fa-plus"></i>
+											<span>Aggiungi Tirocinio</span>
+										</button>
+									</center>
+								</div>
+							</form>
+>>>>>>> FETCH_HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementOrganizzazione.html
 						</div>
 					</div>
 					
@@ -435,7 +467,7 @@
 				<div class="modal-footer">
 					<center>
 						<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-						<button type="button" id="mandalo" class="btn btn-info">Save changes</button>
+						<button type="button" id="modifyDataForTrainingIntoDatabase" class="btn btn-orange">Modifica</button>
 					</center>
 				</div>
 			</div>
@@ -471,6 +503,46 @@
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/xenon-custom.js"></script>
+<<<<<<< HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementProfiloUtente.html
 
+=======
+	<script>		
+		function emptyControl(id){
+			if($("#"+id).val() == "")
+				return false;
+			return true;
+		}
+		
+		function checkNotEmptyFields(){
+			var tmp2 = emptyControl("descriptionTrainingOrganizzazione");
+			if(!tmp2) {
+				$("#validate_descriptionTrainingOrganizzazione").html("Campo descrizione vuoto");
+				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#cc3f44;");
+			}
+			
+			return tmp2;
+		}
+		
+		jQuery(document).ready(function($){
+		
+			$("#descriptionTrainingOrganizzazione").keyup(function(){
+				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#e4e4e4;");
+				$("#validate_descriptionTrainingOrganizzazione").html("");
+			});
+			
+			$("#addTrainingOrganizzazione").click(function(){
+				$("#messageTrainingControl").removeAttr("class");
+				$("#messageTrainingControl").empty();
+				$("#addTrainingOrganizzazione").text("Attendi...");
+				if(checkNotEmptyFields()){
+					$("#messageTrainingControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
+					alert($("#descriptionTrainingOrganizzazione").val());
+				}
+				$("#addTrainingOrganizzazione").text("Aggiungi Tirocinio");
+			});
+		});
+	</script>
+	
+>>>>>>> FETCH_HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementOrganizzazione.html
 </body>
 </html>

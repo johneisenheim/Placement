@@ -21,25 +21,8 @@
 	<link rel="stylesheet" href="assets/css/custom.css">
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
-	<script>
-		var myArrayForListTraining = [];
-			
-		function modifyTrainingToDatabase(idModify){
-			$("#descriptionTrainingForModify").attr("placeholder",$('#paragraphDescriptionListTraining_'+idModify).text());
-			$("#descriptionTrainingForModify").val($('#paragraphDescriptionListTraining_'+idModify).text());
-			jQuery('#modalGestioneTirocinioANDPlacementOrganizzazione').modal('show', {backdrop: 'static'});
-		}
-		function removeTrainingToDatabase(idRemove){
-			if(confirm("Sei sicuro di voler eliminare questo tirocinio?")){
-				alert("removeListTraining_"+idRemove+" - ahahaha eliminato! Afammocc");
-			}
-		}
-		
+	<script>		
 		jQuery(document).ready(function($){
-			
-			$("#mandalo").click(function(){
-				alert($("#descriptionTrainingForModify").val());
-			});
 			
 			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
@@ -83,18 +66,7 @@
 				localStorage.removeItem("superAmministratore");
 				
 			});
-			
-			$("#listTrainingOrganizzazione").empty();
-			for(var i = 0; i < 10; i++){
-				myArrayForListTraining[i] = i;
-				var stringToAppend_tmp = '<a href="#" class="list-group-item" onclick="return false;" style="cursor:default;">';
-					stringToAppend_tmp = stringToAppend_tmp + '<p id="paragraphDescriptionListTraining_'+i+'" class="list-group-item-text">'+i+' - aaaa - '+i+'</p><div class="vertical-top" align="right">';
-					stringToAppend_tmp = stringToAppend_tmp + '<button id="modifyListTraining_'+i+'" class="btn btn-orange btn-sm" onclick=modifyTrainingToDatabase('+i+')><i class="fa fa-pencil"></i><span> Modifica</span></button>';
-					stringToAppend_tmp = stringToAppend_tmp + '<button id="removeListTraining_'+i+'" class="btn btn-red btn-sm" onclick=removeTrainingToDatabase('+i+')><i class="fa fa-trash"></i><span> Elimina</span></button>';
-					stringToAppend_tmp = stringToAppend_tmp + '</div></a>';
 					
-				$("#listTrainingOrganizzazione").append(stringToAppend_tmp);
-			}			
 		});
 	</script>
 
@@ -257,21 +229,18 @@
 				<div class="col-md-12">
 					
 					<!-- Tabbed panel -->
-					<div class="panel panel-default"><!-- Add class "collapsed" to minimize the panel -->
+					<div class="panel"><!-- Add class "collapsed" to minimize the panel -->
 						<div class="panel-heading">
-							<h3 class="panel-title">Tabbed panel</h3>
+							<h3 class="panel-title">Area Personale</h3>
 							
 							<div class="panel-options">
 								
 								<ul class="nav nav-tabs">
-									<li class="">
-										<a href="#tab-1" data-toggle="tab">Apples</a>
-									</li>
-									<li class="">
-										<a href="#tab-2" data-toggle="tab">Bananas</a>
-									</li>
 									<li class="active">
-										<a href="#tab-3" data-toggle="tab">Pears</a>
+										<a href="#tab-1" data-toggle="tab">Dati Personali</a>
+									</li>
+									<li>
+										<a href="#tab-2" data-toggle="tab">Dati Universitari</a>
 									</li>
 								</ul>
 								
@@ -282,28 +251,99 @@
 							
 							<div class="tab-content">
 								
-								<div class="tab-pane" id="tab-1">
-									<p>Breakfast agreeable incommode departure it an. By ignorant at on wondered relation. Enough at tastes really so cousin am of. Extensive therefore supported by extremity of contented. Is pursuit compact demesne invited elderly be. View him she roof tell her case has sigh. Moreover is possible he admitted sociable concerns. By in cold no less been sent hard hill. </p>
-									<p>He do subjects prepared bachelor juvenile ye oh. He feelings removing informed he as ignorant we prepared. Evening do forming observe spirits is in. Country hearted be of justice sending. On so they as with room cold ye. Be call four my went mean. Celebrated if remarkably especially an. Going eat set she books found met aware. </p>
+								<div class="tab-pane active" id="tab-1">
+									<form role="form" class="form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Nome dello Studente: </strong></label>
+											<span class="col-sm-9" id="nameStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Cognome dello Studente: </strong></label>
+											<span class="col-sm-9" id="surnameStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Recapito Telefonico dello Studente: </strong></label>
+											<span class="col-sm-9" id="phoneStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Città di residenza dello Studente: </strong></label>
+											<span class="col-sm-9" id="cityStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Vià/Piazza di residenza dello Studente: </strong></label>
+											<span class="col-sm-9" id="addressStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>C.A.P.: </strong></label>
+											<span class="col-sm-9" id="capStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Sesso dello Studente: </strong></label>
+											<span class="col-sm-9" id="sexStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Cittadinanza dello Studente: </strong></label>
+											<span class="col-sm-9" id="cityzenshipStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Codice Fiscale dello Studente: </strong></label>
+											<span class="col-sm-9" id="cfStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>E-mail dello Studente: </strong></label>
+											<span class="col-sm-9" id="emailStudentForPanelOfThePersonalProfile"></span>
+										</div>
+									</form>
 								</div>
 								
 								<div class="tab-pane" id="tab-2">
-									<p>Building mr concerns servants in he outlived am breeding. He so lain good miss when sell some at if. Told hand so an rich gave next. How doubt yet again see son smart. While mirth large of on front. Ye he greater related adapted proceed entered an. Through it examine express promise no. Past add size game cold girl off how old. </p>
-									<p>Old there any widow law rooms. Agreed but expect repair she nay sir silent person. Direction can dependent one bed situation attempted. His she are man their spite avoid. Her pretended fulfilled extremely education yet. Satisfied did one admitting incommode tolerably how are. </p>
-									<p>Dispatched entreaties boisterous say why stimulated. Certain forbade picture now prevent carried she get see sitting. Up twenty limits as months. Inhabit so perhaps of in to certain. Sex excuse chatty was seemed warmth. Nay add far few immediate sweetness earnestly dejection. </p>
+									<form role="form" class="form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Matricola: </strong></label>
+											<span class="col-sm-9" id="serialNumberStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Anno di immatricolazione: </strong></label>
+											<span class="col-sm-9" id="yearsEnrollmentStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Ciclo: </strong></label>
+											<span class="col-sm-9" id="cycleStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>E-mail universitaria: </strong></label>
+											<span class="col-sm-9" id="emailOfTheUniversityStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Dipartimento Afferente dello Studente: </strong></label>
+											<span class="col-sm-9" id="dipartimentStudentForPanelOfThePersonalProfile"></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>File Curriculum Vitae dello Studente: </strong></label>
+											<span class="col-sm-9" style="padding-top:12px" id="cvFileStudentForPanelOfThePersonalProfile"><i><b>Non Caricato</b></i></span>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>File Libretto dello Studente: </strong></label>
+											<span class="col-sm-9" style="padding-top:4px" id="esFileStudentForPanelOfThePersonalProfile"><i><b>Non Caricato</b></i></span>
+										</div>
+										<div class="form-group-separator"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label"><strong>Lettera di Presentazione: </strong></label>
+											<div class="col-sm-9">
+												<textarea class="form-control" style="resize:none" rows="5" id="coverLetterStudentForPanelOfThePersonalProfile"></textarea>
+											</div>
+										</div>
+										<div class="form-group" align="center">
+											<button class="btn btn-success btn-icon" id="addStudentForPanelOfThePersonalProfile">
+												<i class="fa-plus"></i>
+												<span>Aggiungi Lettera Presentazione</span>
+											</button>
+										</div>
+									</form>
 								</div>
-								
-								<div class="tab-pane active" id="tab-3">
-									<p>In to am attended desirous raptures declared diverted confined at. Collected instantly remaining up certainly to necessary as. Over walk dull into son boy door went new. At or happiness commanded daughters as. Is handsome an declared at received in extended vicinity subjects. Into miss on he over been late pain an. Only week bore boy what fat case left use. Match round scale now sex style far times. Your me past an much. </p>
-									<p>Far concluded not his something extremity. Want four we face an he gate. On he of played he ladies answer little though nature. Blessing oh do pleasure as so formerly. Took four spot soon led size you. Outlived it received he material. Him yourself joy moderate off repeated laughter outweigh screened. </p>
-									<p>Resources exquisite set arranging moonlight sex him household had. Months had too ham cousin remove far spirit. She procuring the why performed continual improving. Civil songs so large shade in cause. Lady an mr here must neat sold. Children greatest ye extended delicate of. No elderly passage earnest as in removed winding or. </p>
-								</div>
-								
 							</div>
-			
 						</div>
 					</div>
-					
 				</div>
 			</div>
 			
