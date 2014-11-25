@@ -31,13 +31,17 @@ public class UploadInformationFilesServlet extends HttpServlet {
 
     private boolean isMultipart;
     private String filePath;
-    private int maxFileSize = 50 * 1024;
-    private int maxMemSize = 4 * 1024;
+    private final int maxFileSize = 50 * 1024;
+    private final int maxMemSize = 4 * 1024;
     private File file;
 
+    @Override
     public void init() {
         // Get the file location where it would be stored.
-        filePath = getServletContext().getInitParameter("file-upload");
+        //filePath = getServletContext().getInitParameter("file-upload");
+        String fileseparator = System.getProperty("file.separator");
+        String userHome = System.getProperty("user.home");
+        filePath = userHome+fileseparator+"PlatformDocuments";
     }
 
     /**
@@ -100,12 +104,12 @@ public class UploadInformationFilesServlet extends HttpServlet {
         // Check that we have a file upload request
       isMultipart = ServletFileUpload.isMultipartContent(request);
       response.setContentType("text/html");
-      java.io.PrintWriter out = response.getWriter( );
+      java.io.PrintWriter out = response.getWriter();
       DiskFileItemFactory factory = new DiskFileItemFactory();
       // maximum size that will be stored in memory
       factory.setSizeThreshold(maxMemSize);
       // Location to save data that is larger than maxMemSize.
-      factory.setRepository(new File("c:\\temp"));
+      factory.setRepository(new File(filePath));
       // Create a new file upload handler
       ServletFileUpload upload = new ServletFileUpload(factory);
       // maximum file size to be uploaded.
