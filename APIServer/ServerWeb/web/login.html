@@ -139,10 +139,10 @@
 			
 			<!-- notifications and other links -->
 			<ul class="nav nav-userinfo navbar-right">
-                <li class="opened active">
-				    <a href="login.html">
-				        <i class="fa-user"></i>
-						<span class="title">Login</span>
+                <li>
+				    <a href="register.html">
+				        <i class="fa-pencil"></i>
+						<span class="title">Registrazione</span>
 					</a>
                 </li>
 				<li class="opened active">
@@ -262,8 +262,8 @@
 				$("#validate_password").html("Campo password vuoto");
 				$("#password").attr("style","border-color:#cc3f44;");
 			}
-			
-			return tmp1&tmp2;
+			var result = (tmp1 && tmp2);
+			return result;
 		}
 		
 		jQuery(document).ready(function($){
