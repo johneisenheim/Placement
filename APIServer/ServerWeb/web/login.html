@@ -294,6 +294,7 @@
 							$("#messageControl").attr("class","alert alert-danger");
 							$("#messageControl").html("<strong>Spiacente, </strong>le tue credenziali non presenti nel database.");
 						}else{
+							
 							$("#messageControl").empty();
 							localStorage.setItem("primaryKey",parsed.primaryKey);
 							localStorage.setItem("username",parsed.userName);
