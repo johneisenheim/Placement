@@ -51,6 +51,14 @@
 		
 		jQuery(document).ready(function($){
 			$("#tableNotifications tbody").empty();
+			$.get("http://localhost:8080/ServerWeb/StudenteAttDetailsServlet",{}).done(function(e){
+				alert("bho "+JSON.stringify(e));
+				var parsed = jQuery.parseJSON(e);
+				alert(parsed.StudentList);
+			}).fail(function(e){
+				alert(JSON.stringify(e));
+			});
+			
 			for(var i = 0; i < 10; i++){
 				myArrayForModalMenu[i] = i;
 				var stringToAppend_tmp = "";

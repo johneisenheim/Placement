@@ -51,14 +51,14 @@ public class StudentAttendanceDetails {
             aStudentAttendence.setPrimaryKey(rs.getInt(1));
             studentList.add(aStudentAttendence);
         }
-        aConnection.close();
+       // aConnection.close();
         for(ConcreteStudentAttendence aStudentAttendence: studentList){
-        StudentTrainingInformation aStudentTraining = new StudentTrainingInformation();
-        aStudent = studentInformation.getInformationbyPrimaryKey(aStudentAttendence.getFKStudent());
-        aStudentTraining.setStudent(aStudent);
-        aStudentTraining.setFisicPerson(personInformation.getFisicPersonInformation(aStudent.getFKFisicPerson()));
-        aStudentTraining.setaStudentInformation(studentAttendanceInfo.getStudentInfoByPrimaryKey(aStudent.getFKidStudentInformation()));
-        studentsTrainingList.add(aStudentTraining);
+            StudentTrainingInformation aStudentTraining = new StudentTrainingInformation();
+            aStudent = studentInformation.getInformationbyPrimaryKey(aStudentAttendence.getFKStudent());
+            aStudentTraining.setStudent(aStudent);
+            aStudentTraining.setFisicPerson(personInformation.getFisicPersonInformation(aStudent.getFKFisicPerson()));
+            aStudentTraining.setaStudentInformation(studentAttendanceInfo.getStudentInfoByPrimaryKey(aStudent.getFKidStudentInformation()));
+            studentsTrainingList.add(aStudentTraining);
         }
         
         return studentsTrainingList;

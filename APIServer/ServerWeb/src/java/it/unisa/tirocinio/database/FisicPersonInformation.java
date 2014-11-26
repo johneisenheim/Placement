@@ -48,7 +48,7 @@ public class FisicPersonInformation {
             afisicPerson.setCF(rs.getString(10));
             afisicPerson.setEmail(rs.getString(11));  
         }
-            aConnection.close();
+           aConnection.close();
         
             return afisicPerson;
         }

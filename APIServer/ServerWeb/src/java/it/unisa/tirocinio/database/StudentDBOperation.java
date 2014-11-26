@@ -56,7 +56,7 @@ public class StudentDBOperation {
             aStudent.setFKClaimTraining(rs.getInt(10));
             aStudent.setFKidStudentInformation(rs.getInt(12));
         }
-        aConnection.close();
+        //aConnection.close();
         return aStudent;
 
     }
@@ -89,7 +89,7 @@ public class StudentDBOperation {
             aStudent.setFKidStudentInformation(rs.getInt(12));
 
         }
-        aConnection.close();
+       // aConnection.close();
         return aStudent;
 
     }

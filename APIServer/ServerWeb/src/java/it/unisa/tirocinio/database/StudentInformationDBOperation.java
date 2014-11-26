@@ -36,8 +36,9 @@ public class StudentInformationDBOperation {
             studentInfo.setCurriculumVitaePATH(rs.getString(2));
             studentInfo.setAccademicTranscriptPATH(rs.getString(3));
         }
-        rs.close();
-        pcSelect.close();
+        //rs.close();
+        //pcSelect.close();
+        aConnection.close();
         return studentInfo;
 
     }

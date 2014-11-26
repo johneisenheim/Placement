@@ -37,8 +37,9 @@ public class AuthenticateUser {
             loggedAccount.setUserName(rs.getString(2));
             loggedAccount.setTypeOfAccount(rs.getString(4));
             loggedAccount.setFKPermission(this.getAccountPermission(rs.getInt(5)));
-           // aConnection.close();
         }
+        
+        aConnection.close();
         if (rsResult == 0) {
             return null;
         } else {
