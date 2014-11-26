@@ -11,18 +11,18 @@
 	<title>DISTRA-MIT</title>
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
-	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
-	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
-	<link rel="stylesheet" href="assets/css/xenon-core.css">
-	<link rel="stylesheet" href="assets/css/xenon-forms.css">
-	<link rel="stylesheet" href="assets/css/xenon-components.css">
-	<link rel="stylesheet" href="assets/css/xenon-skins.css">
-    <link rel="stylesheet" href="assets/css/jquery.fileupload.css">
-	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="../../assets/css/fonts/linecons/css/linecons.css">
+	<link rel="stylesheet" href="../../assets/css/fonts/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-core.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-forms.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-components.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="../../assets/css/jquery.fileupload.css">
+	<link rel="stylesheet" href="../../assets/css/custom.css">
 
 
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script src="../../assets/js/jquery-1.11.1.min.js"></script>
 	<script>
 		jQuery(document).ready(function($){
 			/*bisogna metterla in ogni pagina*/
@@ -88,8 +88,8 @@
 			<!-- Navbar Brand -->
 			<div class="navbar-brand">
 				<a href="offertaFormativaStudente.html" class="logo">
-					<img src="assets/images/mitforsite.png" width="80" alt="" class="hidden-xs" />
-					<img src="assets/images/mitforsitemini.png" width="80" alt="" class="visible-xs" />
+					<img src="../../assets/images/mitforsite.png" width="80" alt="" class="hidden-xs" />
+					<img src="../../assets/images/mitforsitemini.png" width="80" alt="" class="visible-xs" />
 				</a>
 			</div>
 				
@@ -161,7 +161,7 @@
 			<ul class="nav nav-userinfo navbar-right">
                 <li class="dropdown user-profile">
 					<a href="#" data-toggle="dropdown">
-						<img src="assets/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+						<img src="../../assets/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
 						<span id="spaceForUsername">
 						</span>
 					</a>
@@ -267,14 +267,29 @@
                        }
                         $("#filesControl").empty();
                         $("#filesControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
-                        var cv = $('#field-4').files;
-                        var doc = $('#field-5').files;
-                        var formData = new FormData();
-                        formData.append('cv[]', cv[0], file.name);
-                        formData.append('doc[]', doc[0], file.name);
-                        
-                        $.get('').done(function(e){
-                        }).fail(function(e){
+                        //$("sendFilesForm").attr('action', 'localhost:8080/ServerWeb/UploadInformationFilesServlet');
+                        //$("sendFilesForm").attr('enctype', "multipart/form-data");
+                        //$("sendFilesForm").attr("target", "postiframe");
+                        //$("sendFilesForm").attr("file", $('#file').val());
+
+                        var cvFile = document.getElementById("field-4").files[0];
+                        var examsFile = document.getElementById("field-5").files[0];
+                        var formdata = new FormData();
+
+                        formdata.append("cvfile", cvFile);
+                        formdata.append("examsfile", examsFile);
+                        $.ajax({
+                          url: 'http://localhost:8080/ServerWeb/UploadInformationFilesServlet',
+                          data: formdata,
+                          processData: false,
+                          contentType: false,
+                          type: 'POST',
+                          success: function(data){
+                            alert(data);
+                          },
+                          error:function(){
+                              alert("Error");
+                          }
                         });
                     });
 				});
@@ -298,16 +313,16 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <form role="form" class="form-horizontal">
+                                        <form role="form" class="form-horizontal" id="sendFilesForm" enctype="multipart/form-data">
                                             <label class="col-sm-2 control-label" for="field-4" >Curriculum Vitae</label>
 
                                             <div class="col-sm-10">
-                                                <input type="file" class="form-control" id="field-4" name="cv[]">
+                                                <input type="file" class="form-control" id="field-4" name="cv" accept="application/pdf">
                                             </div>
                                             <label class="col-sm-2 control-label" for="field-5">Esami svolti</label>
                                             <br><br>
                                             <div class="col-sm-10">
-                                                <input type="file" class="form-control" id="field-5" name="doc[]">
+                                                <input type="file" class="form-control" id="field-5" name="doc" accept="application/pdf">
                                             </div>
                                             <br><br><br>
                                             <div id="filesControl" align="center"></div>
@@ -367,16 +382,16 @@
 
 
 	<!-- Bottom Scripts -->
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/TweenMax.min.js"></script>
-	<script src="assets/js/resizeable.js"></script>
-	<script src="assets/js/joinable.js"></script>
-	<script src="assets/js/xenon-api.js"></script>
-	<script src="assets/js/xenon-toggles.js"></script>
-    <script src="assets/js/rwd-table/js/rwd-table.min.js"></script>
+	<script src="../../assets/js/bootstrap.min.js"></script>
+	<script src="../../assets/js/TweenMax.min.js"></script>
+	<script src="../../assets/js/resizeable.js"></script>
+	<script src="../../assets/js/joinable.js"></script>
+	<script src="../../assets/js/xenon-api.js"></script>
+	<script src="../../assets/js/xenon-toggles.js"></script>
+    <script src="../../assets/js/rwd-table/js/rwd-table.min.js"></script>
 
 	<!-- JavaScripts initializations and stuff -->
-	<script src="assets/js/xenon-custom.js"></script>
+	<script src="../../assets/js/xenon-custom.js"></script>
 
 </body>
 </html>

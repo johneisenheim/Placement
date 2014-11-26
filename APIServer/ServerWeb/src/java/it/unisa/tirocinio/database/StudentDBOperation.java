@@ -93,5 +93,24 @@ public class StudentDBOperation {
         return aStudent;
 
     }
+    
+    /**
+     *
+     * @param FK_Account
+     * @return
+     * @throws SQLException
+     */
+    public ConcreteStudent getSerialNumberbyFK_Account(int FK_Account) throws SQLException {
+        ConcreteStudent aStudent = new ConcreteStudent();
+        Statement aStatement = aConnection.createStatement();
+        String query = "select serialNumber from Student where FK_Account = '" + FK_Account + "'";
+        ResultSet rs = aStatement.executeQuery(query);
+        while (rs.next()) {
+            aStudent.setPrimaryKey(rs.getString(1));
+            aStudent.setFKAccount(rs.getInt(6));
+        }
+        aConnection.close();
+        return aStudent;
+    }
 
 }
