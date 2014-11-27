@@ -5,7 +5,8 @@
  */
 package it.unisa.tirocinio.servlet;
 
-import it.unisa.tirocinio.database.*;
+import it.unisa.tirocinio.database.StudentDBOperation;
+import it.unisa.integrazione.manager.concrete.ConcreteStudent;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -77,6 +78,9 @@ public class UploadInformationFilesServlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Origin","*");
         PrintWriter out = response.getWriter();
         isMultipart = ServletFileUpload.isMultipartContent(request);
+        StudentDBOperation getSerialNumberObj = new StudentDBOperation();
+        ConcreteStudent aStudent = null;
+        String serialNumber = null;
         
         DiskFileItemFactory factory = new DiskFileItemFactory();
         
@@ -97,21 +101,11 @@ public class UploadInformationFilesServlet extends HttpServlet {
                    fileToStore = new File(filePath+fileSeparator+"ES.pdf");
                }
                fi.write( fileToStore ) ;
-               //String contentType = fi.getContentType();
-               //boolean isInMemory = fi.isInMemory();
-               //long sizeInBytes = fi.getSize();
-               /* Write the file
-               if( fileName.lastIndexOf("\\") >= 0 ){
-                  file = new File( filePath + 
-                  fileName.substring( fileName.lastIndexOf("\\"))) ;
-               }else{
-                  file = new File( filePath + 
-                  fileName.substring(fileName.lastIndexOf("\\")+1)) ;
-               }*/
-              // fi.write( file ) ;
                out.println("Uploaded Filename: " + fieldName + "<br>");
             }else{
                 out.println("It's not formfield");
+                aStudent = getSerialNumberObj.getSerialNumberbyFK_Account(Integer.parseInt(fi.getFieldName()));
+                serialNumber = reverseSerialNumber(aStudent.getPrimaryKey());
             }
         }
     }
@@ -163,5 +157,13 @@ public class UploadInformationFilesServlet extends HttpServlet {
         
         return "Short description";
     }// </editor-fold>
+
+    private String reverseSerialNumber(String primaryKey) {
+        String reversedSerialNumber = "";
+        for ( int i = primaryKey.length()-1; i >= 0; i-- ){
+            reversedSerialNumber += (primaryKey.charAt(i));
+        }
+        return reversedSerialNumber;
+    }
 
 }
