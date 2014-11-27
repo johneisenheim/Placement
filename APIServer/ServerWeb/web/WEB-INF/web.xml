@@ -4,20 +4,28 @@
         <servlet-name>AuthenticateUserServlet</servlet-name>
         <servlet-class>it.unisa.control.servlet.AuthenticateUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadInformationForModuleFilesServlet</servlet-name>
+        <servlet-class>it.unisa.tirocinio.servlet.UploadInformationForModuleFilesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AuthenticateUserServlet</servlet-name>
         <url-pattern>/AuthenticateUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadInformationForModuleFilesServlet</servlet-name>
+        <url-pattern>/UploadInformationForModuleFilesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    <context-param> 
-    <description>Location to store uploaded file</description> 
-    <param-name>file-upload</param-name> 
-    <param-value>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
          c:\apache-tomcat-5.5.29\webapps\data\
-     </param-value> 
+     </param-value>
     </context-param>
 </web-app>
