@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.control.servlet;
+package it.unisa.tirocinio.servlet;
 
-import it.unisa.tp.control.StudentDBOperation;
+import it.unisa.tirocinio.database.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;

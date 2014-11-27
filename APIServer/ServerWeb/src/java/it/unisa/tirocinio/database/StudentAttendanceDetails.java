@@ -1,13 +1,13 @@
-package it.unisa.tp.control;
+package it.unisa.tirocinio.database;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import it.unisa.tp.model.concrete.ConcreteStudent;
-import it.unisa.tp.model.concrete.ConcreteStudentAttendence;
-import it.unisa.tp.model.concrete.StudentTrainingInformation;
+import it.unisa.integrazione.database.*;
+import it.unisa.integrazione.manager.concrete.*;
+import it.unisa.integrazione.manager.interfaces.*;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -51,7 +51,7 @@ public class StudentAttendanceDetails {
             aStudentAttendence.setPrimaryKey(rs.getInt(1));
             studentList.add(aStudentAttendence);
         }
-       // aConnection.close();
+        aConnection.close();
         for(ConcreteStudentAttendence aStudentAttendence: studentList){
             StudentTrainingInformation aStudentTraining = new StudentTrainingInformation();
             aStudent = studentInformation.getInformationbyPrimaryKey(aStudentAttendence.getFKStudent());

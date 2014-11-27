@@ -1,12 +1,6 @@
-import it.unisa.tp.control.AuthenticateUser;
-import it.unisa.tp.control.DBConnection;
-import it.unisa.tp.control.StudentAttendanceDetails;
-import it.unisa.tp.control.StudentDBOperation;
-import it.unisa.tp.control.UploadInformationFiles;
-import it.unisa.tp.model.concrete.ConcreteAccount;
-import it.unisa.tp.model.concrete.ConcretePermissions;
-import it.unisa.tp.model.concrete.ConcreteStudent;
-import it.unisa.tp.model.concrete.StudentTrainingInformation;
+
+import it.unisa.integrazione.manager.concrete.*;
+import it.unisa.tirocinio.database.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

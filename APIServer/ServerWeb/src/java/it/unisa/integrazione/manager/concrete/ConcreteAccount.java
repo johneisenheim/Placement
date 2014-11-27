@@ -1,12 +1,7 @@
-package it.unisa.tp.model.concrete;
+package it.unisa.integrazione.manager.concrete;
 
 
-import it.unisa.tp.model.interfaces.Account;
-import it.unisa.tp.model.interfaces.Permissions;
-
-
-
-
+import it.unisa.integrazione.manager.interfaces.*;
 
 public class ConcreteAccount implements Account{
 

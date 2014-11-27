@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.tp.control;
+package it.unisa.tirocinio.database;
 
-import it.unisa.tp.model.concrete.ConcreteStudent;
+import it.unisa.integrazione.database.DBConnection;
+import it.unisa.integrazione.manager.concrete.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */  
-package it.unisa.control.servlet;
+package it.unisa.integrazione.servlet;
    
-import it.unisa.tp.control.AuthenticateUser;
-import it.unisa.tp.model.concrete.ConcreteAccount;
-import it.unisa.tp.model.concrete.ConcretePermissions;
+import it.unisa.integrazione.database.*;
+import it.unisa.integrazione.manager.concrete.ConcreteAccount;
+import it.unisa.integrazione.manager.concrete.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;

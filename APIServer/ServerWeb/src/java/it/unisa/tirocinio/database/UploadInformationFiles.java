@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.tp.control;
+package it.unisa.tirocinio.database;
 
+import it.unisa.integrazione.database.DBConnection;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;

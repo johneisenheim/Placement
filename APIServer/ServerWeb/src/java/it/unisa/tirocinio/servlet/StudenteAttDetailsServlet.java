@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.control.servlet;
+package it.unisa.tirocinio.servlet;
 
-import it.unisa.tp.control.StudentAttendanceDetails;
-import it.unisa.tp.model.concrete.StudentTrainingInformation;
+
+import it.unisa.integrazione.database.*;
+import it.unisa.integrazione.manager.concrete.*;
+import it.unisa.tirocinio.database.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -69,7 +72,6 @@ public class StudenteAttDetailsServlet extends HttpServlet {
                 studentInfo.put("atPath", aStundetInfo.getStudentInformation().getAccademicTranscriptPATH());
                 studentInfo.put("email", aStundetInfo.getStudent().getUniversityEmail());
                 studentList.put(studentInfo);
-                System.out.println("Bho "+studentInfo.get("serialNumber"));
             }
             message.put("StudentList", studentList);
             response.getWriter().write(message.toString());

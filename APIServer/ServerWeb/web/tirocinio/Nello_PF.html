@@ -11,16 +11,16 @@
 	<title>DISTRA-MIT</title>
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
-	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
-	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/bootstrap-mod.css">
-	<link rel="stylesheet" href="assets/css/xenon-core.css">
-	<link rel="stylesheet" href="assets/css/xenon-forms.css">
-	<link rel="stylesheet" href="assets/css/xenon-components.css">
-	<link rel="stylesheet" href="assets/css/xenon-skins.css">
-	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="../../assets/css/fonts/linecons/css/linecons.css">
+	<link rel="stylesheet" href="../../assets/css/fonts/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../assets/css/bootstrap-mod.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-core.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-forms.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-components.css">
+	<link rel="stylesheet" href="../../assets/css/xenon-skins.css">
+	<link rel="stylesheet" href="../../assets/css/custom.css">
 
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script src="../../assets/js/jquery-1.11.1.min.js"></script>
 	<script>
 		var myArrayForModalMenu =[];
 		
@@ -50,7 +50,6 @@
 		}
 		
 		jQuery(document).ready(function($){
-<<<<<<< HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementProfiloUtente.html
 			$("#tableNotifications tbody").empty();
 			for(var i = 0; i < 10; i++){
 				myArrayForModalMenu[i] = i;
@@ -65,12 +64,6 @@
 				}
 				$("#tableNotifications").append(stringToAppend_tmp);
 			}
-=======
-			
-			$("#modifyDataForTrainingIntoDatabase").click(function(){
-				alert($("#descriptionTrainingForModify").val());
-			});
->>>>>>> FETCH_HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementOrganizzazione.html
 			
 			/*bisogna metterla in ogni pagina*/
 			$(window).on('beforeunload',function(e) {
@@ -133,9 +126,9 @@
 		
 			<!-- Navbar Brand -->
 			<div class="navbar-brand">
-				<a href="offertaFormativaOrganizzazione.html" class="logo">
-					<img src="assets/images/mitforsite.png" width="80" alt="" class="hidden-xs" />
-					<img src="assets/images/mitforsitemini.png" width="80" alt="" class="visible-xs" />
+				<a href="offertaFormativaStudente.html" class="logo">
+					<img src="../../assets/images/mitforsite.png" width="80" alt="" class="hidden-xs" />
+					<img src="../../assets/images/mitforsitemini.png" width="80" alt="" class="visible-xs" />
 				</a>
 			</div>
 				
@@ -207,7 +200,7 @@
 			<ul class="nav nav-userinfo navbar-right">
                 <li class="dropdown user-profile">
 					<a href="#" data-toggle="dropdown">
-						<img src="assets/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+						<img src="../../assets/images/user-1.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
 						<span id="spaceForUsername">
 						</span>
 					</a>
@@ -272,66 +265,172 @@
 			</script>
 			
 			<div class="row">
-				<div class="col-md-12">
-				
+				<div class="col-sm-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Notifiche</h3>
+							<h3 class="panel-title">Modulo online del Progetto Formativo (PF)</h3>
 						</div>
-						
 						<div class="panel-body">
-							<script>
-								$(document).ready(function() {
-								$("#tableNotifications").dataTable({
-									aLengthMenu: [
-										[5, 10, 20, -1], [5, 10, 20, "Tutti"]
-									],
-									"columnDefs": [
-									  { "bSortable": false, "aTargets": [ 5 ] }
-									] } );
-								});
-							</script>
-							<table id="tableNotifications" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
-							
-								<thead>
-									<tr>
-										<th>Matricola</th>
-										<th>Nominativo</th>
-										<th>CV</th>
-										<th>Esami</th>
-										<th>E-mail</th>
-										<th>Azioni</th>
-									</tr>
-								</thead>
-								
-<<<<<<< HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementProfiloUtente.html
-								<tbody align="center">
-								</tbody>
-							</table>
-=======
 							<form role="form" class="form-horizontal">
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="field-2">Descrizione del Tirocinio</label>
-									<div class="col-sm-10">
-										<textarea id="descriptionTrainingOrganizzazione" style="resize:none" class="form-control" rows="5" cols="5" placeholder="Descrizione..." maxlength="250"></textarea>
-										<span id="validate_descriptionTrainingOrganizzazione" style="color:#cc3f44"></span>
+									<label class="col-sm-3 control-label" for="studentNameANDSurnameForPFModule">Tirocinante (Cognome - Nome)</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="studentNameANDSurnameForPFModule">
 									</div>
 								</div>
-								
-								<div class="col-sm-12">
-									<div id="messageTrainingControl" align="center"></div>
-								</div>
-								
 								<div class="form-group">
-									<center>
-										<button type="button" class="btn btn-secondary btn-single" id="addTrainingOrganizzazione">
-											<i class="fa-plus"></i>
-											<span>Aggiungi Tirocinio</span>
-										</button>
-									</center>
+									<label class="col-sm-3 control-label" for="studentBornForPFModule">Nato a</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="studentBornForPFModule">
+									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label" for="studentDateOfBirthForPFModule">Il</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="studentDateOfBirthForPFModule">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label" for="studentResidentInForPFModule">Residente in</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="studentResidentInForPFModule">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label" for="studentCodiceFiscaleForPFModule">Codice Fiscale</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="studentCodiceFiscaleForPFModule">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label" for="studentDegreeForPFModule">Corso di Diploma/laurea in</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="studentDegreeForPFModule">
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Attuale condizione (barrare la casella)</label>
+									<div class="col-sm-9">
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+												Studente scuola secondaria superiore
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+												Universitaria
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+												Frequentante corso post-diploma
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+												Frequentante corso post-laurea
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+												Allievo della formazione professionale
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+												Disoccupato/in mobilità
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox">
+												Inoccupato
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">(barrare se trattasi di soggetto portatore di Handicap)</label>
+									<div class="col-sm-9">
+										<div class="radio">
+											<label>
+												<input type="radio" name="radio-1">
+												Si
+											</label>
+											<label>
+												<input type="radio" name="radio-1">
+												No
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"></label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="Azienda/Ente ospitante:">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"></label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="Sede del Tirocinio (stabilimento/reparto/ufficio):">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"></label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="Tempi di accesso ai locali aziendali:">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Periodo di tirocinio (max 12 mesi)</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="n° mesi - dal gg/mm/aa - al gg/mm/aa">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"></label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="Tutor accademico:">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"></label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="Tutor azienda/ente:">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Polizze assicurative:</label>
+									<div class="col-sm-9">
+										<textarea type="textarea" class="form-control" align="justify" rows="4" disabled>INAL Gestione per conto dello Stato prevista dal combinato disposto dagli artt. 127 e 190 del T.U. INAIL (DPR N. 1124/65) e regolamentato dal D.M. 10.10.85; Infortuni posizione 261044627 Compagnia Generali Responsabilità Civile Terzi Compagnia Generali 261044624</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Obiettivi e modalità del tirocinio:</label>
+									<div class="col-sm-9">
+										<textarea type="textarea" class="form-control" align="justify" rows="4">
+										</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"></label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" placeholder="Facilitazioni previste:">
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+								
 							</form>
->>>>>>> FETCH_HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementOrganizzazione.html
 						</div>
 					</div>
 					
@@ -467,7 +566,7 @@
 				<div class="modal-footer">
 					<center>
 						<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-						<button type="button" id="modifyDataForTrainingIntoDatabase" class="btn btn-orange">Modifica</button>
+						<button type="button" id="mandalo" class="btn btn-info">Save changes</button>
 					</center>
 				</div>
 			</div>
@@ -479,70 +578,30 @@
 	</div>
 
 	
-	<link rel="stylesheet" href="assets/js/datatables/dataTables.bootstrap.css">
-	<link rel="stylesheet" href="assets/css/fonts/meteocons/css/meteocons.css">
+	<link rel="stylesheet" href="../../assets/js/datatables/dataTables.bootstrap.css">
+	<link rel="stylesheet" href="../../assets/css/fonts/meteocons/css/meteocons.css">
 	
 	<!-- Bottom Scripts -->
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/TweenMax.min.js"></script>
-	<script src="assets/js/resizeable.js"></script>
-	<script src="assets/js/joinable.js"></script>
-	<script src="assets/js/xenon-api.js"></script>
-	<script src="assets/js/xenon-toggles.js"></script>
-	<script src="assets/js/datatables/js/jquery.dataTables.js"></script>
+	<script src="../../assets/js/bootstrap.min.js"></script>
+	<script src="../../assets/js/TweenMax.min.js"></script>
+	<script src="../../assets/js/resizeable.js"></script>
+	<script src="../../assets/js/joinable.js"></script>
+	<script src="../../assets/js/xenon-api.js"></script>
+	<script src="../../assets/js/xenon-toggles.js"></script>
+	<script src="../../assets/js/datatables/js/jquery.dataTables.js"></script>
 
 	<!-- Imported scripts on this page -->
-	<script src="assets/js/datatables/dataTables.bootstrap.js"></script>
-	<script src="assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
-	<script src="assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
+	<script src="../../assets/js/datatables/dataTables.bootstrap.js"></script>
+	<script src="../../assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
+	<script src="../../assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
 	
 	<!-- Imported scripts on this page -->
-	<script src="assets/js/xenon-widgets.js"></script>
-	<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="assets/js/jvectormap/regions/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="../../assets/js/xenon-widgets.js"></script>
+	<script src="../../assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="../../assets/js/jvectormap/regions/jquery-jvectormap-world-mill-en.js"></script>
 
 	<!-- JavaScripts initializations and stuff -->
-	<script src="assets/js/xenon-custom.js"></script>
-<<<<<<< HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementProfiloUtente.html
+	<script src="../../assets/js/xenon-custom.js"></script>
 
-=======
-	<script>		
-		function emptyControl(id){
-			if($("#"+id).val() == "")
-				return false;
-			return true;
-		}
-		
-		function checkNotEmptyFields(){
-			var tmp2 = emptyControl("descriptionTrainingOrganizzazione");
-			if(!tmp2) {
-				$("#validate_descriptionTrainingOrganizzazione").html("Campo descrizione vuoto");
-				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#cc3f44;");
-			}
-			
-			return tmp2;
-		}
-		
-		jQuery(document).ready(function($){
-		
-			$("#descriptionTrainingOrganizzazione").keyup(function(){
-				$("#descriptionTrainingOrganizzazione").attr("style","border-color:#e4e4e4;");
-				$("#validate_descriptionTrainingOrganizzazione").html("");
-			});
-			
-			$("#addTrainingOrganizzazione").click(function(){
-				$("#messageTrainingControl").removeAttr("class");
-				$("#messageTrainingControl").empty();
-				$("#addTrainingOrganizzazione").text("Attendi...");
-				if(checkNotEmptyFields()){
-					$("#messageTrainingControl").html('<center><i class="fa fa-spin fa-2x fa-circle-o-notch" style="font-size:2em;color:#38548f;"></i></center>');
-					alert($("#descriptionTrainingOrganizzazione").val());
-				}
-				$("#addTrainingOrganizzazione").text("Aggiungi Tirocinio");
-			});
-		});
-	</script>
-	
->>>>>>> FETCH_HEAD:APIServer/ServerWeb/web/gestioneTirocinio&PlacementOrganizzazione.html
 </body>
 </html>
