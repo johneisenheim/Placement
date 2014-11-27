@@ -12,9 +12,9 @@ public class ConcreteAccount implements Account{
     private String typeOfAccount;
     private ConcretePermissions FKPermission;
     
-    public ConcreteAccount(int idAccount, String unserName, String password, String typeOfAccount, ConcretePermissions FKPermission) {
+    public ConcreteAccount(int idAccount, String userName, String password, String typeOfAccount, ConcretePermissions FKPermission) {
         this.idAccount = idAccount;
-        this.userName = unserName;
+        this.userName = userName;
         this.password = password;
         this.typeOfAccount = typeOfAccount;
         this.FKPermission = FKPermission;

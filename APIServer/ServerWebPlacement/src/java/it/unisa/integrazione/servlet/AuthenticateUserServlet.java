@@ -6,7 +6,6 @@
 package it.unisa.integrazione.servlet;
    
 import it.unisa.integrazione.database.*;
-import it.unisa.integrazione.manager.concrete.ConcreteAccount;
 import it.unisa.integrazione.manager.concrete.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,12 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 
-
-
- 
 /**
  *
  * @author carlosborges

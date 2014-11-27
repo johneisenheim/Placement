@@ -25,16 +25,16 @@
 		jQuery(document).ready(function($){
 			if(localStorage.getItem("username")!=null){
 				if(localStorage.getItem("typology")=="Professore"){
-					window.location.href="../../offertaFormativa/professore/offertaFormativaProfessore.html";
+					window.location.href="offertaFormativa/professore/offertaFormativaProfessore.html";
 				}
 				if(localStorage.getItem("typology")=="Studente"){
-					window.location.href="../../offertaFormativa/studente/offertaFormativaStudente.html";
+					window.location.href="offertaFormativa/studente/offertaFormativaStudente.html";
 				}
 				if(localStorage.getItem("typology")=="Organizzazione"){
-					window.location.href="../../tirocinio/organizzazione/gestioneTirocinio&PlacementOrganizzazione.html";
+					window.location.href="tirocinio/organizzazione/gestioneTirocinio&PlacementOrganizzazione.html";
 				}
 				if(localStorage.getItem("typology")=="Amministratore"){
-					window.location.href="../../offertaFormativa/amministratore/offertaFormativaAmministratore.html";
+					window.location.href="offertaFormativa/amministratore/offertaFormativaAmministratore.html";
 				}
 			}
 		});
@@ -312,19 +312,19 @@
 							localStorage.setItem("superAmministratore",myArray[4]);
 							
 							if(localStorage.getItem("typology")==="Studente"){
-								var url = '../../offertaFormativa/studente/offertaFormativaStudente.html';
+								var url = 'offertaFormativa/studente/offertaFormativaStudente.html';
                                 window.location.href= url;
 							}
 							if(localStorage.getItem("typology")==="Professore"){
-								var url = '../../offertaFormativa/professore/offertaFormativaProfessore.html';
+								var url = 'offertaFormativa/professore/offertaFormativaProfessore.html';
                                 window.location.href= url;
 							}
 							if(localStorage.getItem("typology")==="Organizzazione"){
-								var url = '../../tirocinio/organizzazione/gestioneTirocinio&PlacementOrganizzazione.html';
+								var url = 'tirocinio/organizzazione/gestioneTirocinio&PlacementOrganizzazione.html';
                                 window.location.href= url;
 							}
 							if(localStorage.getItem("typology")==="Amministratore"){
-								var url = '../../offertaFormativa/amministratore/offertaFormativaAmministratore.html';
+								var url = 'offertaFormativa/amministratore/offertaFormativaAmministratore.html';
                                 window.location.href= url;
 							}
 						}
