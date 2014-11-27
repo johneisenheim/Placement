@@ -1,11 +1,9 @@
 
-import it.unisa.tp.control.AuthenticateUser;
-import it.unisa.tp.control.DBConnection;
-import it.unisa.tp.control.UploadInformationFiles;
-import it.unisa.tp.model.concrete.ConcreteAccount;
-import it.unisa.tp.model.concrete.ConcretePermissions;
+import it.unisa.integrazione.manager.concrete.*;
+import it.unisa.tirocinio.database.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,18 +17,24 @@ import java.util.logging.Logger;
  * @author carlosborges
  */
 public class MainTest {
-    
-     public static void main(String[] args) {
-         try {
-             UploadInformationFiles upload = new UploadInformationFiles();
-             upload.UploadFilesPathToDB("provacv", "provaAT", "1");
-         } catch (ClassNotFoundException ex) {
-             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (SQLException ex) {
-             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (IOException ex) {
-             Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
+
+    public static void main(String[] args) {
+        StudentAttendanceDetails details;
+
+        try {
+            details = new StudentAttendanceDetails();
+            ArrayList<StudentTrainingInformation> dataToReturn = details.getStudentDetails();
+            for (StudentTrainingInformation aStundetInfo : dataToReturn) {
+                System.out.print(aStundetInfo.getStudent().getPrimaryKey());
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
+
 }
