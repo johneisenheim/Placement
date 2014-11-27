@@ -276,8 +276,10 @@
                         var examsFile = document.getElementById("field-5").files[0];
                         var formdata = new FormData();
 
+                        formdata.append("id", 1);
                         formdata.append("cvfile", cvFile);
                         formdata.append("examsfile", examsFile);
+                        //formdata.append("id", localStorage.getItem('primaryKey'));
                         $.ajax({
                           url: 'http://localhost:8080/ServerWeb/UploadInformationFilesServlet',
                           data: formdata,
