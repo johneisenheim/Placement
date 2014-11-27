@@ -287,10 +287,30 @@
                           contentType: false,
                           type: 'POST',
                           success: function(data){
-                            alert(data);
+                            if(data.indexOf("Exception") > -1){
+								$("#filesControl").empty();								
+								$("#filesControl").attr("class","alert alert-danger");
+								$("#filesControl").html("<strong>Errore! </strong>C'è stato un errore nell'elaborazione dei dati. Per favore, riprova a breve.");
+								return;
+							}
+							var parsed = JSON.parse(data);
+							if(parsed.status==0){
+								$("#filesControl").empty();								
+								$("#filesControl").attr("class","alert alert-danger");
+								$("#filesControl").html("<strong>Errore! </strong>C'è stato un errore nell'elaborazione dei dati. Per favore, riprova a breve.");
+							}else{
+								$("#filesControl").empty();							
+								$("#filesControl").attr("class","alert alert-success");
+								$("#filesControl").html("<strong>Caricamento effettuato! </strong> Verrai ora reindirizzato sulla pagina di visualizzazione dello stato.");
+								setTimeout(function(){
+									location.reload();
+								},5000);
+							}
                           },
                           error:function(){
-                              alert("Error");
+                              	$("#filesControl").empty();								
+								$("#filesControl").attr("class","alert alert-danger");
+								$("#filesControl").html("<strong>Errore! </strong>C'è stato un errore nell'elaborazione dei dati. Per favore, riprova a breve.");
                           }
                         });
                     });

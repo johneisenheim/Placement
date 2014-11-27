@@ -26,6 +26,8 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.output.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -33,34 +35,39 @@ import org.apache.commons.io.output.*;
  */
 @WebServlet(name = "UploadInformationFilesServlet", urlPatterns = {"/UploadInformationFilesServlet"})
 public class UploadInformationFilesServlet extends HttpServlet {
-
+    private PrintWriter out = null;
     private boolean isMultipart;
     private String filePath;
     private String fileSeparator = null;
-    private final int maxFileSize = 50 * 1024;
-    private final int maxMemSize = 4 * 1024;
     private StudentDBOperation serialNumberFromDBOperation = null;
+    private final JSONObject message = new JSONObject();
+    
 
     @Override
     public void init() {
-        // Get the file location where it would be stored.
-        //filePath = getServletContext().getInitParameter("file-upload");
-        fileSeparator = System.getProperty("file.separator");
-        String userHome = System.getProperty("user.home");
-        filePath = userHome+fileSeparator+"PlatformDocuments";
         try {
+            // Get the file location where it would be stored.
+            //filePath = getServletContext().getInitParameter("file-upload");
+            fileSeparator = System.getProperty("file.separator");
+            String userHome = System.getProperty("user.home");
+            filePath = userHome+fileSeparator+"PlatformDocuments";
+            
             serialNumberFromDBOperation = new StudentDBOperation();
+            
+            File directoryCheck = new File(filePath);
+            if( !directoryCheck.exists() ){
+                directoryCheck.mkdir();
+            }
         } catch (ClassNotFoundException ex) {
+            out.println("Exception "+ex);
             Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            out.println("Exception "+ex);
             Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            out.println("Exception "+ex);
             Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        File directoryCheck = new File(filePath);
-        if( !directoryCheck.exists() ){
-            directoryCheck.mkdir();
-        }
+        } 
     }
 
     /**
@@ -73,40 +80,73 @@ public class UploadInformationFilesServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, FileUploadException, Exception {
-        response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin","*");
-        PrintWriter out = response.getWriter();
-        isMultipart = ServletFileUpload.isMultipartContent(request);
-        StudentDBOperation getSerialNumberObj = new StudentDBOperation();
-        ConcreteStudent aStudent = null;
-        String serialNumber = null;
+            throws ServletException, JSONException {
         
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        
-        ServletFileUpload upload = new ServletFileUpload(factory);
-        List fileItems = upload.parseRequest(request);
-        Iterator i = fileItems.iterator();
-        File fileToStore = null;
-        
-         while ( i.hasNext () ) {
-            FileItem fi = (FileItem)i.next();
-            if ( !fi.isFormField () ){
-               // Get the uploaded file parameters
-               String fieldName = fi.getFieldName();
-               String fileName = fi.getName();
-               if( fieldName.equals("cvfile")){
-                   fileToStore = new File(filePath+fileSeparator+"CV.pdf");
-               }else if( fieldName.equals("examsfile")){
-                   fileToStore = new File(filePath+fileSeparator+"ES.pdf");
-               }
-               fi.write( fileToStore ) ;
-               out.println("Uploaded Filename: " + fieldName + "<br>");
-            }else{
-                out.println("It's not formfield");
-                aStudent = getSerialNumberObj.getSerialNumberbyFK_Account(Integer.parseInt(fi.getFieldName()));
-                serialNumber = reverseSerialNumber(aStudent.getPrimaryKey());
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            response.setHeader("Access-Control-Allow-Origin","*");
+            out = response.getWriter();
+            isMultipart = ServletFileUpload.isMultipartContent(request);
+            StudentDBOperation getSerialNumberObj = new StudentDBOperation();
+            ConcreteStudent aStudent = null;
+            String serialNumber = null;
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            List fileItems = upload.parseRequest(request);
+            Iterator i = fileItems.iterator();
+            File fileToStore = null;
+            String studentSubfolderPath = filePath;
+            while ( i.hasNext () ) {
+                FileItem fi = (FileItem)i.next();
+                if ( !fi.isFormField () ){
+                    // Get the uploaded file parameters
+                    String fieldName = fi.getFieldName();
+                    String fileName = fi.getName();
+                    if( fieldName.equals("cvfile")){
+                        fileToStore = new File(studentSubfolderPath+fileSeparator+"CV.pdf");
+                    }else if( fieldName.equals("examsfile")){
+                        fileToStore = new File(studentSubfolderPath+fileSeparator+"ES.pdf");
+                    }
+                    fi.write( fileToStore ) ;
+                   // out.println("Uploaded Filename: " + fieldName + "<br>");
+                }else{
+                    //out.println("It's not formfield");
+                    //out.println(fi.getString());
+                    aStudent = getSerialNumberObj.getSerialNumberbyFK_Account(Integer.parseInt(fi.getString()));
+                    serialNumber = reverseSerialNumber(aStudent.getPrimaryKey());
+                    studentSubfolderPath += fileSeparator+serialNumber;
+                    new File(studentSubfolderPath).mkdir();
+                }
             }
+            message.put("status", 1);
+            out.print(message.toString());
+        } catch (IOException ex) {
+            message.put("status",0);
+            message.put("errorMessage",ex);
+            out.print(message.toString());
+            Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            message.put("status",0);
+            message.put("errorMessage",ex);
+            out.print(message.toString());
+            Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            message.put("status",0);
+            message.put("errorMessage",ex);
+            out.print(message.toString());
+            Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileUploadException ex) {
+            message.put("status",0);
+            message.put("errorMessage",ex);
+            out.print(message.toString());
+            Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            message.put("status",0);
+            message.put("errorMessage",ex);
+            out.print(message.toString());
+            Logger.getLogger(UploadInformationFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            out.close();
         }
     }
 

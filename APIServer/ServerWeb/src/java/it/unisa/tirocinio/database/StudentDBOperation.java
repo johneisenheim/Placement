@@ -108,7 +108,6 @@ public class StudentDBOperation {
         ResultSet rs = aStatement.executeQuery(query);
         while (rs.next()) {
             aStudent.setPrimaryKey(rs.getString(1));
-            aStudent.setFKAccount(rs.getInt(6));
         }
         aConnection.close();
         return aStudent;
