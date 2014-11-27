@@ -58,14 +58,18 @@ public class AuthenticateUserServlet extends HttpServlet {
                 message.put("userName", anAccount.getUserName());
                 message.put("classPermission", ((ConcretePermissions) anAccount.getFKPermission()).getClassPermission());
                 response.getWriter().write(message.toString());
+                out.println("Errore "+anAccount.getPrimaryKey());
             }
             if (anAccount == null) {
+                out.println("Errore "+anAccount.getPrimaryKey());
                 message.put("status", 0);
                 response.getWriter().write(message.toString());
             }
         } catch (JSONException ex) {
+            out.println("Errore "+ex);
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            out.println("Errore "+ex);
             Logger.getLogger(AuthenticateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
