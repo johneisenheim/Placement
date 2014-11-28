@@ -16,5 +16,4 @@ INSERT INTO `mydb`.`StudentInformation` (`idStudentInformation`, `CurriculumVita
 UPDATE `mydb`.`Student` SET `FK_idStudentInformation`='2' WHERE `serialNumber`='1';
 INSERT INTO `mydb`.`StudentAttendence` (`SerialNum`, `Date`, `FK_Student`) VALUES ('2', '2015/12/01', '0512200013');
 
-
-
+INSERT INTO `mydb`.`StudentStatus` (`idStudentStatus`, `description`) VALUES ('0', 'Rifiutato');

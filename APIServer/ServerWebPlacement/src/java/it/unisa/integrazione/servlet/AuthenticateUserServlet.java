@@ -45,12 +45,17 @@ public class AuthenticateUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         response.setHeader("Access-Control-Allow-Origin","*");
+<<<<<<< Updated upstream
         //String userName = request.getParameter("username");
         //String password = request.getParameter("password");
         
         String userName = "valentino";
         String password = "vale";
         
+=======
+        String userName = request.getParameter("username");
+        String password = request.getParameter("password");
+>>>>>>> Stashed changes
         ConcreteAccount anAccount;
         AuthenticateUser handleUser = new AuthenticateUser();
         try {

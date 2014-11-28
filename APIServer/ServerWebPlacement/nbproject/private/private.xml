@@ -5,7 +5,10 @@
         <group>
             <file>file:/C:/Users/Valentino/Desktop/Placement/APIServer/ServerWebPlacement/src/java/it/unisa/integrazione/servlet/AuthenticateUserServlet.java</file>
             <file>file:/C:/Users/Valentino/Desktop/Placement/APIServer/ServerWebPlacement/src/java/it/unisa/integrazione/database/AuthenticateUser.java</file>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Valentino/Desktop/Placement/APIServer/ServerWebPlacement/web/tirocinio/amministratore/gestioneTirocinio&amp;PlacementAmministratore.html</file>
+=======
+>>>>>>> Stashed changes
             <file>file:/C:/Users/Valentino/Desktop/Placement/APIServer/ServerWebPlacement/src/java/it/unisa/integrazione/manager/concrete/ConcreteAccount.java</file>
         </group>
     </open-files>
